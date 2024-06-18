@@ -1,0 +1,105 @@
+/* list view */
+.list-view {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.list-view header {
+  padding: 0.5rem;
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  top: 0;
+}
+
+.list-view .name {
+  display: flex;
+  align-items: center;
+  gap: 0.34rem;
+}
+
+.list-view .left {
+  text-align: left;
+}
+
+
+/* table */
+.table-responsive {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ddd;
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  background-color: #222;
+  position: sticky;
+  color: #fff;
+  top: 0;
+}
+
+tr .fa {
+  width: 1em;
+  color: var(--primary-color);
+  opacity: 0.67;
+}
+
+th, td {
+  text-align: left;
+  white-space: nowrap;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* filter */
+
+.dataTables_filter {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.custom-filters-wrapper {
+  user-select: none;
+  font-size: 13px;
+  float: right;  
+}
+
+.status-filter select {
+  background-color: transparent;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.btn-clear-state {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  margin: 5px;
+}
+
+.btn-clear-state.hidden {
+  display: none;
+}
+
+.deleted {
+  text-decoration: line-through;
+}
+
+@media screen and (max-width: 640px)
+{
+  .custom-filters-wrapper {
+    text-align: center;
+    float: none;
+  }
+}
+

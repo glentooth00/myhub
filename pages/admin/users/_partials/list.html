@@ -1,0 +1,42 @@
+<include>_partials/list.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="users-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Status</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Role</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Failed Logins</th>
+          <th>Last Login At</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody class="hidden">
+        <?php foreach ($users as $user): ?>
+          <tr id="<?=$user->id?>">
+            <td><?=$user->id?></td>
+            <td><?=$user->status?></td>
+            <td><?=escape($user->first_name)?></td>
+            <td><?=escape($user->last_name)?></td>
+            <td><?=escape($roles[$user->role_id] ?? '-')?></td>
+            <td><?=escape($user->username)?></td>
+            <td><?=escape($user->email)?></td>
+            <td><?=$user->failed_logins?></td>
+            <td><?=$user->last_login_at?></td>
+            <td><?=$user->created_at?></td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+    <button class="fab btn-round btn-primary" type="button"
+      onclick="F1.app.navigateTo({url:'admin/users?view=edit&id=new', view:'edit', title:'User Form'})">
+      <i class="fa fa-plus fa-lg"></i>
+    </button>
+  </div> <!-- .table-responsive -->
+</div> <!-- .list-view -->
+<include>_partials/list.js</include>

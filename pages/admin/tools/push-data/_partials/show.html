@@ -1,0 +1,24 @@
+<include>_partials/show.css</include>
+
+<div class="container">
+	<hr>
+  <h2>Welcome to Push Data</h2>
+  <hr>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="F1.app.push('tccs')">
+    <!-- push fa icon -->
+  	<i id="busy-icon-tccs" class="fa fa-upload"></i>&nbsp; Push TCCs
+  </button>
+  <br>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="F1.app.push('trades')">
+    <i id="busy-icon-trades" class="fa fa-upload"></i>&nbsp; Push Trades
+  </button>
+  <br>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="F1.app.push('clients')">
+    <i id="busy-icon-clients" class="fa fa-upload"></i>&nbsp; Push Clients
+  </button>   
+</div>
+
+<include>_partials/show.js</include>

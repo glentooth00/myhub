@@ -1,0 +1,136 @@
+<include>_partials/edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$isEdit">
+      <h1>Edit TCC ID: <?=$id?></h1>
+      </if>
+      <if x="$isNew">
+      <h1>Add New TCC</h1>
+      </if>
+    </header>
+    <form id="tcc-form" method="post" novalidate>
+      <if x="$super">
+
+      <div class="flex-row flex-center">
+        <label class="checkbox flex-row flex-gap-sm align-center">
+          <input id="override_validation" name="override_validation" type="checkbox">
+          <small class="nowrap">Override Validation</small>
+        </label>
+      </div>
+      </if>
+
+      <input type="hidden" name="id" value="<?=$tcc->id?>">
+
+      <label for="status" required>PIN Status:</label>
+      <select id="status" name="status" data-value="<?=$tcc->status?>" required>
+        <foreach x="$statuses as $status">
+        <option><?=$status?></option>
+        </foreach>
+      </select>
+      <p id="statusFeedback" class="feedback"></p>
+
+      <label for="application_date" required>Applied On:</label>
+      <input type="date" id="application_date" name="application_date" value="<?=$tcc->application_date?>" max="<?=date('Y-m-d')?>" required>
+      <p id="application_dateFeedback" class="feedback"></p>
+
+      <label for="amount_cleared" required>PIN Value:</label>
+      <input type="text" id="amount_cleared" name="amount_cleared" value="<?=currency($tcc->amount_cleared, 'R ')?>" 
+        onchange="this.value=F1.lib.Utils.currency(this.value)" required>
+      <p id="amount_clearedFeedback" class="feedback"></p>
+
+      <label for="client_id" required>Client:</label>
+      <select id="client_id" name="client_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-value="<?=$tcc->client_id?>" required>
+        <foreach x="$clients as $client">
+        <option value="<?=$client->client_id?>"><?=escape($client->name)?></option>
+        </foreach>
+      </select>
+      <p id="client_idFeedback" class="feedback"></p>
+
+      <label for="amount_reserved">Amount Reserved:</label>
+      <input type="text" id="amount_reserved" name="amount_reserved" value="<?=currency($tcc->amount_reserved, 'R ')?>"
+        onchange="this.value=F1.lib.Utils.currency(this.value)">
+      <p id="amount_reservedFeedback" class="feedback"></p>
+
+      <label for="tax_case_no">Tax Case No:</label>
+      <input type="text" id="tax_case_no" name="tax_case_no" value="<?=escape($tcc->tax_case_no)?>">
+      <p id="tax_case_noFeedback" class="feedback"></p>
+
+      <label for="tax_cert_pdf">Tax Cert File:</label>
+      <input type="file" id="tax_cert_pdf" name="tax_cert_pdf" accept=".pdf" 
+        data-custom-type="F1UploadField" data-value="<?=$tcc->tax_cert_pdf?>">
+      <p id="tax_cert_pdfFeedback" class="feedback"></p>
+
+      <label for="tcc_pin">PIN Number:</label>
+      <input type="text" id="tcc_pin" name="tcc_pin" value="<?=escape($tcc->tcc_pin)?>"
+        pattern="^[a-zA-Z0-9]{10}$" title="PIN must be exactly 10 alphanumeric characters" maxlength="10">
+      <p id="tcc_pinFeedback" class="feedback"></p>
+
+      <label for="date">Approved On:</label>
+      <input type="date" id="date" name="date" value="<?=$tcc->date?>" max="<?=date('Y-m-d')?>">
+      <p id="dateFeedback" class="feedback"></p>
+
+      <label for="notes">Notes:</label>
+      <textarea id="notes" name="notes"><?=escape($tcc->notes)?></textarea>
+
+      <label for="expired">Expired Year:</label>
+      <?=$form->input( 'text', $tcc, 'expired', ['readonly' => !$super ] )?>
+      <if x="$isEdit">
+
+      <label for="allocated_trades">Allocated_Trades:</label>
+      <?=$form->input( 'textarea', $tcc, 'allocated_trades', ['readonly' => !$super] )?>
+
+      <label for="rollover">Rollover:</label>
+      <?=$form->input( 'text', $tcc, 'rollover', ['format' => 'currency', 'readonly' => !$super] )?>
+
+      <label for="amount_cleared_net">Amount Cleared Net:</label>
+      <input type="text" id="amount_cleared_net" name="amount_cleared_net" value="<?=currency($tcc->amount_cleared_net, 'R ')?>" readonly>
+
+      <if x="$super">
+      <fieldset class="mt2">
+      <legend>
+        <label class="checkbox flex-row flex-gap-sm align-center nowrap">
+          <input type="checkbox" name="force_used" onchange="F1.app.toggleForceUsed()">
+          <span class="nowrap">Force Amount Used</span>
+        </label>
+      </legend>
+      </if>
+      <label for="amount_used">Amount Used:</label>
+      <input type="text" id="amount_used" name="amount_used" value="<?=currency($tcc->amount_used, 'R ')?>"
+        onchange="this.value=F1.lib.Utils.currency(this.value)" readonly>
+      <p id="amount_usedFeedback" class="feedback"></p>
+      <if x="$super">
+      </fieldset>
+      </if>
+
+      <label for="amount_remaining">Amount Remaining:</label>
+      <input type="text" id="amount_remaining" name="amount_remaining" value="<?=currency($tcc->amount_remaining, 'R ')?>" readonly>
+
+      <label for="amount_available">Amount Available:</label>
+      <input type="text" id="amount_available" name="amount_available" value="<?=currency($tcc->amount_available, 'R ')?>" readonly>
+
+      <label for="updated_by">Updated By:</label>
+      <input type="text" id="updated_by" name="updated_by" value="<?=$tcc->updated_by?>" readonly>
+
+      <label for="updated_at">Updated At:</label>
+      <input type="text" id="updated_at" name="updated_at" value="<?=$tcc->updated_at?>" readonly>
+
+      <label for="created_at">Created At:</label>
+      <input type="text" id="created_at" name="created_at" value="<?=$tcc->created_at?>" readonly>
+
+      <label for="created_by">Created By:</label>
+      <input type="text" id="created_by" name="created_by" value="<?=$tcc->created_by?>" readonly>
+      </if>
+
+      <label for="tcc_id">TCC UUID:</label>
+      <?=$form->input( 'text', $tcc, 'tcc_id', ['readonly' => !$super] )?>
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="F1.app.onExit(event, history.back.bind(history))">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/edit.js</include>

@@ -1,0 +1,183 @@
+<include>_partials/rollovers.css</include>
+<div class="container">
+
+ <section>
+    <ul class="tests">
+      <li>T1 - Trades with tcc cover mismatch.</li>
+      <li>T2 - Trades with a detail allocations mismatch.</li>
+      <li>T3 - Total cover is less than total FIA trades.</li>
+      <li>T4 - Rollover is less than cover remaining.</li>
+      <li>T5 - Rollover is more than cover remaining.</li>
+    </ul>
+ </section>
+ 
+ <section class="flex-row flex-gap">
+    <div class="left-col flex-col">
+      <header>
+        <hr>
+        <div class="flex-row space-between">
+          <div class="flex-col"><h3><?=$operation->description?></h3></div>
+          <div class="flex-col">
+            <a href="javascript:void(0);" data-tippy-content="Export to CSV" 
+              onclick="F1.app.exportToCsv('report')">
+              <i class="fa fa-download"></i>&nbsp;
+            </a>
+          </div>
+        </div>          
+        <hr>
+      </header>      
+      <div class="table-responsive">
+        <table id="report-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Client UID</th>
+              <th>Client</th>
+              <th class="center">Status</th>
+              <th class="center">Trading Capital</th>
+              <th class="center">SDA Mandate</th>
+              <th class="center">FIA Mandate</th>
+              <th class="center" data-tippy-content="all_sda_trades">SDA Used</th>
+              <th class="center" data-tippy-content="all_fia_trades">FIA Used</th>
+              <th class="center" data-tippy-content="sda_mandate - all_sda_trades">SDA Mand. Remaining</th>
+              <th class="center" data-tippy-content="fia_mandate - all_fia_trades">FIA Mand. Remaining</th>
+              <th class="center">SDA</th>
+              <th class="center">FIA</th>
+              <th class="center">SFA</th>
+              <th class="center">TRS</th>
+              <th class="center" data-tippy-content="all_sda_trades + all_fia_trades">Total Trades Amount</th>
+              <th class="center" data-tippy-content="roll-ins">RIs</th>
+              <th class="center" data-tippy-content="new pins">TCCs</th>
+              <th class="center" data-tippy-content="roll-ins">RIs Amount</th>
+              <th class="center" data-tippy-content="all_tccs">TCCs Amount</th>
+              <th class="center" data-tippy-content="all_tccs + roll-ins">Total Cover Amount</th>
+              <th class="center" data-tippy-content="(all_tcc_pins + roll-ins) - all_fia_trades">Cover Remaining</th>
+              <th class="center" data-tippy-content="rollovers">ROs</th>
+              <th class="center" data-tippy-content="rollovers">ROs Amount</th>
+              <th class="center" data-tippy-content="cover_remaining - rollovers">Cover Unassigned</th>
+              <th class="center">T1</th>
+              <th class="center">T2</th>
+              <th class="center">T3</th>
+              <th class="center">T4</th>
+              <th class="center">T5</th>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="center"></td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+              <td class="center">0</td>
+            </tr>
+          </thead>
+          <tbody>
+            <foreach x="$clients as $i => $client">
+            <eval>$url = $app->request->module.'/clients?view=details&id='.$client->id</eval>
+            <tr id="c<?=$client->id?>">
+              <td><?=$i+1?></td>
+              <td>
+                <a href="<?=$url?>" onclick="event.preventDefault(); F1.app.navigateTo({url:'<?=$url?>',
+                  view:'details', title:'Client Details'});"><?=$client->client_id?></a>                  
+              </td>
+              <td><?=$client->name?></td>
+              <td class="center"><?=$client->status?></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+              <td class="center"></td>
+            </tr>
+            </foreach>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <aside class="right-col flex-col">
+      <header>
+        <hr>
+        <h3>Clients to Process</h3>
+        <hr>
+      </header>
+<!--       
+      <button class="btn btn-primary" type="button" 
+        onclick="F1.app.updateMandates(event)">Update Mandates</button>
+      <br>&nbsp;<br>
+-->
+      <button class="btn btn-primary" type="button" onclick="F1.app.startProcessing(event)">
+        Start Processing
+      </button>
+      <button class="btn btn-danger" type="button" onclick="F1.app.stopProcessing(event)" hidden>
+        Stop Processing...
+      </button>        
+      <hr>
+      <label class="flex-row flex-gap align-center">
+        <input id="selectHighlighted" type="checkbox" onchange="F1.app.selectAllT5s(event)">
+        <span>Select Highlighted</span>
+      </label>
+      <hr>
+      <label class="flex-row flex-gap align-center">
+        <input id="hideUnselected" type="checkbox" onchange="F1.app.hideUnselected(event)">
+        <span>Hide Unselected</span>
+      </label>
+      <hr>
+      <label class="flex-row flex-gap align-center">
+        <input id="selectAll" type="checkbox" onchange="F1.app.selectAll(event)">
+        <span>Select All</span>
+      </label>
+      <hr>
+      <div class="scrollbox flex-col flex-3">
+        <ul id="checklist" onclick="F1.app.onChecklistClick(event)"><li>Loading...</li></ul>
+      </div>
+      <div class="scrollbox feedback flex-col flex-1 p1">
+        <ul id="feedback"><li>Feedback...</li></ul>
+      </div>
+    </aside>
+  </section>
+</div>
+<script src="vendors/F1/js/csv.js"></script>
+<include>_partials/rollovers.js</include>

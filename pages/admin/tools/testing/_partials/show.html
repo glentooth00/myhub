@@ -1,0 +1,17 @@
+<include>_partials/show.css</include>
+
+<div class="container">
+	<hr>
+  <h2>Welcome to MyHub Test Suite</h2>
+  <hr>
+  <br>
+  <div style="height:50vh; overflow:auto;">
+  <?php debug_dump($pageTests['admin']['users']); ?>
+  </div>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="F1.app.startTesting()">
+  	<i id="busy-icon" class="fa fa-refresh"></i>&nbsp; Start Testing
+  </button>
+</div>
+
+<include>_partials/show.js</include>

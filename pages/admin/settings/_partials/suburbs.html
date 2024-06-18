@@ -1,0 +1,56 @@
+<include>_partials/suburbs.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Suburbs</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showSuburbForm()">
+      <i class="fa fa-plus"></i> Add Suburb
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="suburbs">
+      <thead>
+        <tr>
+          <th>Suburbs</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$suburbs as $i => $suburb">
+        <tr>
+           <td class="text-primary w100">
+             <i class="fa fa-map"></i>&nbsp;<?=$suburb->name?>
+           </td>
+           <td>
+            <button class="btn-sm text-primary" type="button" title="Edit Suburb"
+              onclick="F1.app.editSuburb('<?=$suburb->id?>')">
+              <i class="fa fa-pencil"></i></button>
+           </td>
+           <td>
+            <button class="btn-sm text-primary" type="button" title="Delete Suburb" 
+              onclick="F1.app.deleteSuburb('<?=$suburb->id?>','<?=$suburb->name?>')">
+              <i class="fa fa-trash"></i></button>
+           </td>
+        </tr>
+        </foreach>
+        <if x="!$suburbs">
+        <tr>
+          <td colspan="3">No suburbs found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="SuburbForm" onsubmit="F1.app.submitSuburbForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New Suburb</h4>
+  <label>Suburb</label>
+  <input type="text" name="name" placeholder="Suburb Name" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/suburbs.js</include>

@@ -1,0 +1,20 @@
+2024-06-17 16:29:28 - *** USER LOG ***
+2024-06-17 16:29:28 - U2, Accountant
+
+
+2024-06-17 16:29:28 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 16:29:28 - GET /user/logout
+[Request]:	2024-06-17 16:29:28 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Request]:	2024-06-17 16:29:28 - Session ID: oaavs1odtr7m4ngn394fr0og50
+
+
+2024-06-17 16:30:07 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 16:30:07 - GET /user/logout
+[Request]:	2024-06-17 16:30:07 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Request]:	2024-06-17 16:30:07 - Session ID: n3ugeddvdqh2i36tdr3eehgbml
+
+
+2024-06-17 16:36:45 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 16:36:45 - GET /user/logout
+[Request]:	2024-06-17 16:36:45 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Request]:	2024-06-17 16:36:45 - Session ID: t0ajdpmrtc9773fes4gkv3mkm0

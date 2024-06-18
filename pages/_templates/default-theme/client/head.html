@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <base href="<?=$app->baseUri?>">
+  <title><?=$app->view->get('title')?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="vendors/FAwesome/font-awesome.min.css">
+  <link rel="stylesheet" href="vendors/JQDTables/jquery.dataTables.css">
+  <link rel="stylesheet" href="vendors/GridStack/gridstack.css">
+  <link rel="stylesheet" href="vendors/F1/css/sidebar.css?<?=$app->ver?>">
+  <link rel="stylesheet" href="vendors/F1/css/select.css?<?=$app->ver?>">
+  <link rel="stylesheet" href="vendors/F1/css/upload.css?<?=$app->ver?>">
+  <link rel="stylesheet" href="vendors/F1/css/popup.css?<?=$app->ver?>">
+  <link rel="stylesheet" href="assets/css/main.css?<?=$app->ver?>">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script>window.F1 = window.F1 || { DEBUG: '<?=__DEBUG__?>', lib: {}, deferred: [], pageRef: '<?=page_link()?>' }</script>
+</head>
+<body>
+<nav id="top-bar" class="flex-row flex-gap space-between">
+  <header class="px1 flex-row flex-gap align-center">
+    <span id="nav-buttons" class="flex-row flex-gap align-center">
+      <button class="icon btn-round hidden" id="back-arrow" type="button"
+        data-tippy-content="Go Back" onclick="F1.app.onExit(event, history.back.bind(history))">
+        <i class="fa fa-arrow-left fa-lg"></i>
+      </button>
+      <button class="icon btn-round" id="show-sidebar" type="button"
+        data-tippy-content="Show Sidebar Menu" onclick="F1.app.showSidebar('left')">
+        <i class="fa fa-bars fa-lg"></i>
+      </button>
+    </span>
+    <h1 class="page-title" id="page-title"><?=$app->view->get('title')?></h1>
+  </header>
+  <section id="app-toolbar" class="px1 flex-row flex-gap align-center">
+    <button class="icon btn-round" id="show-notifications" type="button"
+      data-tippy-content="Show Notifications" onclick="F1.app.showNotifications()">
+      <i class="fa fa-bell-o fa-lg"></i>
+    </button>
+  </section>
+</nav>
+<nav id="sidebar-left" class="sidebar off-screen-left" onclick="F1.app.maybeCloseSidebar(event, 'left')">
+  <div class="sidebar-content">
+    <header class="flex-row align-center">
+      <img src="assets/img/brand/logo.png" alt="Logo">
+      <h2><?=$app->name?></h2>
+      <small><?=$app->ver?></small>
+    </header>
+    <section class="menu main-menu">
+      <button type="button" onclick="F1.app.navigateTo({url:'client/dashboard', view:'show', title:'Dashboard'})">
+        <i class="fa fa-dashboard fa-lg"></i><span>Dashboard</span>
+      </button>    
+      <button type="button" onclick="F1.app.navigateTo({url:'client/trades?back=dashboard', view:'list', title:'Trades'})">
+        <i class="fa fa-money fa-lg"></i><span>Trades</span>
+      </button> 
+      <button type="button" onclick="F1.app.navigateTo({url:'client/tccs?back=dashboard', view:'list', title:'FIA TAX Clearances'})">
+        <i class="fa fa-star-o fa-lg"></i><span>TCC's</span>
+      </button>
+      <a class="button flex-row align-center" href="#help">
+        <i class="fa fa-question-circle-o fa-lg"></i><span>Help</span>
+      </a>
+    </section>
+    <section class="menu user-menu">
+      <button type="button" onclick="F1.app.navigateTo({url:'client/profile?back=dashboard', view:'details', title:'My Profile'})">
+        <i class="fa fa-user-circle-o fa-lg"></i><span><?=$app->user->username?></span>
+      </button>
+      <small class="user-role">Role: <span><?=$app->user->role?></span></small>
+    </section>
+    <footer class="flex-row space-between">
+      <a class="button btn-outline logout" href="user/logout">Logout</a>
+      <button class="btn-default btn-outline" onclick="F1.app.closeSidebar('left')">Close</button>
+    </footer>
+  </div>
+</nav>

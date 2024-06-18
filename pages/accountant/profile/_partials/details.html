@@ -1,0 +1,46 @@
+<include>_partials/details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1><?=$user->first_name . " " . $user->last_name?></h1>
+    <h4>User ID: <?=$user->user_id?></h4>
+  </header>
+  <section class="flex-row flex-gap">
+    <button class="btn-round btn-primary" type="button"><span>A</span></button>
+    <button class="btn-round btn-primary" type="button"><span>B</span></button>
+    <button class="btn-round btn-primary" type="button" title="Change Password" onclick="F1.app.showChangePasswordForm()">
+      <i class="fa fa-key fa-lg"></i>
+    </button>
+  </section>
+  <section>
+    <ul>
+      <li><label>Username:</label> <span><?=$user->username?></span></li>
+      <li><label>Email:</label> <span><?=$user->email?></span></li>
+      <li><label>Status:</label> <span><?=$user->status?></span></li>
+      <li><label>Created At:</label> <span><?=$user->created_at?></span></li>
+      <li><label>Updated At:</label> <span><?=$user->updated_at?></span></li>
+      <li><label>Last Login At:</label> <span><?=$user->last_login_at?></span></li>
+      <li><label>Last Activity At:</label> <span><?=$user->last_activity_at?></span></li>
+      <li><label>Failed Login Attempts:</label> <span><?=$user->failed_logins?></span></li>
+    </ul>      
+  </section>
+</div>
+<!-- 
+<button class="fab btn-round btn-primary" type="button" 
+  onclick="F1.app.navigateTo({url:'account/user?view=edit&id=<?=$user->id?>', view:'edit', title:'User Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+ -->
+<template id="tplChangePasswordForm">
+  <form onsubmit="F1.app.submitChangePassword(event)">
+    <label for="oldPassword">Current Password</label>
+    <input type="password" id="oldPassword" name="oldPassword" required>
+    <label for="newPassword">New Password</label>
+    <input type="password" id="newPassword" name="newPassword" required>
+    <label for="confirmPassword">Confirm New Password</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required>
+    <input type="hidden" name="userId" value="<?=$user->id?>">
+    <button type="submit" class="btn-primary">Change Password</button>
+  </form>
+</template>
+
+<include>_partials/details.js</include>

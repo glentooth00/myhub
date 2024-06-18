@@ -1,0 +1,56 @@
+<include>_partials/cities.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Cities</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showCityForm()">
+      <i class="fa fa-plus"></i> Add City
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="Cities">
+      <thead>
+        <tr>
+          <th>Cities</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$cities as $i => $city">
+        <tr>
+           <td class="text-primary w100">
+             <i class="fa fa-building"></i>&nbsp;<?=$city->name?>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Edit City"
+             onclick="F1.app.editCity('<?=$city->id?>')">
+             <i class="fa fa-pencil"></i></button>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Delete City" 
+             onclick="F1.app.deleteCity('<?=$city->id?>','<?=$city->name?>')">
+             <i class="fa fa-trash"></i></button>
+           </td>
+        </tr>
+        </foreach>
+        <if x="!$cities">
+        <tr>
+          <td colspan="3">No processes found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="CityForm" onsubmit="F1.app.submitCityForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New City</h4>
+  <label>City</label>
+  <input type="text" name="name" placeholder="City Name" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/cities.js</include>

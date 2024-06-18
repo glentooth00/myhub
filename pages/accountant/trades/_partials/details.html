@@ -1,0 +1,30 @@
+<include>_partials/details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1>
+      <a href="javascript:void(0);"
+        onclick="F1.app.navigateTo({url:'accountant/clients?view=details&id=<?=$trade->client->id?>', view:'details', title:'Clients Details'})">
+        <?=$trade->client->name?>
+      </a>
+    </h1>
+    <h4>Client ID: <?=$trade->client->client_id?></h4>
+  </header>
+  <section class="flex-row flex-gap">
+    <button class="btn-round btn-primary" type="button"><span>A</span></button>
+    <button class="btn-round btn-primary" type="button"><span>B</span></button>
+    <button class="btn-round btn-primary" type="button"><span>C</span></button>
+  </section>
+  <section>
+    <ul>
+      <li><label>Trade ID:</label> <span><b id="trade-id"><?=escape($trade->trade_id?:'-')?></b></span></li>
+      <li><label>Trade Date:</label> <span><?=escape($trade->date?:'-')?></span></li>
+      <li><label>Amount (R):</label> <span><?=currency($trade->zar_sent, '', ' ')?></span></li>
+      <li><label>TUSD Bought ($):</label> <span><?=currency($trade->usd_bought, '', ' ', 2)?></span></li>
+      <li><label>Forex Rate (R):</label> <span><?=currency($trade->forex_rate, '', ' ', 3)?></span></li>
+      <li><label>Trading Fee %:</label> <span><?=$trade->trade_fee ?: '-'?></span></li>
+      <li><label>Amount Covered:</label> <span><?=currency($trade->amount_covered?:0, '', ' ')?></span></li>
+      <li><label>Allocated Pins:</label> <span><?=escape($trade->allocated_pins?:'-')?></span></li>
+    </ul>      
+  </section>
+</div>
+<include>_partials/details.js</include>

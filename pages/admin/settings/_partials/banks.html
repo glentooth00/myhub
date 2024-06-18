@@ -1,0 +1,56 @@
+<include>_partials/banks.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Banks</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showBankForm()">
+      <i class="fa fa-plus"></i> Add Bank
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="banks">
+      <thead>
+        <tr>
+          <th>Banks</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$banks as $i => $bank">
+        <tr>
+           <td class="text-primary w100">
+             <i class="fa fa-bank"></i>&nbsp;<?=$bank->name?>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Edit Bank"
+              onclick="F1.app.editBank('<?=$bank->id?>')">
+              <i class="fa fa-pencil"></i></button>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Delete Bank" 
+              onclick="F1.app.deleteBank('<?=$bank->id?>','<?=$bank->name?>')">
+              <i class="fa fa-trash"></i></button>
+           </td>
+        </tr>
+        </foreach>
+        <if x="!$banks">
+        <tr>
+          <td colspan="3">No banks found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="BankForm" onsubmit="F1.app.submitBankForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New Bank</h4>
+  <label>Bank</label>
+  <input type="text" name="name" placeholder="Bank Name" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/banks.js</include>

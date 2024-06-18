@@ -1,0 +1,43 @@
+<include>_partials/backup.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1>Backup / Restore</h1>
+    <hr>
+    <div class="flex-col" style="background-color: aliceblue;padding: 0.5rem;">
+      <h2><?=$client->name?></h2>
+      <h4>UID: <?=$client->client_id?></h4>
+    </div>
+  </header>
+  <section class="flex-row flex-wrap flex-gap">
+  	<div class="flex-col flex-1 flex-gap flex-base-mobile">
+      <p>Backup all data for <?=$client->name?> to a zip file and download it to your computer.</p>
+  		<div class="flex-row flex-gap">
+        <button class="btn-primary" type="button" onclick="F1.app.backupData(event)">
+          <i id="backup-icon" class="fa fa-download"></i>&nbsp;
+          <span>Backup Data</span>
+        </button>
+      </div>
+    </div>
+    <div class="flex-col flex-1 flex-gap flex-base-mobile">
+      <p>
+        Restore all data for <?=$client->name?> from a zip file on your computer.
+        WARNING: This operation will discard any changes made after the backup was created!
+      </p>
+      <form id="restore-form" class="flex-col flex-gap">
+        <div class="flex-col">
+          <input type="file" name="file" id="file" class="inputfile" required />
+          <label for="file"><small><i>Choose a backup file (zip)</i></small></label>
+        </div>
+        <div>
+          <button class="btn-primary" type="submit" name="restoreData">
+            <i id="restore-icon" class="fa fa-upload"></i>&nbsp;
+            <span>Restore Data</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section>
+  </section>
+</div>
+<include>_partials/backup.js</include>

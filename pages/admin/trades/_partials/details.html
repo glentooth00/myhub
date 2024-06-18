@@ -1,0 +1,64 @@
+<include>_partials/details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1>
+      <a href="<?=$app->request->module . '/clients?view=details&amp;id=' . $trade->client->id?>"
+        data-tippy-content="Goto <?=escape($trade->client->name)?>"
+        onclick="F1.app.navigateTo({event, view:'details', title:'Client Details'})">
+        <?=escape($trade->client->name) . PHP_EOL?>
+        <if x="$trade->deleted_at">
+          <small class="text-danger">(Deleted)</small>
+        </if>
+      </a>
+    </h1>
+    <h4>Client uid: <?=$trade->client->client_id?></h4>
+  </header>
+  <section class="flex-row flex-gap">
+    <button class="btn-round btn-primary" type="button"><span>A</span></button>
+    <button class="btn-round btn-primary" type="button"><span>B</span></button>
+    <button class="btn-round btn-primary" type="button"><span>C</span></button>
+    <if x="$trade->deleted_at">
+    <button class="btn-round btn-primary undelete" type="button"
+      data-tippy-content="Undelete" onclick="F1.app.undeleteTrade(event)">
+      <i class="fa fa-trash-o fa-lg"></i>
+    </button>    
+    </if>
+  </section>
+  <section>
+    <ul>
+      <li><label>Trade ID:</label> <span><b id="tradeId"><?=escape($trade->trade_id?:'-')?></b></span></li>
+      <li><label>OTC:</label> <span><?=escape($trade->otc?:'-')?></span></li>
+      <li><label>SDA / FIA:</label> <span><?=escape($trade->sda_fia?:'-')?></span></li>
+      <li><label>Trade Date:</label> <span><?=escape($trade->date?:'-')?></span></li>
+      <li><label>Amount (R):</label> <span><?=currency($trade->zar_sent, '', ' ')?></span></li>
+      <li><label>TUSD Bought ($):</label> <span><?=currency($trade->usd_bought, '', ' ', 2)?></span></li>
+      <li><label>Forex Rate (R):</label> <span><?=currency($trade->forex_rate, '', ' ', 3)?></span></li>
+      <li><label>Profit (R):</label> <span><?=currency($trade->zar_profit, '', ' ', 2)?></span></li>
+      <li><label>Return %:</label> <span><?=$trade->percent_return ?: '-'?></span></li>
+      <li><label>Trading Fee %:</label> <span><?=$trade->trade_fee ?: '-'?></span></li>
+      <li><label>Fee Category (% Profit):</label> <span><?=$trade->fee_category_percent_profit ?: '-'?></span></li>
+      <li><label>Recon ID 1:</label> <span><?=escape($trade->recon_id1?:'-')?></span></li>
+      <li><label>Recon ID 2:</label> <span><?=escape($trade->recon_id2?:'-')?></span></li>
+      <li><label>Amount Covered:</label> <span><?=currency($trade->amount_covered?:0, '', ' ')?></span></li>
+      <li><label>Allocated Pins:</label> <span><?=escape($trade->allocated_pins?:'-')?></span></li>
+      <li><label>Forex Provider:</label> <span><?=escape($trade->forex?:'-')?></span></li>
+      <li><label>Forex Deal Reference:</label> <span><?=escape($trade->forex_reference?:'-')?></span></li>
+      <li><label>OTC Reference:</label> <span><?=escape($trade->otc_reference?:'-')?></span></li>
+      <if x="$trade->deleted_at">
+      <li class="red"><label>Deleted At:</label> <span><?=$trade->deleted_at?></span></li>
+      <li><label>Deleted By:</label> <span><?=$trade->deleted_by?></span></li>
+      </if>      
+      <li><label>Updated At:</label> <span><?=$trade->updated_at?></span></li>
+      <li><label>Updated By:</label> <span><?=$trade->updated_by?></span></li>     
+      <li><label>Created At:</label> <span><?=$trade->created_at?></span></li>
+      <li><label>Created By:</label> <span><?=$trade->created_by?></span></li>       
+    </ul>      
+  </section>
+</div>
+<if x="$super">
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+  onclick="F1.app.navigateTo({url:'admin/trades?view=edit&id=<?=$id?>', view:'edit', title:'Trade Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+</if>
+<include>_partials/details.js</include>

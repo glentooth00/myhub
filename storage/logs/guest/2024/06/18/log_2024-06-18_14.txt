@@ -1,0 +1,455 @@
+2024-06-18 14:20:53 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:20:53 - GET /
+[Request]:	2024-06-18 14:20:53 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:20:53 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:20:53 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:20:53 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:20:53 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:20:53 - No current user found. Logging in?
+
+2024-06-18 14:20:59 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:20:59 - POST /
+[Request]:	2024-06-18 14:20:59 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:20:59 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:20:59 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:20:59 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:20:59 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:20:59 - No current user found. Logging in?
+[Error]:	2024-06-18 14:20:59 - SQLSTATE[HY000] [1049] Unknown database 'myhub'
+[Debug]:	2024-06-18 14:20:59 - Login failed: Login Error: Please contact support.
+
+2024-06-18 14:21:40 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:21:40 - GET /
+[Request]:	2024-06-18 14:21:40 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:21:40 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:21:40 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:21:40 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:21:40 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:21:40 - No current user found. Logging in?
+
+2024-06-18 14:21:45 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:21:45 - POST /
+[Request]:	2024-06-18 14:21:45 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:21:45 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:21:45 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:21:45 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:21:45 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:21:45 - No current user found. Logging in?
+[Error]:	2024-06-18 14:21:45 - SQLSTATE[HY000] [1049] Unknown database 'myhub'
+[Debug]:	2024-06-18 14:21:45 - Login failed: Login Error: Please contact support.
+
+2024-06-18 14:22:07 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:22:07 - POST /
+[Request]:	2024-06-18 14:22:07 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:22:07 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:22:07 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:22:07 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:22:07 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:22:07 - No current user found. Logging in?
+[Error]:	2024-06-18 14:22:07 - SQLSTATE[HY000] [1049] Unknown database 'myhub'
+[Debug]:	2024-06-18 14:22:07 - Login failed: Login Error: Please contact support.
+
+2024-06-18 14:22:12 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:22:12 - POST /
+[Request]:	2024-06-18 14:22:12 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:22:12 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:22:12 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:22:12 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:22:12 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:22:12 - No current user found. Logging in?
+[Error]:	2024-06-18 14:22:12 - SQLSTATE[HY000] [1049] Unknown database 'myhub'
+[Debug]:	2024-06-18 14:22:12 - Login failed: Login Error: Please contact support.
+
+2024-06-18 14:23:46 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:23:46 - GET /
+[Request]:	2024-06-18 14:23:46 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:23:46 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:23:46 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:23:46 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:23:46 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:23:46 - No current user found. Logging in?
+
+2024-06-18 14:23:49 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:23:49 - POST /
+[Request]:	2024-06-18 14:23:49 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:23:49 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:23:49 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:23:49 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:23:49 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:23:49 - No current user found. Logging in?
+[Debug]:	2024-06-18 14:23:49 - db::query()
+[Debug]:	2024-06-18 14:23:49 - db::buildQuery()
+[Debug]:	2024-06-18 14:23:49 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE username = ? LIMIT 1
+    [1] => ["Accountant"]
+)
+
+[Debug]:	2024-06-18 14:23:49 - User: Array
+(
+    [id] => 2
+    [user_id] => _acntnt_
+    [role_id] => 8
+    [username] => Accountant
+    [password] => ***
+    [first_name] => CH
+    [last_name] => System
+    [email] => accountant@currencyhub.co.za
+    [verification_token] => 
+    [status] => active
+    [home] => accountant/dashboard
+    [failed_login_attempts] => 0
+    [failed_logins] => 0
+    [created_at] => 0000-00-00 00:00:00
+    [created_by] => neelsdev
+    [updated_at] => 
+    [updated_by] => 
+    [last_login_at] => 2024-06-17 23:07:15
+    [last_activity_at] => 
+)
+
+[Debug]:	2024-06-18 14:23:49 - db::query()
+[Debug]:	2024-06-18 14:23:49 - db::buildQuery()
+[Debug]:	2024-06-18 14:23:49 - db::query(), Array
+(
+    [0] => SELECT * FROM sys_roles WHERE id = ? LIMIT 1
+    [1] => [8]
+)
+
+[Debug]:	2024-06-18 14:23:49 - roleInfo: stdClass Object
+(
+    [id] => 8
+    [name] => accountant
+    [description] => Accountant
+    [home] => accountant/dashboard
+    [permissions] => 
+    [created_at] => 2023-11-29 06:19:15
+    [created_by] => _system_
+    [updated_at] => 
+    [updated_by] => 
+)
+
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), user: {"id":2,"username":"Accountant","role":"accountant"}
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), $_SESSION: []
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), sessionUserId: 2
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), loginAsUserId: 2
+[Security]:	2024-06-18 14:23:49 - Security::login(), Token: {"u":{"id":2,"username":"Accountant","role":"accountant"},"t":1718691829}
+[Debug]:	2024-06-18 14:23:49 - db::save() Array
+(
+)
+
+[Debug]:	2024-06-18 14:23:49 - db::update(), data: Array
+(
+    [id] => 2
+    [last_login_at] => 2024-06-18 14:23:49
+)
+
+[Debug]:	2024-06-18 14:23:49 - db::execute()
+[Debug]:	2024-06-18 14:23:49 - db::execute(), Array
+(
+    [0] => UPDATE `users` SET `last_login_at` = ? WHERE `id` = ?
+    [1] => ["2024-06-18 14:23:49",2]
+)
+
+[Debug]:	2024-06-18 14:23:49 - Login Successful! Redirect to: accountant/dashboard
+
+2024-06-18 14:23:49 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:23:49 - GET /accountant/dashboard
+[Request]:	2024-06-18 14:23:49 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Debug]:	2024-06-18 14:23:49 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"45bm9mtlv3gi38bb887ofs7tr8","token":"&OoJ0^3{wcD<Y{>iH$!tOo,g{iYF!(\"VkxB{TwU!~xcD,\/],eX 'tP~,K&JjdKCJrB@f+`({\/"}
+[Security]:	2024-06-18 14:23:49 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:23:49 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:23:49 - Security::tokenExpired(), token age: 0, max: 3600
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), user: {"id":2,"username":"Accountant","role":"accountant"}
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), $_SESSION: {"user":{"id":2,"username":"Accountant","role":"accountant"}}
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), sessionUserId: 2
+[Security]:	2024-06-18 14:23:49 - Security::startUserSession(), loginAsUserId: 2
+[Security]:	2024-06-18 14:23:49 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:08 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:08 - GET /user/logout
+[Request]:	2024-06-18 14:24:08 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Debug]:	2024-06-18 14:24:08 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"45bm9mtlv3gi38bb887ofs7tr8","token":"&OoJ0^3{wcD<Y{>iH$!tOo,g{iYF!(\"VkxB{TwU!~xcD,\/],eX 'tP~,K&JjdKCJrB@f+`({\/"}
+[Security]:	2024-06-18 14:24:08 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:08 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:08 - Security::tokenExpired(), token age: 19, max: 3600
+[Security]:	2024-06-18 14:24:08 - Security::startUserSession(), user: {"id":2,"username":"Accountant","role":"accountant"}
+[Security]:	2024-06-18 14:24:08 - Security::startUserSession(), $_SESSION: {"user":{"id":2,"username":"Accountant","role":"accountant"}}
+[Security]:	2024-06-18 14:24:08 - Security::startUserSession(), sessionUserId: 2
+[Security]:	2024-06-18 14:24:08 - Security::startUserSession(), loginAsUserId: 2
+[Security]:	2024-06-18 14:24:08 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:08 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:08 - GET /user/login?u=logout
+[Request]:	2024-06-18 14:24:08 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:24:08 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:24:08 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:08 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:08 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:24:08 - No current user found. Logging in?
+
+2024-06-18 14:24:10 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:10 - POST /user/login?u=logout
+[Request]:	2024-06-18 14:24:10 - File: C:\laragon\www\myhub\pages\user\login\login.php
+[Debug]:	2024-06-18 14:24:10 - Security::getTokenFromCookie(), $_COOKIE: []
+[Security]:	2024-06-18 14:24:10 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:10 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:10 - Security::validateToken(), Token Invalid
+[App Security]:	2024-06-18 14:24:10 - No current user found. Logging in?
+[Debug]:	2024-06-18 14:24:10 - db::query()
+[Debug]:	2024-06-18 14:24:10 - db::buildQuery()
+[Debug]:	2024-06-18 14:24:10 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE username = ? LIMIT 1
+    [1] => ["Sysadmin"]
+)
+
+[Debug]:	2024-06-18 14:24:10 - User: Array
+(
+    [id] => 1
+    [user_id] => _sysadm_
+    [role_id] => 1
+    [username] => Sysadmin
+    [password] => ***
+    [first_name] => CH
+    [last_name] => Cron
+    [email] => sysadmin@currencyhub.co.za
+    [verification_token] => 
+    [status] => active
+    [home] => admin/dashboard
+    [failed_login_attempts] => 0
+    [failed_logins] => 3
+    [created_at] => 0000-00-00 00:00:00
+    [created_by] => neelsdev
+    [updated_at] => 
+    [updated_by] => 
+    [last_login_at] => 2024-06-17 23:08:16
+    [last_activity_at] => 
+)
+
+[Debug]:	2024-06-18 14:24:10 - db::query()
+[Debug]:	2024-06-18 14:24:10 - db::buildQuery()
+[Debug]:	2024-06-18 14:24:10 - db::query(), Array
+(
+    [0] => SELECT * FROM sys_roles WHERE id = ? LIMIT 1
+    [1] => [1]
+)
+
+[Debug]:	2024-06-18 14:24:10 - roleInfo: stdClass Object
+(
+    [id] => 1
+    [name] => sysadmin
+    [description] => System Admin
+    [home] => admin/dashboard
+    [permissions] => 
+    [created_at] => 2024-04-13 14:55:48
+    [created_by] => _system_
+    [updated_at] => 
+    [updated_by] => 
+)
+
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), $_SESSION: []
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:10 - Security::login(), Token: {"u":{"id":1,"username":"Sysadmin","role":"sysadmin"},"t":1718691850}
+[Debug]:	2024-06-18 14:24:10 - db::save() Array
+(
+)
+
+[Debug]:	2024-06-18 14:24:10 - db::update(), data: Array
+(
+    [id] => 1
+    [last_login_at] => 2024-06-18 14:24:10
+)
+
+[Debug]:	2024-06-18 14:24:10 - db::execute()
+[Debug]:	2024-06-18 14:24:10 - db::execute(), Array
+(
+    [0] => UPDATE `users` SET `last_login_at` = ? WHERE `id` = ?
+    [1] => ["2024-06-18 14:24:10",1]
+)
+
+[Debug]:	2024-06-18 14:24:10 - Login Successful! Redirect to: admin/dashboard
+
+2024-06-18 14:24:10 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:10 - GET /admin/dashboard
+[Request]:	2024-06-18 14:24:10 - File: C:\laragon\www\myhub\pages\admin\dashboard\dashboard.php
+[Debug]:	2024-06-18 14:24:10 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:10 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:10 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:10 - Security::tokenExpired(), token age: 0, max: 3600
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:10 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:10 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:12 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:12 - AJAX GET /admin/tccs?back=dashboard
+[Request]:	2024-06-18 14:24:12 - File: C:\laragon\www\myhub\pages\admin\tccs\tccs.php
+[Debug]:	2024-06-18 14:24:12 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:12 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:12 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:12 - Security::tokenExpired(), token age: 2, max: 3600
+[Security]:	2024-06-18 14:24:12 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:12 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:12 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:12 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:12 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:15 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:15 - AJAX GET /admin/tccs?view=edit&id=new
+[Request]:	2024-06-18 14:24:15 - File: C:\laragon\www\myhub\pages\admin\tccs\tccs.php
+[Debug]:	2024-06-18 14:24:15 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:15 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:15 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:15 - Security::tokenExpired(), token age: 5, max: 3600
+[Security]:	2024-06-18 14:24:15 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:15 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:15 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:15 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:15 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:44 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:44 - AJAX GET /admin/tccs?back=dashboard
+[Request]:	2024-06-18 14:24:44 - File: C:\laragon\www\myhub\pages\admin\tccs\tccs.php
+[Debug]:	2024-06-18 14:24:44 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:44 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:44 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:44 - Security::tokenExpired(), token age: 34, max: 3600
+[Security]:	2024-06-18 14:24:44 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:44 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:44 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:44 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:44 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:46 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:46 - AJAX GET /admin/dashboard
+[Request]:	2024-06-18 14:24:46 - File: C:\laragon\www\myhub\pages\admin\dashboard\dashboard.php
+[Debug]:	2024-06-18 14:24:46 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:46 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:46 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:46 - Security::tokenExpired(), token age: 36, max: 3600
+[Security]:	2024-06-18 14:24:46 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:46 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:46 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:46 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:46 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:47 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:47 - AJAX GET /admin/settings?back=dashboard
+[Request]:	2024-06-18 14:24:47 - File: C:\laragon\www\myhub\pages\admin\settings\settings.php
+[Debug]:	2024-06-18 14:24:47 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:47 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:47 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:47 - Security::tokenExpired(), token age: 37, max: 3600
+[Security]:	2024-06-18 14:24:47 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:47 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:47 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:47 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:47 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:49 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:49 - AJAX GET /admin/settings?view=cities&back=settings
+[Request]:	2024-06-18 14:24:49 - File: C:\laragon\www\myhub\pages\admin\settings\settings.php
+[Debug]:	2024-06-18 14:24:49 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:49 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:49 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:49 - Security::tokenExpired(), token age: 39, max: 3600
+[Security]:	2024-06-18 14:24:49 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:49 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:49 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:49 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:49 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:50 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:50 - AJAX GET /admin/settings?back=dashboard
+[Request]:	2024-06-18 14:24:50 - File: C:\laragon\www\myhub\pages\admin\settings\settings.php
+[Debug]:	2024-06-18 14:24:50 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:50 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:50 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:50 - Security::tokenExpired(), token age: 40, max: 3600
+[Security]:	2024-06-18 14:24:50 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:50 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:50 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:50 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:50 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:52 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:52 - AJAX GET /admin/settings?view=roles&back=settings
+[Request]:	2024-06-18 14:24:52 - File: C:\laragon\www\myhub\pages\admin\settings\settings.php
+[Debug]:	2024-06-18 14:24:52 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:52 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:52 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:52 - Security::tokenExpired(), token age: 42, max: 3600
+[Security]:	2024-06-18 14:24:52 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:52 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:52 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:52 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:52 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:54 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:54 - AJAX GET /admin/settings?back=dashboard
+[Request]:	2024-06-18 14:24:54 - File: C:\laragon\www\myhub\pages\admin\settings\settings.php
+[Debug]:	2024-06-18 14:24:54 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:54 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:54 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:54 - Security::tokenExpired(), token age: 44, max: 3600
+[Security]:	2024-06-18 14:24:54 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:54 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:54 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:54 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:54 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:55 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:55 - AJAX GET /admin/dashboard
+[Request]:	2024-06-18 14:24:55 - File: C:\laragon\www\myhub\pages\admin\dashboard\dashboard.php
+[Debug]:	2024-06-18 14:24:55 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:55 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:55 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:55 - Security::tokenExpired(), token age: 45, max: 3600
+[Security]:	2024-06-18 14:24:55 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:55 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:55 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:55 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:55 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:56 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:56 - AJAX GET /admin/clients?back=dashboard
+[Request]:	2024-06-18 14:24:56 - File: C:\laragon\www\myhub\pages\admin\clients\clients.php
+[Debug]:	2024-06-18 14:24:56 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:56 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:56 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:56 - Security::tokenExpired(), token age: 46, max: 3600
+[Security]:	2024-06-18 14:24:56 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:56 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:56 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:56 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:56 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:24:57 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-18 14:24:57 - AJAX GET /admin/clients?view=edit&id=new
+[Request]:	2024-06-18 14:24:57 - File: C:\laragon\www\myhub\pages\admin\clients\clients.php
+[Debug]:	2024-06-18 14:24:58 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:24:58 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:24:58 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:24:58 - Security::tokenExpired(), token age: 48, max: 3600
+[Security]:	2024-06-18 14:24:58 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:24:58 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:24:58 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:24:58 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:24:58 - Security::startSessionFromToken(), loggedIn: Yes
+
+2024-06-18 14:25:28 - *** AJAX REQUEST *** 
+[Request]:	2024-06-18 14:25:28 - AJAX POST /admin/clients?view=edit&id=new
+[Request]:	2024-06-18 14:25:28 - File: C:\laragon\www\myhub\pages\admin\clients\clients.php
+[Debug]:	2024-06-18 14:25:28 - Security::getTokenFromCookie(), $_COOKIE: {"PHPSESSID":"68up7asv35bk1jve5cl1iaurm9","token":"&OoJ0^3{wcD;Y{>iH$!tOo,g{{oVrv!Kx,Y{;eOv4Mc}$A[-cL 41m,~O4Y-sIHLrB?]w"}
+[Security]:	2024-06-18 14:25:28 - Security::startSessionFromToken(), Says Hi!
+[Security]:	2024-06-18 14:25:28 - Security::validateToken(), Says Hi!
+[Security]:	2024-06-18 14:25:28 - Security::tokenExpired(), token age: 78, max: 3600
+[Security]:	2024-06-18 14:25:28 - Security::startUserSession(), user: {"id":1,"username":"Sysadmin","role":"sysadmin"}
+[Security]:	2024-06-18 14:25:28 - Security::startUserSession(), $_SESSION: {"user":{"id":1,"username":"Sysadmin","role":"sysadmin"}}
+[Security]:	2024-06-18 14:25:28 - Security::startUserSession(), sessionUserId: 1
+[Security]:	2024-06-18 14:25:28 - Security::startUserSession(), loginAsUserId: 1
+[Security]:	2024-06-18 14:25:28 - Security::startSessionFromToken(), loggedIn: Yes

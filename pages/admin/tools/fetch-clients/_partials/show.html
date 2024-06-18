@@ -1,0 +1,115 @@
+<style>
+  .container {
+		max-width: 640px;
+		margin: auto;
+		padding: 1rem;
+	}
+  .progress {
+    height: 1.5rem;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+    overflow: hidden;
+  }
+  .progress-bar {
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #28a745;
+    transition: width .6s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }  
+</style>
+<div class="container">
+	<hr>
+  <h2>Welcome to Fetch Clients</h2>
+  <hr>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="F1.app.fetchClients()">
+  	<i id="busy-icon" class="fa fa-refresh"></i>&nbsp; Fetch Clients
+  </button>
+</div>
+<script>
+/* global F1 */
+
+F1.deferred.push(function initAdminFetchClientsView(app) {
+
+  console.log('initAdminFetchClientsView()');
+
+  const Popup = F1.lib.Popup;
+  const Utils = F1.lib.Utils;
+  const Ajax = F1.lib.Ajax;
+
+  const busyIcon = Utils.getEl('busy-icon');
+
+
+  function addClass(el, className) { el.classList.add(className); }
+  function removeClass(el, className) { el.classList.remove(className); }
+
+
+  // Render a progress % + Bar with progress in lime
+  // @param {number} progress - 0 to 100
+  function renderProgressHtml( progress ) {
+    console.log('renderProgress()');
+    return `
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: ${progress}%;" 
+          aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">${progress}%</div>
+      </div>
+    `;
+  }
+
+
+  app.fetchClients = function() {
+  	console.log('app.fetchClients()');
+    addClass(busyIcon, 'spin');
+    const waitPopup = new Popup({
+      title: 'Fetching Clients...',
+      content: 'Please wait...',
+      position: 'center',
+      theme: 'success',
+      size: 'small',
+    });
+    waitPopup.show();
+    const jobId = Utils.generateUid();
+    Ajax.post(location.href, { action: 'fetchClients', jobId })
+    .then(function (resp) {
+      console.log('fetchData.success says Hi!');
+      progressTimer && clearInterval(progressTimer);
+      waitPopup.close();
+      removeClass(busyIcon, 'spin');
+      if (resp.success) app.toast({ message: resp.message, timer: 7000 })
+      else app.alert({ message: resp.message });
+    })
+    .catch(function (error) {
+      const message = error.message || 'Unknown error fetching data.';
+      console.log('fetchData.fail says Hi!', { error, message });
+      progressTimer && clearInterval(progressTimer);
+      waitPopup.close();
+      removeClass(busyIcon, 'spin');
+      app.alert({ message });
+    });
+    const progressTimer = setInterval(function() {
+      Ajax.post(location.href, { action: 'fetchProgress', jobId })
+      .then(function (resp) {
+        console.log('fetchProgress.success says Hi! progress = ', resp.data.progress);
+        console.log('fetchProgress.success says Hi! waitPopup = ', waitPopup);
+        waitPopup.content.innerHTML = renderProgressHtml(resp.data.progress);
+        // `Please wait...<p>Progress: ${resp.data.progress}%</p>`;
+      })
+    }, 750);
+  }
+
+
+  /* top nav */
+  Utils.removeFrom(app.el.toolbar, '.tool');
+
+
+  /* bottom nav */
+  Utils.removeClassFrom(app.el.bottomBar, 'active');
+  addClass(Utils.getEl('nav-item-dash'), 'active');
+
+});	
+</script>

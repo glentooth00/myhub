@@ -1,0 +1,75 @@
+<include>_partials/details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1>
+      <a href="<?=$app->request->module . '/clients?view=details&amp;id=' . $tcc->client_id2?>"
+        data-tippy-content="Goto <?=escape($tcc->client_name)?>"
+        onclick="F1.app.navigateTo({event, view:'details', title:'Client Details'})">
+        <?=escape($tcc->client_name) . PHP_EOL?>
+        <if x="$tcc->deleted_at">
+          <small class="text-danger">(Deleted)</small>
+        </if>
+      </a>
+    </h1>
+    <h4>Client uid: <?=$tcc->client_id?></h4>
+  </header>
+  <section class="flex-row flex-gap">
+    <if x="$tcc->status == 'Approved'">
+    <button class="btn-round btn-primary" type="button"
+      data-tippy-content="Send new approved PIN notification to the TCC owner." 
+      onclick="F1.app.sendApprovedNotice(event)">
+      <small class="flex-col align-center"><i class="fa fa-envelope-o"></i> Appr</small>
+    </button>
+    </if>
+    <if x="$tcc->deleted_at">
+    <button class="btn-round btn-primary undelete" type="button"
+      data-tippy-content="Undelete" onclick="F1.app.undeleteTcc(event)">
+      <i class="fa fa-trash-o fa-lg"></i>
+    </button>
+    </if>
+  </section>
+  <section>
+    <ul>
+      <li><label>PIN Status:</label> <span id="status"><?=$tcc->status?></span></li>
+      <li><label>PIN Number:</label> <span><b id="pinNo"><?=$tcc->tcc_pin?></b></span></li>
+      <li><label>Tax Case No:</label> <span><?=$tcc->tax_case_no?></span></li>
+      <li><label>Applied On:</label> <span><?=$tcc->application_date?></span></li>
+      <li><label>Issued On:</label> <span><?=$tcc->date?></span></li>
+      <li><label>PIN Amount:</label> <span><?=currency($tcc->amount_cleared, 'R ', ' ', 2)?></span></li>
+      <li><label>Amount Used:</label> <span><?=currency($tcc->amount_used, 'R ', ' ', 2)?></span></li>
+      <li><label>Amount Unused:</label> <span><?=currency($tcc->amount_remaining, 'R ', ' ', 2)?></span></li>
+      <li><label>Amount Available:</label> <span><?=currency($tcc->amount_available, 'R ', ' ', 2)?></span></li>
+      <li><label>Notes:</label> <span><?=escape($tcc->notes)?></span></li>
+      <li><label>Tax Cert File:</label><span>
+      <if x="$tcc->tax_cert_pdf">
+        <a href="<?=get_cert_url($tcc)?>" target="_blank" title="View Certificate PDF">
+          <i class="fa fa-file-pdf-o"></i>&nbsp;<?=$tcc->tax_cert_pdf . PHP_EOL?>
+        </a>
+      </if>
+      </span></li>
+      <li><label>Amount Reserved:</label> <span><?=currency($tcc->amount_reserved)?></span></li>
+      <li><label>Rollover:</label> <span><?=currency($tcc->rollover)?></span></li>
+      <li><label>Expired Year:</label> <span><?=$tcc->expired?></span></li>
+      <li><label>Accountant:</label> <span><?=escape($tcc->client_accountant)?></span></li>
+      <if x="$tcc->deleted_at">
+      <li id="deletedAt" class="text-danger"><label>Deleted At:</label> <span><?=$tcc->deleted_at?></span></li>
+      <li><label>Deleted By:</label> <span><?=$tcc->deleted_by?></span></li>
+      </if>      
+      <li><label>Updated At:</label> <span><?=$tcc->updated_at?></span></li>
+      <li><label>Updated By:</label> <span><?=$tcc->updated_by?></span></li>     
+      <li><label>Created At:</label> <span><?=$tcc->created_at?></span></li>
+      <li><label>Created By:</label> <span><?=$tcc->created_by?></span></li>
+      <li><label>Client Id:</label> <span><?=$tcc->client_id?></span></li>
+      <li><label>Last Sync At:</label> <span><?=$tcc->sync_at?></span></li>
+      <li><label>Sync By:</label> <span><?=$tcc->sync_by?></span></li>      
+      <li><label>Sync Source:</label> <span><?=$tcc->sync_from == 'remote' ? 'Google Sheets' : 'System 3' ?></span></li>      
+      <li><label>Allocated Trades:</label> <span class="word-break"><?=$tcc->allocated_trades?></span></li>
+      <li><label>TCC UUID:</label> <span><?=$tcc->tcc_id?></span></li>
+    </ul>      
+  </section>
+</div>
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+  onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/tccs?view=edit&id=<?=$id?>', view:'edit', title:'TCC Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+<include>_partials/details.js</include>

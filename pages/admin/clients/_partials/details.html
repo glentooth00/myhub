@@ -1,0 +1,398 @@
+<include>_partials/details.css</include>
+<div class="content-wrapper">
+  <header class="flex-row space-between">
+    <div class="flex-col">
+      <h1>
+        <?=escape(fullName($client))?>
+        <if x="$client->deleted_at">
+          <small class="text-danger">(Deleted)</small>
+        </if>          
+      </h1>
+      <h4>Client uid: <?=$client->client_id?></h4>
+    </div>
+    <div class="flex-col">
+      <a id="backup-link" href="javascript:void(0);" data-tippy-content="Backup / Restore Client Data"
+        onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/clients?view=backup&id=<?=$client->id?>', 
+          view:'backup', title:'Client Backup'})" >
+        <i class="fa fa-save fa-lg"></i>
+      </a>
+    </div>
+  </header>
+  <section class="flex-row flex-gap actions-bar">
+    <button class="btn-round btn-primary" type="button" data-tippy-content="Add TCC"
+      onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/tccs?view=edit&client=<?=$client->client_id?>&id=new',
+        view:'edit', title:'TCC Form'})">
+      <small class="flex-col align-center"><i class="fa fa-plus"></i> TCC</small>
+    </button>
+    <button class="btn-round btn-primary" type="button" data-tippy-content="Add Trade"
+      onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/trades?view=edit&client=<?=$client->client_id?>&id=new',
+        view:'edit', title:'Trade Form'})">
+      <small class="flex-col align-center"><i class="fa fa-plus"></i> TR</small>
+    </button>
+    <button class="btn-round btn-primary" type="button" data-tippy-content="Send Statement Link"
+      onclick="F1.app.sendStatementLink(event)">
+      <small class="flex-col align-center"><i class="fa fa-envelope-o"></i> STM</small>
+    </button>
+    <button class="btn-round btn-primary" type="button"
+      data-tippy-content="Update client state and sync with S2" 
+      onclick="F1.app.updateAndSync(event)">
+      <i class="fa fa-refresh fa-lg"></i>
+    </button>
+    <if x="$app->user->role == 'sysadmin'">
+    <span class="flex-row align-center"><i class="fa fa-ellipsis-v"></i></span>
+    <button class="btn-round btn-warning" type="button"
+      data-tippy-content="Redo SDA/FIA allocations for this year" 
+      onclick="F1.app.updateAndSync(event, { redo:true, noSync:true, year:<?=$year?> })">
+      <i class="fa fa-refresh fa-lg">!</i>
+    </button>
+    <button class="btn-round btn-danger" type="button"
+      data-tippy-content="Redo SDA/FIA allocations for last year" 
+      onclick="F1.app.updateAndSync(event, { redo:true, noSync:true, year:<?=$lastYear?> })">
+      <i class="fa fa-refresh fa-lg">!</i>
+    </button>
+    </if>
+    <if x="$client->deleted_at">
+    <button class="btn-round undelete" type="button"
+      data-tippy-content="Undelete" onclick="F1.app.undeleteClient(event)">
+      <i class="fa fa-trash-o fa-lg"></i>
+    </button>
+    </if>
+  </section>
+  <section>
+    <ul>
+      <li id="status"><label>Status:</label> <span><?=$client->status?></span></li>
+      <li><label>Preferred Name:</label> <span><?=escape($client->name)?></span></li>
+      <li><label>ID Number:</label> <span><?=escape($client->id_number)?></span></li>
+      <li><label>Phone Number:</label> <span><?=escape($client->phone_number)?></span></li>
+      <li><label>Personal Email:</label> <span><?=$client->personal_email?></span></li>
+      <li><label>Address:</label> <span><?=escape($client->address)?>, <?=escape($client->city, 'convert-enc')?></span></li>
+      <if x="$spouseName">
+      <li><label>Spouse:</label> <span><a href="<?=$app->request->module . '/clients?view=details&amp;id=' . $client->spouse_id?>" 
+        onclick="F1.app.navigateTo({event, view:'details', title:'Client Details'})"><?=escape($spouseName)?></a></span></li>
+      <eval>else:</eval>
+      <li><label>Spouse:</label></li>
+      </if>
+      <li><label>Referrer:</label> <span><?=escape($referrers[$client->referrer_id]??'- none -')?></span></li>
+      <li><label>NCR:</label> <span><?=escape($ncrs[$client->ncr]??'- none -')?></span></li>
+      <li><label>Accountant:</label> <span><?=escape($client->accountant)?></span></li>
+      <li><label>Bank:</label> <span><?=escape($client->bank)?></span></li>
+      <li><label>Tax Number:</label> <span><?=escape($client->tax_number)?></span></li>
+      <li><label>Trading Capital:</label> <span><?=currency($client->trading_capital)?></span></li>
+      <li><label>SDA Mandate:</label> <span><?=currency($client->sda_mandate)?></span></li>
+      <li><label>SDA Mandate Remaining:</label> <span><?=currency($clientState->sdaRemaining)?></span></li>
+      <li><label>SDA Used:</label> <span><?=currency($client->sda_used)?></span></li>
+      <li><label>FIA Mandate:</label> <span><?=currency($client->fia_mandate)?></span></li>
+      <li><label>FIA Mandate Remaining:</label> <span><?=currency($clientState->fiaRemaining)?></span></li>
+      <li><label>FIA Approved:</label> <span><?=currency($client->fia_approved)?></span></li>
+      <li><label>FIA Used:</label> <span><?=currency($client->fia_used)?></span></li>
+      <li><label>FIA Unused:</label> <span><?=currency($clientState->fiaUnused)?></span></li>   
+      <li><label>FIA Available:</label> <span><?=currency($clientState->fiaAvailable)?></span></li>
+
+      <li class="related-items">
+        <header>
+          <div class="flex-row space-between">
+            <div class="flex-col">
+              <label class="flex-row flex-gap align-center">
+                <span>FIA TCCs (Current Year):</span>
+                <span class="badge"><?=count($client->tccs_current_year)?></span>
+              </label>
+            </div>
+            <div class="flex-col">
+              <a href="javascript:void(0);" data-tippy-content="Export to CSV" 
+                onclick="F1.app.exportToCsv('tccs')"><i class="fa fa-download"></i></a>
+            </div>
+          </div>
+        </header>
+        <!-- Details list -->
+        <div class="related-tccs table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Issued On</th>
+                <th>PIN</th>
+                <th>PIN Value</th>
+                <th>Status</th>
+                <th>Rollover</th>
+                <th>Available</th>
+                <th>Remaining</th>
+                <th>Allocated</th>
+                <th>Allocations</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($client->tccs_current_year as $i => $tcc): ?>
+              <?php $emptyVal = '-'; ?>
+              <tr>
+                <td><?=($i+1).'.'?></td>
+                <td class="nowrap"><?=$tcc->date?:'- TBA -'?></td>
+                <td>
+                  <a href="<?=$app->request->module . '/tccs?view=details&amp;id=' . $tcc->id?>"
+                    onclick="F1.app.navigateTo({event, view:'details', title:'TCC Details'})"><?=$tcc->tcc_pin?:'- TBA -'?></a>
+                </td>
+                <td class="<?=$tcc->inPlay?'':'text-muted'?>"><?=$tcc->amount_cleared?currency($tcc->amount_cleared):$emptyVal?></td>
+                <td><?=$tcc->status?:$emptyVal?></td>
+                <td><?=$tcc->rollover?currency($tcc->rollover):$emptyVal?></td>
+                <td><?=$tcc->amount_available?currency($tcc->amount_available):$emptyVal?></td>
+                <td><?=$tcc->amount_remaining?currency($tcc->amount_remaining):$emptyVal?></td>
+                <td><?=$tcc->amount_used?currency($tcc->amount_used):$emptyVal?></td>
+                <td><?=$tcc->allocated_trades?:$emptyVal?></td>
+                <td><?=$tcc->notes?escape($tcc->notes):$emptyVal?></td>
+              </tr>
+              <?php endforeach ?>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="3"></th>
+                <th data-tippy-content="Sum of PIN Values"><?=currency($tccsSummaryCurrent->pinValues)?></th>
+                <th data-tippy-content="Total FIA Approved"><?=currency($tccsSummaryCurrent->approved)?></th>
+                <th data-tippy-content="Total Rollover (Unused Y1)"><?=currency($tccsSummaryCurrent->rollover)?></th>
+                <th data-tippy-content="Total FIA Available"><?=currency($tccsSummaryCurrent->available)?></th>
+                <th data-tippy-content="Total FIA Remaining"><?=currency($tccsSummaryCurrent->remaining)?></th>
+                <th data-tippy-content="Total Allocated (Used)"><?=currency($tccsSummaryCurrent->allocated)?></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <footer class="flex-row space-between">
+          <div class="flex-col">
+            <a href="<?=$app->request->module . '/clients?view=tccs&amp;id=' . $client->id?>"
+              data-tippy-content="View the full PIN history for this client."
+              onclick="F1.app.navigateTo({event, view: 'tccs', title: 'Client TCCs'})">
+              <small>View All TCCs</small></a> 
+          </div>
+        </footer>
+      </li>
+
+      <li class="related-items">
+        <header>
+          <div class="flex-row space-between">
+            <div class="flex-col">
+              <label class="flex-row flex-gap align-center">
+                <span>Trades (Current Year):</span>
+                <span class="badge"><?=count($client->trades_current_year)?></span>
+              </label>
+            </div>
+            <div class="flex-col">
+              <a href="javascript:void(0);" data-tippy-content="Export to CSV" 
+                onclick="F1.app.exportToCsv('trades')"><i class="fa fa-download"></i></a>
+            </div>
+          </div>
+        </header>
+        <!-- Details list -->
+        <div class="related-trades table-responsive">          
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Trade Date</th>
+                <th>Trade ID</th>
+                <th>Type</th>
+                <th>ZAR Sent</th>
+                <th>USD Bought</th>
+                <th>Rate</th>
+                <th>Gross Profit</th>
+                <th>Gross %</th>
+                <th>Cover</th>
+                <th>Pins</th>
+                <th>Pins USD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($client->trades_current_year as $i => $trade): ?>
+              <?php $emptyVal = '-'; ?>
+              <tr class="<?=$trade->zar_sent>$trade->amount_covered?'text-danger':''?>">
+                <td><?=($i+1).'.'?></td>
+                <td class="nowrap"><?=$trade->date?></td>
+                <td>
+                  <a href="<?=$app->request->module . '/trades?view=details&amp;id=' .$trade->id?>"
+                    onclick="F1.app.navigateTo({event, view:'details', title:'Trade Details'})"><?=$trade->trade_id?></a>
+                </td>
+                <td><?=$trade->sda_fia?></td>
+                <td><?=$trade->zar_sent?currency($trade->zar_sent):$emptyVal?></td>
+                <td><?=$trade->usd_bought?currency($trade->usd_bought, '$'):$emptyVal?></td>
+                <td><?=$trade->forex_rate?currency($trade->forex_rate, 'R', ' ', 3):$emptyVal?></td>
+                <td><?=$trade->zar_profit?currency($trade->zar_profit):$emptyVal?></td>
+                <td><?=$trade->percent_return?"$trade->percent_return%":$emptyVal?></td>
+                <td><?=$trade->amount_covered?currency($trade->amount_covered):$emptyVal?></td>
+                <td><?=$trade->allocated_pins?:$emptyVal?></td>
+                <td><?=$trade->allocated_pins_usd?:$emptyVal?></td>
+              </tr>
+              <?php endforeach ?>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="4"></th>
+                <th><?=currency($tradesSummaryCurrent->zar_sent)?></th>
+                <th colspan="4">SDA=<?=currency($tradesSummaryCurrent->sda_used)?> | FIA=<?=currency($tradesSummaryCurrent->fia_used)?> | FIA=<?=currency($tradesSummaryCurrent->usd_bought, '$')?></th>
+                <th><?=currency($tradesSummaryCurrent->amount_covered)?></th>
+                <th>SDA=<?=currency($tradesSummaryCurrent->sda_covered)?> | FIA=<?=currency($tradesSummaryCurrent->fia_covered)?></th>
+                <th>SDA=<?=currency($tradesSummaryCurrent->sda_covered_usd, '$')?> | FIA=<?=currency($tradesSummaryCurrent->fia_covered_usd, '$')?></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <footer class="flex-row space-between">
+          <div class="flex-col">
+            <a href="<?=$app->request->module . '/clients?view=trades&amp;id=' . $client->id?>"
+              data-tippy-content="View the full trades history for this client."
+              onclick="F1.app.navigateTo({event, view: 'trades', title: 'Client Trades'})">
+              <small>View All Trades</small></a> 
+          </div>
+        </footer>
+      </li>
+
+      <li style="padding:1rem 0">
+        <label>Current Year's Statement PDF:</label>
+        <span class="flex-col flex-gap-sm">
+          <a href="<?=generatePDFLink($client->client_id)?>" target="_blank">Generate S3 Statement PDF</a>
+          <a href="<?=convertToPdfDownloadLink($client->statement_file)?>" target="_blank">Download Google Statement PDF</a>
+          <if x="$client->statement_file">
+          <a href="<?=$client->statement_file?>" target="_blank">View Google Statement</a>
+          </if>
+        </span>
+      </li>
+
+      <li class="related-items">
+        <header>
+          <div class="flex-row space-between">
+            <div class="flex-col">
+              <label class="flex-row flex-gap align-center">
+                <span>Trades (Last Year):</span>
+                <span class="badge"><?=count($client->trades_last_year)?></span>
+              </label>
+            </div>
+            <div class="flex-col">
+              <a href="javascript:void(0);" data-tippy-content="Export to CSV" 
+                onclick="F1.app.exportToCsv('trades-last-year')"><i class="fa fa-download"></i></a>
+            </div>
+          </div>
+        </header>
+        <!-- Details list -->
+        <div class="related-trades-last-year table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Trade Date</th>
+                <th>Trade ID</th>
+                <th>Type</th>
+                <th>ZAR Sent</th>
+                <th>USD Bought</th>
+                <th>Rate</th>
+                <th>Gross Profit</th>
+                <th>Gross %</th>
+                <th>Cover</th>
+                <th>Pins</th>
+                <th>Pins USD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($client->trades_last_year as $i => $trade): ?>
+              <?php $emptyVal = '-'; ?>
+              <tr class="<?=$trade->zar_sent>$trade->amount_covered?'text-danger':''?>">
+                <td><?=($i+1).'.'?></td>
+                <td class="nowrap"><?=$trade->date?></td>
+                <td>
+                  <a href="<?=$app->request->module . '/trades?view=details&amp;id=' .$trade->id?>"
+                    onclick="F1.app.navigateTo({event, view:'details', title:'Trade Details'})"><?=$trade->trade_id?></a>
+                </td>
+                <td><?=$trade->sda_fia?></td>
+                <td><?=$trade->zar_sent?currency($trade->zar_sent):$emptyVal?></td>
+                <td><?=$trade->usd_bought?currency($trade->usd_bought, '$'):$emptyVal?></td>
+                <td><?=$trade->forex_rate?currency($trade->forex_rate, 'R', ' ', 3):$emptyVal?></td>
+                <td><?=$trade->zar_profit?currency($trade->zar_profit):$emptyVal?></td>
+                <td><?=$trade->percent_return?"$trade->percent_return%":$emptyVal?></td>
+                <td><?=$trade->amount_covered?currency($trade->amount_covered):$emptyVal?></td>
+                <td><?=$trade->allocated_pins?:$emptyVal?></td>
+                <td><?=$trade->allocated_pins_usd?:$emptyVal?></td>
+              </tr>
+              <?php endforeach ?>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="4"></th>
+                <th><?=currency($tradesSummaryLastYear->zar_sent)?></th>
+                <th colspan="4">SDA=<?=currency($tradesSummaryLastYear->sda_used)?> | FIA=<?=currency($tradesSummaryLastYear->fia_used)?> | FIA=<?=currency($tradesSummaryLastYear->usd_bought, '$')?></th>
+                <th><?=currency($tradesSummaryLastYear->amount_covered)?></th>
+                <th>SDA=<?=currency($tradesSummaryLastYear->sda_covered)?> | FIA=<?=currency($tradesSummaryLastYear->fia_covered)?></th>
+                <th>SDA=<?=currency($tradesSummaryLastYear->sda_covered_usd, '$')?> | FIA=<?=currency($tradesSummaryLastYear->fia_covered_usd, '$')?></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <footer class="flex-row space-between">
+          <div class="flex-col">
+            <a href="<?=$app->request->module . '/clients?view=trades&amp;id=' . $client->id?>"
+              data-tippy-content="View the full trades history for this client."
+              onclick="F1.app.navigateTo({event, view: 'trades', title: 'Client Trades'})">
+              <small>View All Trades</small></a> 
+          </div>
+        </footer>
+      </li>
+
+      <li style="padding:1rem 0">
+        <label>Last Year's Statement PDF:</label>
+        <span class="flex-col flex-gap-sm">
+          <a href="<?=generatePDFLink($client->client_id, 'last')?>" target="_blank">Generate S3 Statement PDF</a>
+          <if x="$client->last_years_statement">
+          <a href="<?=convertToPdfDownloadLink($client->last_years_statement)?>" target="_blank">Download Google Statement PDF</a>
+          <a href="<?=$client->last_years_statement?>" target="_blank">View Google Statement</a>
+          </if>
+        </span>
+      </li>
+
+      <li><hr></li>
+      <li><label>City:</label> <span><?=escape($client->city, 'convert-enc')?></span></li>
+      <li><label>Suburb:</label> <span><?=$client->suburb?></span></li>
+      <li><label>Province:</label> <span><?=$client->province?></span></li>
+      <li><label>Country:</label> <span><?=$client->country?></span></li>
+      <li><label>Postal Code:</label> <span><?=$client->postal_code?></span></li>
+      <li><hr></li>
+      <li><label>BP Number:</label> <span><?=$client->bp_number?></span></li>
+      <li><label>CIF Number:</label> <span><?=$client->cif_number?></span></li>
+      <li><label>Capitec Name:</label> <span><?=escape($client->mercantile_name)?></span></li>
+      <li><label>Trader Id:</label> <span><?=escape($client->trader_id)?></span></li>
+      <li><label>In House Referrer Id:</label> <span><?=escape($client->inhouse_referrer_15_percent)?></span></li>
+      <li><label>3rd Party Referrer:</label> <span><?=escape($client->third_party_referrer)?></span></li>
+      <li><label>First Name:</label> <span><?=escape($client->first_name)?></span></li>
+      <li><label>Middle Name:</label> <span><?=escape($client->middle_name)?></span></li>
+      <li><label>Surname:</label> <span><?=escape($client->last_name)?></span></li>      
+      <li><label>Marriage Cert File:</label> <span>
+      <if x="$client->spare_1">
+        <a href="<?=clientDocsRef('spare_1')?>" target="_blank">View Marriage Cert</a>
+      </if>
+      </span></li>
+      <li><label>Crypto Declaration File:</label> <span>
+      <if x="$client->spare_2">
+        <a href="<?=clientDocsRef('spare_2')?>" target="_blank">View Crypto Declaration</a>
+      </if>
+      </span></li>
+      <li><label>Notes:</label> <span><?=escape($client->notes)?></span></li>
+      <li><hr></li>
+      <li><label>Last Action:</label> <span><?=$client->last_action?></span></li>
+      <li><label>Last Action At:</label> <span><?=$client->action_at?></span></li>
+      <li><label>Last Action By:</label> <span><?=$client->action_by?></span></li>
+      <if x="$client->deleted_at">
+      <li id="deletedAt" class="text-danger"><label>Deleted At:</label> <span><?=$client->deleted_at?></span></li>
+      <li><label>Deleted By:</label> <span><?=$client->deleted_by?></span></li>
+      </if>      
+      <li><label>Updated At:</label> <span><?=$client->updated_at?></span></li>
+      <li><label>Updated By:</label> <span><?=$client->updated_by?></span></li>
+      <li><label>Created At:</label> <span><?=$client->created_at?></span></li>
+      <li><label>Created By:</label> <span><?=$client->created_by?></span></li>
+      <li><label>Last Sync At:</label> <span><?=$client->sync_at?></span></li>
+      <li><label>Sync By:</label> <span><?=$client->sync_by?></span></li>
+      <li><label>Sync Source:</label> <span><?=$client->sync_from == 'remote' ? 'CH Google DB' : 'My Currency Hub' ?></span></li>
+    </ul>
+  </section>
+</div>
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+  onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/clients?view=edit&amp;id=<?=$id?>', 
+    view:'edit', title:'Client Form'})"><i class="fa fa-edit fa-lg"></i>
+</button>
+<script src="vendors/F1/js/csv.js"></script>
+<include>_partials/details.js</include>

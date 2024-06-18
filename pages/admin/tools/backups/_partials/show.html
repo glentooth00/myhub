@@ -1,0 +1,49 @@
+<include>_partials/show.css</include>
+<div class="container">
+  <fieldset>
+    <legend>Backup</legend>
+    <br>
+    <form>
+      <button class="btn-primary" name="do" value="zipAppCode">
+        <i id="busy-icon-backup" class="fa fa-save"></i>&nbsp; Backup App Code
+      </button>
+    </form>
+    <br>
+    <hr>
+    <br>
+    <a href="404" disabled>Export Clients</a>
+    <br><br>
+    <a href="404" disabled>Export Trades</a>
+    <br><br>
+    <a href="404" disabled>Export Tccs</a>
+  </fieldset>
+
+  <br><br>
+  
+  <fieldset>
+    <legend>Restore</legend>
+    <br>
+    <form>
+      <label>Restore Clients</label><br>
+      <input type="file" name="clients_file" disabled><br>
+      <button class="btn-primary" type="button" disabled>Restore</button>
+    </form>
+    <br>
+    <hr>
+    <br>
+    <form>
+      <label>Restore Trades</label><br>
+      <input type="file" name="trades_file" disabled><br>
+      <button class="btn-primary" type="button" disabled>Restore</button>
+    </form>
+    <br>
+    <hr>
+    <br>
+    <form>
+      <label>Restore TCCs</label><br>
+      <input type="file" name="tccs_file" disabled><br>
+      <button class="btn-primary" type="button" disabled>Restore</button>
+    </form>
+  </fieldset>
+</div>
+<include>_partials/show.js</include>

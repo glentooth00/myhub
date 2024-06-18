@@ -1,0 +1,66 @@
+<include>_partials/tccs.css</include>
+<div class="container">
+	<hr>
+  <h2>Process Client TCCs</h2>
+  <hr>
+  <br>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>ID</th>
+          <th>Valid</th>
+          <th>UID</th>
+          <th>CID</th>
+          <th>PIN</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Amount Net</th>
+          <th>Status</th>
+          <th>Expired</th>
+          <th>Rollover</th>
+          <th>Reserved</th>
+          <th>Available</th>
+          <th>Remaining</th>
+          <th>Used</th>
+          <th>Allocated</th>
+          <th>Allocations</th>
+          <th>Error</th>
+        </tr>
+      </thead>
+      <tbody id="tccs-table-body">
+        <tr>
+          <foreach x="$tccs as $index => $tcc">
+          <tr>
+            <td class="center"><?=$index+1?></td>
+            <td><?=$tcc->id?></td>
+            <td class="valid <?=$tcc->valid?> center"><?=$tcc->valid?></td>
+            <td><?=$tcc->tcc_id?></td>
+            <td><?=$tcc->client_id?></td>
+            <td><?=$tcc->tcc_pin?></td>
+            <td><?=$tcc->date?></td>
+            <td><?=$tcc->amount_cleared?></td>
+            <td><?=$tcc->amount_cleared_net?></td>
+            <td><?=$tcc->status?></td>
+            <td><?=$tcc->expired?></td>
+            <td><?=$tcc->rollover?></td>
+            <td><?=$tcc->amount_reserved?></td>
+            <td><?=$tcc->amount_available?></td>
+            <td><?=$tcc->amount_remaining?></td>
+            <td><?=$tcc->amount_used?></td>
+            <td><?=$tcc->totalAllocated?></td>
+            <td><?=$tcc->allocated_trades?></td>
+            <td><?=$tcc->error?></td>
+          </tr>
+          </foreach>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <button type="button" class="btn btn-primary" onclick="F1.api.processClientTccs()">
+  	<i id="busy-icon" class="fa fa-camera-retro"></i>&nbsp; Process Client TCCs
+  </button>
+</div>
+<include>_partials/tccs.js</include>

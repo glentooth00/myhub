@@ -1,0 +1,34 @@
+<include>_partials/list.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="referrers-table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>ID Number</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Created At</th>
+      </tr>
+      </thead>
+      <tbody class="hidden">
+      <foreach x="$referrers as $i => $referrer">
+      <tr id="<?=$referrer->id?>">
+        <td><?=($i+1).'.'?></td>
+        <td><?=escape($referrer->name)?> (<?=escape($referrer->referrer_id)?>)</td>
+        <td><?=escape($referrer->id_number)?></td>
+        <td><?=escape($referrer->phone_number)?></td>
+        <td><?=escape($referrer->email)?></td>
+        <td><?=$referrer->created_at?></td>
+      </tr>
+      </foreach>
+      </tbody>
+    </table>
+    <button class="fab btn-round btn-primary" type="button"
+        onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=edit&id=new', view:'edit', title:'Referrer Form'})">
+      <i class="fa fa-plus fa-lg"></i>
+    </button>
+  </div> <!-- .table-responsive -->
+</div> <!-- .list-view -->
+<include>_partials/list.js</include>

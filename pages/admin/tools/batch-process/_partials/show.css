@@ -1,0 +1,92 @@
+/* Page Specific CSS */
+
+.container {
+  height: 100%;
+  margin: auto;
+  padding: 1rem;
+  max-width: 768px;
+  overflow: auto;
+}
+
+.table-responsive {
+  overflow: auto;
+  margin: 1rem 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  padding: 4px 7px;
+}
+
+td {
+  text-align: left;
+  padding: 1px 7px;
+  font-size: 0.96em;
+  border-bottom: 1px solid gainsboro;
+}
+
+/* The Form */
+form {
+  position: relative;
+  background-color: #fefefe;
+  padding: 20px;
+}
+
+.form-header {
+  margin: 0;
+  padding-bottom: 1.33em;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75em;
+  border-radius: 5px;
+  border: 1px solid #cdcdcd;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+form label {
+  margin: 1.5rem 0 3px;
+  font-size: 13px;
+  display: block;
+  color: #666;
+}
+
+form label[required]::after {
+  content: "*";
+  color: red;
+}
+
+form label:first-of-type {
+  margin-top: 0;
+}
+
+form input[type="submit"] {
+  margin-top: 1.5rem;
+  cursor: pointer;
+  padding: 13px;
+}
+
+.popup__content form {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.btn-sm {
+  padding: 2px 6px;
+}
+
+.btn-sm:hover {
+  color: dodgerblue;
+}

@@ -1,0 +1,149 @@
+body > footer {
+  overflow: hidden;
+  height: 0;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  margin: 0 auto 3.5rem;
+  padding: 1.5rem 1.5rem 0;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  width: min(640px, 100%);    
+  overflow-y: auto;
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  top: -0.9rem;
+}
+
+form {
+  padding-bottom: 1.5rem;  
+}
+
+form [disabled] {
+  background-color: whitesmoke;
+  cursor: not-allowed;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.75em;
+  border-radius: 5px;
+  border: 1px solid #cdcdcd;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+input[type="file"] {
+  padding: 0.5em 0.75em;
+}
+
+form label {
+  margin: 1.5rem 0 3px;
+  font-size: 13px;
+  display: block;
+  color: #666;
+}
+
+form label[required]::after {
+  content: "*";
+  color: red;
+}
+
+form label:first-of-type {
+  margin-top: 0;
+}
+
+form footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 0px 14px rgba(0,0,0,0.2);
+}
+
+form footer button {
+  margin: 10px;  
+}
+
+.field button {
+  margin-top: 0.5rem;
+  margin-right: 0.34rem;
+}
+
+[readonly] {
+  background-color: whitesmoke;
+  cursor: not-allowed;
+}
+
+
+.select {
+  --select-color-muted: silver;
+}
+
+.select small {
+  color: var(--select-color-muted);
+}
+
+.select li[role="option"]:hover small {
+  color: var(--select-color-light);
+}
+
+.select ul[role="listbox"] {
+  padding-top: 0;
+}
+
+.select__utilbar {
+  display: block !important;
+  padding: var(--select-padding-s);
+}
+
+.select__utilbar p {
+  display: none;
+  padding: var(--select-padding-s);
+  margin: 0;
+}
+
+.select--noresults .select__utilbar p {
+  display: block;
+  margin-top: var(--select-padding-s);
+}
+
+.select__utilbar button {
+  border: 1px solid;
+  border-radius: var(--select-border-radius);
+  padding: var(--select-padding-s) var(--select-padding);
+  margin: 0 var(--select-padding-s) var(--select-padding-s);
+  display: inline-block;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.select__add, .select__edit {
+  color: var(--select-color-primary);  
+}
+
+.select__delete {
+  color: var(--danger-color);  
+}
+
+
+.popup {
+  --popup-color--info: var(--primary-color);
+}

@@ -1,0 +1,68 @@
+<include>_partials/show.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Batch Process</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showProcessOperationForm()">
+      <i class="fa fa-plus"></i> Add Operation
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="processes">
+      <thead>
+        <tr>
+          <th>Operations</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$batchOperations as $i => $batchOperation">
+        <tr>
+          <td class="w100 nowrap">
+            <a href="admin/tools/batch-process?view=<?=$batchOperation->page?>&op=<?=$batchOperation->id?>&back=batch-process"
+              onclick="F1.app.navigateTo({ event, view:'<?=$batchOperation->page?>', title:'<?=$batchOperation->description?>'})">
+              <i class="fa fa-tasks"></i>&nbsp;<?=$batchOperation->description?>
+            </a>
+          </td>
+          <td>
+            <button class="btn-sm text-primary" type="button" title="Edit Bank"
+              onclick="F1.app.editProcessOperation('<?=$batchOperation->id?>')">
+            <i class="fa fa-pencil"></i></button>
+          </td>
+          <td>
+            <button class="btn-sm text-primary" type="button" title="Delete Bank" 
+             onclick="F1.app.deleteProcessOperation('<?=$batchOperation->id?>')">
+            <i class="fa fa-trash"></i></button>
+          </td>           
+        </tr>
+        </foreach>
+        <if x="!$batchOperations">
+        <tr>
+          <td colspan="3">No processes found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="addProcessOperationForm" onsubmit="F1.app.submitProcessOperationForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <label>Description</label>
+  <input type="text" name="description" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <label>Page</label>
+  <input type="text" name="page" required>
+  <br>
+  <br>
+  <label>Operation Type</label>
+  <select name="type_id">
+    <foreach x="$batchTypes as $value => $label">
+    <?=$form->option( $value, $label )?>
+    </foreach>
+  </select>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/show.js</include>

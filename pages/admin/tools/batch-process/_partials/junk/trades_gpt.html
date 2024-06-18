@@ -1,0 +1,122 @@
+<div class="container h100">
+  <div class="flex-row flex-gap h100">
+    <div id="trades" class="flex-col flex-gap flex-3 h100 py1">
+      <header><h2>Trades</h2></header>
+      <fieldset class="scrollbox h100">
+        <form id="tradesForm">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th><input id="selectAll" type="checkbox" onchange="F1.app.selectAll(event)"></th>
+                  <th>Row</th>
+                  <th>Trade ID</th>
+                  <th>Client</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th>ZAR Sent</th>
+                  <th>USD Bought</th>
+                  <th>Forex Rate</th>
+                  <th>ZAR Profit</th>
+                  <th>% Return</th>
+                  <th>Covered</th>
+                  <th>Allocated Pins</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="12">No Results</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </fieldset>
+    </div> <!-- tradesToUpdate -->
+    
+    <div id="results" class="flex-col flex-gap flex-2 h100 py1">
+      <header class="flex-row space-between">
+        <div class="flex-col"><h2>Results</h2></div>
+        <div class="flex-col">
+          <button class="btn-sm text-primary" type="button" data-tippy-content="Export to CSV" 
+            onclick="F1.app.exportToCsv('resultsTable')">
+            <i class="fa fa-download"></i>&nbsp;
+          </button>
+        </div>
+      </header>
+      <fieldset class="scrollbox h100">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Trade ID</th>
+                <th>Client</th>
+                <th>Operation</th>
+                <th>Result</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="5">No Results</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </fieldset>
+    </div> <!-- results -->
+
+  </div> <!-- flex-row -->
+
+</div> <!-- container -->
+<template id="trade-row">
+  <tr data-id="{trade.id}">
+    <td><input type="checkbox" name="selected[]" value="{trade.id}"></td>
+    <td>{index}</td>
+    <td>{trade.trade_id}</td>
+    <td>{trade.client_name}</td>
+    <td>{trade.sda_fia}</td>
+    <td>{trade.date}</td>
+    <td>R{trade.zar_sent}</td>
+    <td>${trade.usd_bought}</td>
+    <td>R{trade.forex_rate}</td>
+    <td>R{trade.zar_profit}</td>
+    <td>{trade.percent_return}%</td>
+    <td>R{trade.amount_covered}</td>
+    <td>{trade.allocated_pins}</td>
+  </tr>
+</template>
+
+<!-- 
+data: Array(109) [ {…}, {…}, {…}, … ]
+
+[0…99]
+
+0: Object {
+  "id": 37350,
+  "trade_id": "CH17707",
+  "date": "2024-04-17",
+  "forex": null,
+  "forex_reference": null,
+  "otc": "VALR",
+  "otc_reference": null,
+  "client_id": "527aef54",
+  "sda_fia": "SDA",
+  "zar_sent": "100500.00",
+  "usd_bought": "5208.52",
+  "trade_fee": null,
+  "forex_rate": "19.512",
+  "zar_profit": "1129.12",
+  "percent_return": "1.12",
+  "fee_category_percent_profit": "0.00",
+  "recon_id1": null,
+  "recon_id2": null,
+  "amount_covered": "100500.00",
+  "allocated_pins": "{\"_SDA_\":100500}",
+  "created_at": "2024-04-17 08:51:29",
+  "created_by": "_system_",
+  "updated_at": "2024-04-17 15:00:27",
+  "updated_by": "_apicall_",
+  "deleted_at": null,
+  "deleted_by": null,
+  "client_id2": 2653,
+  "client_name": "Jared Lee",
+  "client_accountant": null
+}
+-->

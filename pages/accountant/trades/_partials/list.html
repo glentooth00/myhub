@@ -1,0 +1,38 @@
+<include>_partials/list.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="trades-table" data-days="<?=$days?>">
+      <thead>
+        <tr>
+          <th>Trade ID</th>
+          <th>OTC</th>
+          <th>Trade Date</th>
+          <th>Client ID</th>
+          <th>Type</th>
+          <th>ZAR Sent</th>
+          <th>TUSD Bought</th>
+          <th>Rate (R)</th>
+          <th>Covered (R)</th>
+          <th>Allocations</th>   
+        </tr>
+      </thead>
+      <tbody class="hidden">
+        <foreach x="$trades as $trade">
+        <tr id="<?=$trade->id?>">
+          <td><?=escape($trade->trade_id)?></td>
+          <td><?=escape($trade->otc)?></td>
+          <td><?=$trade->date?></td>
+          <td class="name"><i class="fa fa-user-circle-o" title="Client"></i> <?=escape($trade->client_id)?></td>
+          <td><?=escape($trade->sda_fia)?></td>
+          <td><?=currency($trade->zar_sent)?></td>
+          <td><?=currency($trade->usd_bought, '$')?></td>
+          <td><?=currency($trade->forex_rate, '', ' ', 3)?></td>
+          <td><?=currency($trade->amount_covered)?></td>
+          <td><?=escape($trade->allocated_pins)?></td>
+        </tr>
+        </foreach>
+      </tbody>
+    </table>
+  </div> <!-- .table-responsive -->
+</div> <!-- .list-view -->
+<include>_partials/list.js</include>

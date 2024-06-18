@@ -1,0 +1,232 @@
+<include>_partials/edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$isEdit">
+      <h1>Edit Client ID: <?=$id?></h1>
+      </if>
+      <if x="$isNew">
+      <h1>Add New Client</h1>
+      </if>
+    </header>
+    <form id="client_form" method="post" novalidate>
+      
+      <input type="hidden" name="id" value="<?=$client->id?>">
+
+      <label for="client_id" required>Client UID:</label>
+      <?=$form->input( 'text', $client, 'client_id', ['readonly' => ($isEdit and !$super), 'required' => true] )?>
+      <p id="client_idFeedback" class="feedback"></p>
+      
+      <label required>Status</label>
+      <fieldset id="status" class="radio-buttons" data-value="<?=$client->status?>" >
+        <label for="active">
+          <input type="radio" id="active" name="status" value="Active" required>
+          <span>Active</span>
+        </label>
+        <label for="inactive">
+          <input type="radio" id="inactive" name="status" value="Inactive">
+          <span>Inactive</span>
+        </label>
+        <label for="closed">
+          <input type="radio" id="closed" name="status" value="Closed">
+          <span>Closed</span>
+        </label>
+      </fieldset>
+      <p id="statusFeedback" class="feedback"></p>
+
+      <label for="name" required>First Name</label>
+      <input type="text" id="first_name" name="first_name" value="<?=$client->first_name?>" required>
+      <p id="first_nameFeedback" class="feedback"></p>
+
+      <label for="middle_name">Middle Name</label>
+      <input type="text" id="middle_name" name="middle_name" value="<?=$client->middle_name?>">
+      <p id="middle_nameFeedback" class="feedback"></p>
+
+      <label for="last_name" required>Surname</label>
+      <input type="text" id="last_name" name="last_name" value="<?=$client->last_name?>" required>
+      <p id="last_nameFeedback" class="feedback"></p>
+
+      <label for="name" required>Preferred Name</label>
+      <input type="text" id="name" name="name" value="<?=$client->name?>" required>
+      <p id="nameFeedback" class="feedback"></p>
+
+      <label for="personal_email" required>Personal Email</label>
+      <input type="email" id="personal_email" name="personal_email" value="<?=$client->personal_email?>" required>
+      <p id="personal_emailFeedback" class="feedback"></p>
+
+      <label for="spouse_id">Spouse:</label>
+      <select id="spouse_id" name="spouse_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-manage-options="off" 
+        data-value="<?=$client->spouse_id?>">
+        <option value="">Select...</option>
+        <foreach x="$clients as $spouse">
+        <option value="<?=$spouse->id?>"><?=escape($spouse->name)?></option>
+        </foreach>
+      </select>
+      <p id="spouse_idFeedback" class="feedback"></p>
+
+      <label for="ncr">NCR</label>
+      <select id="ncr" name="ncr" data-custom-type="F1SelectField"
+        data-searchable="true" data-clear-prompt="x" data-size="large" data-manage-options="on">
+        <option value="">Select...</option>
+        <foreach x="$ncrs as $ncr">
+        <?=$form->option($ncr->id, escape($ncr->name), $client->ncr)?>
+        </foreach>
+      </select>
+      <p id="ncrFeedback" class="feedback"></p>
+    
+      <label for="referrer">Referrer</label>
+      <select id="referrer" name="referrer_id" data-custom-type="F1SelectField"
+        data-searchable="true" data-clear-prompt="x" data-size="large" data-manage-options="on">
+        <option value="">Select...</option>
+        <foreach x="$referrers as $referrer">
+        <?=$form->option($referrer->id, escape($referrer->name), $client->referrer_id)?>
+        </foreach>
+      </select>
+      <p id="referrer_idFeedback" class="feedback"></p>
+
+      <label for="phone_number" required>Phone Number</label>
+      <input type="text" id="phone_number" name="phone_number" placeholder="e.g. 27821234567" 
+        pattern="\+?\d{1,4}([\- ]?\d{1,3}){1,4}" title="International phone number format" 
+        value="<?=$client->phone_number?>" required>
+      <p id="phone_numberFeedback" class="feedback"></p>
+
+      <label for="id_number" required>ID Number</label>
+      <!-- TODO: Add validation for ID number or passport number -->
+      <input type="text" id="id_number" name="id_number" maxLength="13" value="<?=$client->id_number?>" required>
+      <p id="id_numberFeedback" class="feedback"></p>
+
+      <label for="accountant">Accountant</label>
+      <select id="accountant" name="accountant">
+        <option value="">- None -</option>
+        <foreach x="$accountants as $accountant">
+        <?=$form->option(fullName($accountant), null, $client->accountant)?>
+        </foreach>
+      </select>
+      <p id="accountantFeedback" class="feedback"></p>
+
+      <label for="tax_number" required>Tax Number</label>
+      <input type="text" id="tax_number" name="tax_number" value="<?=$client->tax_number?>" maxLength="13" required>
+      <p id="tax_numberFeedback" class="feedback"></p>
+
+      <label for="bank">Bank</label>
+      <select id="bank" name="bank" data-custom-type="F1SelectField" data-searchable="true"
+        data-size="large" data-clear-prompt="x" data-manage-options="on" data-simple-options="true" >
+        <foreach x="$banks as $bank">
+        <?=$form->option(escape($bank->name), null, escape($client->bank), '', $bank->id)?>
+        </foreach>
+      </select>
+      <p id="bankFeedback" class="feedback"></p>
+
+      <label for="cif_number">CIF Number</label>
+      <input type="text" id="cif_number" name="cif_number" value="<?=$client->cif_number?>">
+      <p id="cif_numberFeedback" class="feedback"></p>
+
+      <label for="bp_number">BP Number</label>
+      <input type="text" id="bp_number" name="bp_number" value="<?=$client->bp_number?>">
+      <p id="bp_numberFeedback" class="feedback"></p>
+
+      <label for="capitec_id">Capitec ID</label>
+      <input type="text" id="capitec_id" name="capitec_id" value="<?=$client->capitec_id?>">
+      <p id="capitec_idFeedback" class="feedback"></p>
+
+      <label for="capitec_name">Capitec Name</label>
+      <input type="text" id="capitec_name" name="mercantile_name" value="<?=$client->mercantile_name?>">
+      <p id="mercantile_nameFeedback" class="feedback"></p>
+
+      <label for="address" required>Address</label>
+      <input type="text" id="address" name="address" value="<?=$client->address?>" required>
+      <p id="addressFeedback" class="feedback"></p>
+
+      <label for="suburb" required>Suburb</label>
+      <select id="suburb" name="suburb" data-custom-type="F1SelectField" data-searchable="true" 
+        data-size="large" data-clear-prompt="x" data-manage-options="on" data-simple-options="true" required>
+        <option value="">Select...</option>
+        <foreach x="$suburbs as $suburb">
+        <?=$form->option(escape($suburb->name), null, escape($client->suburb), '', $suburb->id)?>
+        </foreach>
+      </select>
+      <p id="suburbFeedback" class="feedback"></p>
+
+      <label for="city" required>City</label>
+      <select id="city" name="city" data-custom-type="F1SelectField" data-searchable="true"
+        data-size="large" data-clear-prompt="x" data-manage-options="on" data-simple-options="true" required>
+        <option value="">Select...</option>
+        <foreach x="$cities as $city">
+        <?=$form->option(escape($city->name), null, escape($client->city), '', $city->id)?>
+        </foreach>
+      </select>
+      <p id="cityFeedback" class="feedback"></p>
+
+      <label for="province" required>Province</label>
+      <select id="province" name="province" data-custom-type="F1SelectField" data-searchable="true"
+        data-size="large" data-clear-prompt="x" data-manage-options="on" data-simple-options="true" required>
+        <option value="">Select...</option>
+        <foreach x="$provinces as $province">
+        <?=$form->option(escape($province->name), null, escape($client->province), '', $province->id)?>
+        </foreach>
+      </select>
+      <p id="provinceFeedback" class="feedback"></p>
+
+      <label for="country" required>Country</label>
+      <select id="country" name="country" data-custom-type="F1SelectField" data-searchable="true"
+        data-size="large" data-clear-prompt="x" data-manage-options="on" data-simple-options="true" required>
+        <option value="">Select...</option>
+        <foreach x="$countries as $country">
+        <?=$form->option(escape($country->name), null, escape($client->country), '', $country->id)?>
+        </foreach>
+      </select>
+      <p id="countryFeedback" class="feedback"></p>
+
+      <label for="postal_code" required>Postal Code</label>
+      <input type="text" id="postal_code" name="postal_code" maxLength="4" value="<?=$client->postal_code?>" required>
+      <p id="postal_codeFeedback" class="feedback"></p>
+
+      <label for="trading_capital">Trading Capital</label>
+      <input type="text" id="trading_capital" name="trading_capital" value="<?=currency($client->trading_capital, 'R ')?>" 
+        onchange="this.value = F1.lib.Utils.currency(this.value)">
+
+      <p id="trading_capitalFeedback" class="feedback"></p>
+
+      <label for="sda_mandate">SDA Mandate</label>
+      <input type="text" id="sda_mandate" name="sda_mandate" value="<?=currency($client->sda_mandate, 'R ')?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value)">
+      <p id="sda_mandateFeedback" class="feedback"></p>
+
+      <label for="fia_mandate">FIA Mandate</label>
+      <input type="text" id="fia_mandate" name="fia_mandate" value="<?=currency($client->fia_mandate, 'R ')?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value)">      
+      <p id="fia_mandateFeedback" class="feedback"></p>
+
+      <label for="next_year_sda">Next Year's SDA Mandate</label>
+      <input type="text" id="next_year_sda" name="next_years_sda_mandate" value="<?=currency($client->next_years_sda_mandate, 'R ')?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value)">      
+      <p id="next_years_sda_mandateFeedback" class="feedback"></p>
+
+      <label for="next_year_fia">Next Year's FIA Mandate</label>
+      <input type="text" id="next_year_fia" name="next_years_fia_mandate" value="<?=currency($client->next_years_fia_mandate, 'R ')?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value)">      
+      <p id="next_years_fia_mandateFeedback" class="feedback"></p>
+
+      <label for="marriage_cert">Marriage Cert File:</label>
+      <input type="file" id="marriage_cert" name="spare_1" accept=".jpg, .png, .pdf" 
+        data-custom-type="F1UploadField" data-value="<?=$client->spare_1?>">
+      <p id="spare_1Feedback" class="feedback"></p>
+
+      <label for="crypto_declaration">Crypto Declaration File:</label>
+      <input type="file" id="crypto_declaration" name="spare_2" accept=".jpg, .png, .pdf" 
+        data-custom-type="F1UploadField" data-value="<?=$client->spare_2?>">
+      <p id="spare_2Feedback" class="feedback"></p>
+
+      <label for="notes">Notes</label>
+      <textarea id="notes" name="notes"><?=$client->notes?></textarea>
+      <p id="notesFeedback" class="feedback"></p>
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="F1.app.onExit(event, history.back.bind(history))">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/edit.js</include>

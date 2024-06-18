@@ -1,0 +1,71 @@
+<include>_partials/details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1><i class="fa fa-handshake-o fa-lg"></i>&nbsp;<?=$referrer->name?></h1>
+  </header>
+  <br>
+  <section>
+    <ul>
+      <li><label>Referrer UID:</label> <span><?=escape($referrer->referrer_id)?></span></li>
+      <li><label>ID Number:</label> <span><?=escape($referrer->id_number)?></span></li>
+      <li><label>Phone Number:</label> <span><?=escape($referrer->phone_number)?></span></li>
+      <li><label>Email:</label> <span><?=escape($referrer->email)?></span></li>
+      <li><label>Notes:</label> <span><?=escape($referrer->notes)?></span></li>
+
+      <li class="related-items">
+        <header>
+          <div class="flex-row space-between">
+            <div class="flex-col">
+              <label class="flex-row flex-gap align-center">
+                <span>Referred Clients:</span>
+                <span class="badge"><?=count($clients)?></span>
+              </label>
+            </div>
+          </div>
+        </header>
+        <div class="related-clients table-responsive">
+          <table>
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>ID number</th>
+              <th>Phone Number</th>
+              <th>Personal Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach x="$clients as $i => $client">
+            <tr>
+              <td><?=($i+1).'.'?></td>
+              <td>
+                <a href="<?=$app->request->module . '/clients?view=details&amp;id=' . $client->id?>" onclick="F1.app.navigateTo(
+                  {event, view:'details', title:'Client Details'})"><?=escape($client->name)?> (<?=escape($client->client_id)?>)</a>
+              </td>
+              <td><?=escape($client->id_number)?></td>
+              <td><?=escape($client->phone_number)?></td>
+              <td><?=escape($client->personal_email)?></td>
+            </tr>
+            </foreach>
+            </tbody>
+          </table>
+        </div>
+        <br>
+      </li> <!-- related-items -->
+
+      <li><label>Referrer User ID:</label> <span><?=$referrer->user_id?></span></li>
+      <li><label>Referrer Client ID:</label> <span><?=$referrer->client_id?></span></li>  
+      <li><label>Updated At:</label> <span><?=$referrer->updated_at?></span></li>
+      <li><label>Updated By:</label> <span><?=escape($referrer->updated_by)?></span></li>
+      <li><label>Created At:</label> <span><?=$referrer->created_at?></span></li>
+      <li><label>Created By:</label> <span><?=escape($referrer->created_by)?></span></li>
+    </ul>
+  </section>
+
+
+</div>
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+    onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=edit&id=<?=$id?>', view:'edit', title:'Referrer Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+<include>_partials/details.js</include>

@@ -1,0 +1,250 @@
+/* Page Specific CSS */
+
+body > footer {
+  overflow: hidden;
+  height: 0;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  margin: 0 auto 3.5rem;
+  padding: 1.5rem 1.5rem 0;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  width: min(640px, 100%);    
+  overflow-y: auto;
+}
+
+.container h1 {
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  top: -0.9rem;
+}
+
+form {
+  padding-bottom: 1.5rem;
+/*  --select-color-primary: #052fa7;*/
+}
+
+form [disabled] {
+  background-color: whitesmoke;
+  cursor: not-allowed;
+}
+
+input,
+select,
+textarea,
+.upload button {
+  width: 100%;
+  padding: 0.75em;
+  border-radius: 0.25em;
+  border: 1px solid #cdcdcd;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+select:focus {
+  outline: 1px auto;
+}
+
+input[type="file"] {
+  padding: 0.5em 0.75em;
+}
+
+form label {
+  margin: 1.5rem 0 3px;
+  font-size: 13px;
+  display: block;
+  color: #666;
+}
+
+form label[required]::after {
+  content: " *";
+  color: red;
+}
+
+form label:first-of-type {
+  margin-top: 0;
+}
+
+form footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 0px 14px rgba(0,0,0,0.2);
+}
+
+form footer button {
+  margin: 10px;  
+}
+
+.field button {
+  margin-top: 0.5rem;
+  margin-right: 0.34rem;
+}
+
+[readonly] {
+  background-color: whitesmoke;
+  cursor: not-allowed;
+}
+
+
+/* Reset fieldset and legend styles */
+fieldset.radio-buttons {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border: none;
+  padding: 0;
+}
+
+.feedback {
+  color: red;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* Style for the labels/status buttons */
+.radio-buttons label {
+  display: inline-block;
+  background-color: #f2f2f2;
+  font-family: 'Roboto', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+  user-select: none; /* Prevent text selection */
+  text-align: center;
+  margin: 0 5px 0 0;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  flex: 1;
+}
+
+/* Hide the radio input visually */
+.radio-buttons input[type="radio"] {
+  background: transparent;
+  position: absolute;
+  appearance: none;
+  outline: none;
+  height: 1px;
+  width: 1px;
+  border: 0;
+}
+
+/* Style for the span inside the label */
+.radio-buttons label span {
+  display: block;
+  border: 1px solid #cdcdcd;
+  border-radius: 4px;
+  pointer-events: none; /* Makes click pass through to the radio button */
+  padding: 10px 20px;
+}
+
+/* Style when the radio button is checked */
+.radio-buttons input[type="radio"]:checked + span {
+  background-color: var(--primary-color-dark);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+/* Focus styles, applied to the span since the input is hidden */
+.radio-buttons input[type="radio"]:focus + span {
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
+}
+
+/* Hover styles */
+.radio-buttons label:hover span {
+  background-color: #e7e7e7;
+}
+
+/* Last label style to remove extra margin */
+.radio-buttons label:last-child {
+  margin-right: 0;
+}
+
+
+.select {
+  --select-color-muted: silver;
+}
+
+.select small {
+  color: var(--select-color-muted);
+}
+
+.select li[role="option"]:hover small {
+  color: var(--select-color-light);
+}
+
+.select ul[role="listbox"] {
+  padding-top: 0;
+}
+
+.select__utilbar {
+  display: block !important;
+  padding: var(--select-padding-s);
+}
+
+.select__utilbar p {
+  display: none;
+  padding: var(--select-padding-s);
+  margin: 0;
+}
+
+.select--noresults .select__utilbar p {
+  display: block;
+  margin-top: var(--select-padding-s);
+}
+
+.select__utilbar button {
+  border: 1px solid;
+  border-radius: var(--select-border-radius);
+  padding: var(--select-padding-s) var(--select-padding);
+  margin: 0 var(--select-padding-s) var(--select-padding-s);
+  display: inline-block;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.select__add, .select__edit {
+  color: var(--select-color-primary);  
+}
+
+.select__delete {
+  color: var(--danger-color);  
+}
+
+
+.popup {
+  --popup-color--info: var(--primary-color);
+}
+
+.popup__close {
+  font-size: 23px;
+}
+
+.popup__danger {
+  color: crimson;
+}
+
+.popup__danger .popup__header {
+  color: firebrick;
+}
+
+.extra-field {
+  margin-top: 0.34rem;
+  min-width: min(100vw, 280px);
+}

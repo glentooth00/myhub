@@ -1,0 +1,16 @@
+/* Page Specific CSS */
+
+.container {
+  margin: auto;
+  padding: 1rem;
+  max-width: 768px;
+}
+
+#settings-nav button {
+  margin: 1rem 0.67em;
+  width: 100px;
+}
+
+#settings-nav i {
+  margin: 0.34em 0.67em;
+}

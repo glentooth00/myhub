@@ -1,0 +1,96 @@
+<include>_partials/edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$isEdit">
+      <h1>Edit Trade ID: <?=$id?></h1>
+      </if>
+      <if x="$isNew">
+      <h1>Add New Trade</h1>
+      </if>
+    </header>
+    <form id="trade-form" method="post">
+      
+      <input type="hidden" name="id" value="<?=$trade->id?>">
+
+      <label for="client_id" required>Client:</label>
+      <select id="client_id" name="client_id" data-value="<?=$trade->client_id?>" required>
+        <foreach x="$clients as $client">
+        <option value="<?=$client->client_id?>"><?=$client->name?></option>
+        </foreach>
+      </select>  
+      
+      <label for="trade_id" required>Trade ID:</label>
+      <input type="text" id="trade_id" name="trade_id" value="<?=escape($trade->trade_id)?>" required>
+
+      <label for="sda_fia" required>SDA/FIA:</label>
+      <select id="sda_fia" name="sda_fia" data-value="<?=$trade->sda_fia?>" required>
+        <option></option>
+        <option>SDA</option>
+        <option>FIA</option>
+        <option>SDA/FIA</option>
+      </select>  
+
+      <label for="otc" required>OTC:</label>
+      <select id="otc" name="otc" data-value="<?=$trade->otc?>" required>
+        <option></option>
+        <option>VALR</option>
+        <option>OVEX</option>
+      </select>  
+
+      <label for="date" required>Trade Date:</label>
+      <input type="date" id="date" name="date" value="<?=$trade->date?>" max="<?=date('Y-m-d')?>" required>
+
+      <label for="zar_sent" required>Trade Amount (R):</label>
+      <input id="zar_sent" name="zar_sent" value="<?=currency($trade->zar_sent, 'R ')?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value)" required>
+
+      <label for="usd_bought" required>TUSD Bought ($):</label>
+      <input type="text" id="usd_bought" name="usd_bought" value="<?=currency($trade->usd_bought, '$ ', ' ', 2)?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value, '$ ', ' ', 2)" required>
+
+      <label for="forex_rate" required>Forex (USDZAR) Rate (R):</label>
+      <input type="text" id="forex_rate" name="forex_rate" value="<?=currency($trade->forex_rate, 'R ', ' ', 3)?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value, 'R ', ' ', 3)" required>
+
+      <label for="zar_profit" required>Profit Amount (R):</label>
+      <input id="zar_profit" name="zar_profit" value="<?=currency($trade->zar_profit, 'R ', ' ', 2)?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value, 'R ', ' ', 2)" required>
+
+      <label for="percent_return" required>% Return:</label>
+      <input type="text" id="percent_return" name="percent_return" value="<?=currency($trade->percent_return, '', ' ', 2)?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value, '', ' ', 2)" required>
+
+      <label for="trade_fee">Trade Fee %:</label>
+      <input type="text" id="trade_fee" name="trade_fee" value="<?=currency($trade->trade_fee, '', ' ', 2)?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value, '', ' ', 2)">
+
+      <label for="amount_covered">Amount Covered:</label>
+      <input id="amount_covered" name="amount_covered" value="<?=currency($trade->amount_covered, 'R ')?>"
+        onchange="this.value = F1.lib.Utils.currency(this.value)">
+
+      <label for="allocated_pins">Allocated Pins:</label>
+      <textarea id="allocated_pins" name="allocated_pins"><?=escape($trade->allocated_pins)?></textarea>
+
+      <if x="$trade->id > 0">
+      <label for="updated_by">Updated By:</label>
+      <input type="text" id="updated_by" name="updated_by" value="<?=$trade->updated_by?>" readonly>
+
+      <label for="updated_at">Updated At:</label>
+      <input type="text" id="updated_at" name="updated_at" value="<?=$trade->updated_at?>" readonly>
+
+      <label for="created_at">Created At:</label>
+      <input type="text" id="created_at" name="created_at" value="<?=$trade->created_at?>" readonly>
+
+      <label for="created_by">Created By:</label>
+      <input type="text" id="created_by" name="created_by" value="<?=$trade->created_by?>" readonly>
+      </if>      
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="F1.app.onExit(event, history.back.bind(history))">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/edit.js</include>

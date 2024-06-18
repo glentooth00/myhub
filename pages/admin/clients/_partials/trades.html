@@ -1,0 +1,79 @@
+<include>_partials/trades.css</include>
+<div class="content-wrapper">
+  <header class="flex-row space-between">
+    <div class="flex-col">
+      <h1><?=$client->name?> - Trades</h1>
+      <h4>Client uid: <?=$client->client_id?></h4>
+    </div>
+  </header>
+  <section class="flex-row flex-gap actions-bar">
+    <button class="btn-round btn-primary" type="button"><span>A</span></button>
+    <button class="btn-round btn-primary" type="button"><span>B</span></button>
+    <button class="btn-round btn-primary" type="button"><span>C</span></button>  
+  </section>
+  <section>
+    <ul>
+      <li>
+        <label>Trades (All Time):</label>
+        <div class="flex-row space-between">
+          <div class="flex-col"><i><?=count($client->trades)?></i></div>
+          <div class="flex-col">
+            <a href="javascript:void(0);" data-tippy-content="Export to CSV" 
+              onclick="F1.app.exportToCsv('trades')"><i class="fa fa-download"></i></a>
+          </div>
+        </div>       
+        <!-- Details list -->
+        <div class="related-items related-trades">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Trade Date</th>
+                <th>Trade ID</th>
+                <th>Type</th>
+                <th>ZAR Sent</th>
+                <th>USD Bought</th>
+                <th>Rate</th>
+                <th>Gross Profit</th>
+                <th>Gross %</th>
+                <th>Cover</th>
+                <th>Pins</th>
+                <th>Pins USD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($client->trades as $i => $trade): ?>
+              <?php $emptyVal = '-'; ?>
+              <tr class="<?=$trade->zar_sent>$trade->amount_covered?'text-danger':''?>">
+                <td><?=($i+1).'.'?></td>
+                <td class="nowrap"><?=$trade->date?></td>
+                <td>
+                  <a href="javascript:void(0);"
+                    onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/trades?view=details&id=<?=$trade->id?>',
+                    view:'details', title:'Trade Details'})"><?=$trade->trade_id?></a>
+                </td>
+                <td><?=$trade->sda_fia?></td>
+                <td><?=$trade->zar_sent?currency($trade->zar_sent):$emptyVal?></td>
+                <td><?=$trade->usd_bought?currency($trade->usd_bought, '$'):$emptyVal?></td>
+                <td><?=$trade->forex_rate?currency($trade->forex_rate, 'R', ' ', 3):$emptyVal?></td>
+                <td><?=$trade->zar_profit?currency($trade->zar_profit):$emptyVal?></td>
+                <td><?=$trade->percent_return?"$trade->percent_return%":$emptyVal?></td>
+                <td><?=$trade->amount_covered?currency($trade->amount_covered):$emptyVal?></td>
+                <td><?=$trade->allocated_pins?:$emptyVal?></td>
+                <td><?=$trade->allocated_pins_usd?:$emptyVal?></td>
+              </tr>
+              <?php endforeach ?>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="12">&nbsp;</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
+<script src="vendors/F1/js/csv.js"></script>
+<include>_partials/trades.js</include>

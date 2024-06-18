@@ -1,0 +1,73 @@
+<include>_partials/roles.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Roles</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showRoleForm()">
+      <i class="fa fa-plus"></i> Add Role
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="roles">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th class="nowrap">Description</th>
+          <th class="nowrap">Def. Home Ref</th>
+          <th class="nowrap">Permissions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$roles as $i => $role">
+        <tr>
+           <td class="text-primary nowrap">
+             <i class="fa fa-user"></i>&nbsp;<?=$role->name?>
+           </td>
+           <td class="text-primary nowrap">
+             <i class="fa fa-mail"></i>&nbsp;<?=$role->description?>
+           </td>
+           <td class="text-primary nowrap">
+             <i class="fa fa-mail"></i>&nbsp;<?=$role->home?>
+           </td>
+           <td class="text-primary nowrap w100">
+             <i class="fa fa-mail"></i>&nbsp;<?=$role->permissions?>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Edit Role"
+             onclick="F1.app.editRole('<?=$role->id?>')">
+             <i class="fa fa-pencil"></i></button>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Delete Role" 
+             onclick="F1.app.deleteRole('<?=$role->id?>','<?=$role->name?>')">
+             <i class="fa fa-trash"></i></button>
+           </td>
+        </tr> 
+        </foreach>
+        <if x="!$roles">
+        <tr>
+          <td colspan="4">No roles found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="RoleForm" onsubmit="F1.app.submitRoleForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New Role</h4>
+  <label>Name</label>
+  <input type="text" name="name" placeholder="Role Name" style="width:min(320px,90vw)" required>
+  <label>Description</label>
+  <input type="text" name="description" placeholder="Role Description" style="width:min(320px,90vw)" required>
+  <label>Home</label>
+  <input type="text" name="home" placeholder="Role Home" style="width:min(320px,90vw)" required>
+  <label>Permissions</label>
+  <input type="text" name="permissions" placeholder="Role Permissions" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/roles.js</include>

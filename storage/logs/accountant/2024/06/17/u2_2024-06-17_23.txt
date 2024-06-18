@@ -1,0 +1,558 @@
+2024-06-17 23:07:03 - *** USER LOG ***
+2024-06-17 23:07:03 - U2, Accountant
+
+
+2024-06-17 23:07:03 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:03 - GET /accountant/dashboard
+[Request]:	2024-06-17 23:07:03 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:07:03 - Session ID: 2doagj1ums8011ve6ojku8gen5
+[App Security]:	2024-06-17 23:07:03 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:03 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:03 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:03 - db::query()
+[Debug]:	2024-06-17 23:07:03 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:03 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:07:15 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:15 - GET /accountant/dashboard
+[Request]:	2024-06-17 23:07:15 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:07:15 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:15 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:15 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:15 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:15 - db::query()
+[Debug]:	2024-06-17 23:07:15 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:15 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:07:18 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:18 - AJAX GET /accountant/profile?id=2&back=dashboard
+[Request]:	2024-06-17 23:07:18 - File: C:\laragon\www\myhub\pages\accountant\profile\profile.php
+[Request]:	2024-06-17 23:07:18 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:18 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:18 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:18 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:18 - db::query()
+[Debug]:	2024-06-17 23:07:18 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:18 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:18 - db::query()
+[Debug]:	2024-06-17 23:07:18 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:18 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+2024-06-17 23:07:21 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:21 - AJAX GET /accountant/dashboard
+[Request]:	2024-06-17 23:07:21 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:07:21 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:21 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:21 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:21 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:21 - db::query()
+[Debug]:	2024-06-17 23:07:21 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:21 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:07:22 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:22 - AJAX GET /accountant/clients?back=dashboard
+[Request]:	2024-06-17 23:07:22 - File: C:\laragon\www\myhub\pages\accountant\clients\clients.php
+[Request]:	2024-06-17 23:07:22 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:22 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:22 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:22 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:22 - db::query()
+[Debug]:	2024-06-17 23:07:22 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:22 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:22 - db::query()
+[Debug]:	2024-06-17 23:07:22 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:22 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:07:22 - db::query()
+[Debug]:	2024-06-17 23:07:22 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:22 - db::query(), Array
+(
+    [0] => SELECT * FROM clients WHERE accountant = ? AND deleted_at IS ? AND status = ? ORDER BY name asc
+    [1] => ["CH System",null,"Active"]
+)
+
+
+
+2024-06-17 23:07:26 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:26 - AJAX GET /accountant/dashboard
+[Request]:	2024-06-17 23:07:26 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:07:26 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:26 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:26 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:26 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:26 - db::query()
+[Debug]:	2024-06-17 23:07:26 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:26 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:07:27 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:27 - AJAX GET /accountant/tccs?back=dashboard
+[Request]:	2024-06-17 23:07:27 - File: C:\laragon\www\myhub\pages\accountant\tccs\tccs.php
+[Request]:	2024-06-17 23:07:27 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:27 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:27 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:27 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:27 - db::query()
+[Debug]:	2024-06-17 23:07:27 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:27 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:27 - db::query()
+[Debug]:	2024-06-17 23:07:27 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:27 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:07:27 - db::query()
+[Debug]:	2024-06-17 23:07:27 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:27 - db::query(), Array
+(
+    [0] => SELECT * FROM view_tccs WHERE client_accountant = ? AND deleted_at IS ? AND created_at >= ? ORDER BY created_at DESC
+    [1] => ["CH System",null,"2024-06-17"]
+)
+
+[Debug]:	2024-06-17 23:07:27 - attrsStr = 
+[Debug]:	2024-06-17 23:07:27 - inclFileRef = _partials/list.css
+[Debug]:	2024-06-17 23:07:27 - props = Array
+(
+)
+
+[Debug]:	2024-06-17 23:07:27 - fileToInclude = C:\laragon\www\myhub\pages\accountant\tccs\_partials/list.css
+[Debug]:	2024-06-17 23:07:27 - attrsStr = 
+[Debug]:	2024-06-17 23:07:27 - inclFileRef = _partials/list.js
+[Debug]:	2024-06-17 23:07:27 - props = Array
+(
+)
+
+[Debug]:	2024-06-17 23:07:27 - fileToInclude = C:\laragon\www\myhub\pages\accountant\tccs\_partials/list.js
+
+
+2024-06-17 23:07:32 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:32 - AJAX GET /accountant/tccs?view=edit&id=-1
+[Request]:	2024-06-17 23:07:32 - File: C:\laragon\www\myhub\pages\accountant\tccs\tccs.php
+[Request]:	2024-06-17 23:07:32 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:32 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:32 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:32 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:32 - db::query()
+[Debug]:	2024-06-17 23:07:32 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:32 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:32 - getTccById(), id = -1
+[Debug]:	2024-06-17 23:07:32 - Editing tcc: stdClass Object
+(
+    [id] => 
+    [tcc_id] => 510c2408-1b79-4f79-b8c6-466ac3eb489f
+    [client_id] => 
+    [status] => Pending
+    [application_date] => 
+    [date] => 
+    [amount_cleared] => 
+    [amount_reserved] => 
+    [rollover] => 
+    [amount_cleared_net] => 
+    [amount_used] => 
+    [amount_remaining] => 
+    [amount_available] => 
+    [expired] => 
+    [tcc_pin] => 
+    [notes] => 
+    [allocated_trades] => 
+    [tax_case_no] => 
+    [tax_cert_pdf] => 
+    [created_at] => 
+    [created_by] => 
+    [updated_at] => 
+    [updated_by] => 
+    [deleted_at] => 
+    [deleted_by] => 
+    [sync_at] => 
+    [sync_by] => 
+    [sync_from] => 
+    [sync_type] => 
+)
+
+[Debug]:	2024-06-17 23:07:32 - db::query()
+[Debug]:	2024-06-17 23:07:32 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:32 - db::query(), Array
+(
+    [0] => SELECT * FROM clients WHERE accountant = ? AND deleted_at IS ? ORDER BY name asc
+    [1] => ["CH System",null]
+)
+
+[Debug]:	2024-06-17 23:07:32 - attrsStr = 
+[Debug]:	2024-06-17 23:07:32 - inclFileRef = _partials/edit.css
+[Debug]:	2024-06-17 23:07:32 - props = Array
+(
+)
+
+[Debug]:	2024-06-17 23:07:32 - fileToInclude = C:\laragon\www\myhub\pages\accountant\tccs\_partials/edit.css
+[Debug]:	2024-06-17 23:07:32 - attrsStr = 
+[Debug]:	2024-06-17 23:07:32 - inclFileRef = _partials/edit.js
+[Debug]:	2024-06-17 23:07:32 - props = Array
+(
+)
+
+[Debug]:	2024-06-17 23:07:32 - fileToInclude = C:\laragon\www\myhub\pages\accountant\tccs\_partials/edit.js
+
+
+2024-06-17 23:07:35 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:35 - AJAX GET /accountant/tccs?back=dashboard
+[Request]:	2024-06-17 23:07:35 - File: C:\laragon\www\myhub\pages\accountant\tccs\tccs.php
+[Request]:	2024-06-17 23:07:35 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:35 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:35 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:35 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:35 - db::query()
+[Debug]:	2024-06-17 23:07:35 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:35 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:35 - db::query()
+[Debug]:	2024-06-17 23:07:35 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:35 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:07:35 - db::query()
+[Debug]:	2024-06-17 23:07:35 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:35 - db::query(), Array
+(
+    [0] => SELECT * FROM view_tccs WHERE client_accountant = ? AND deleted_at IS ? AND created_at >= ? ORDER BY created_at DESC
+    [1] => ["CH System",null,"2024-06-17"]
+)
+
+
+
+2024-06-17 23:07:36 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:36 - AJAX GET /accountant/tccs?view=edit&id=-1
+[Request]:	2024-06-17 23:07:36 - File: C:\laragon\www\myhub\pages\accountant\tccs\tccs.php
+[Request]:	2024-06-17 23:07:36 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:36 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:36 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:36 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:36 - db::query()
+[Debug]:	2024-06-17 23:07:36 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:36 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:36 - getTccById(), id = -1
+[Debug]:	2024-06-17 23:07:36 - Editing tcc: stdClass Object
+(
+    [id] => 
+    [tcc_id] => dc4dca1c-d01e-49e1-9d5c-f3da9f08d551
+    [client_id] => 
+    [status] => Pending
+    [application_date] => 
+    [date] => 
+    [amount_cleared] => 
+    [amount_reserved] => 
+    [rollover] => 
+    [amount_cleared_net] => 
+    [amount_used] => 
+    [amount_remaining] => 
+    [amount_available] => 
+    [expired] => 
+    [tcc_pin] => 
+    [notes] => 
+    [allocated_trades] => 
+    [tax_case_no] => 
+    [tax_cert_pdf] => 
+    [created_at] => 
+    [created_by] => 
+    [updated_at] => 
+    [updated_by] => 
+    [deleted_at] => 
+    [deleted_by] => 
+    [sync_at] => 
+    [sync_by] => 
+    [sync_from] => 
+    [sync_type] => 
+)
+
+[Debug]:	2024-06-17 23:07:36 - db::query()
+[Debug]:	2024-06-17 23:07:36 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:36 - db::query(), Array
+(
+    [0] => SELECT * FROM clients WHERE accountant = ? AND deleted_at IS ? ORDER BY name asc
+    [1] => ["CH System",null]
+)
+
+
+
+2024-06-17 23:07:54 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:54 - AJAX GET /accountant/tccs?back=dashboard
+[Request]:	2024-06-17 23:07:54 - File: C:\laragon\www\myhub\pages\accountant\tccs\tccs.php
+[Request]:	2024-06-17 23:07:54 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:54 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:54 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:54 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:54 - db::query()
+[Debug]:	2024-06-17 23:07:54 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:54 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:54 - db::query()
+[Debug]:	2024-06-17 23:07:54 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:54 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:07:54 - db::query()
+[Debug]:	2024-06-17 23:07:54 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:54 - db::query(), Array
+(
+    [0] => SELECT * FROM view_tccs WHERE client_accountant = ? AND deleted_at IS ? AND created_at >= ? ORDER BY created_at DESC
+    [1] => ["CH System",null,"2024-06-17"]
+)
+
+
+
+2024-06-17 23:07:54 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:54 - AJAX GET /accountant/dashboard
+[Request]:	2024-06-17 23:07:54 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:07:54 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:54 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:54 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:54 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:54 - db::query()
+[Debug]:	2024-06-17 23:07:54 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:54 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:07:56 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:56 - AJAX GET /accountant/clients?back=dashboard
+[Request]:	2024-06-17 23:07:56 - File: C:\laragon\www\myhub\pages\accountant\clients\clients.php
+[Request]:	2024-06-17 23:07:56 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:56 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:56 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:56 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:56 - db::query()
+[Debug]:	2024-06-17 23:07:56 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:56 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:56 - db::query()
+[Debug]:	2024-06-17 23:07:56 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:56 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:07:56 - db::query()
+[Debug]:	2024-06-17 23:07:56 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:56 - db::query(), Array
+(
+    [0] => SELECT * FROM clients WHERE accountant = ? AND deleted_at IS ? AND status = ? ORDER BY name asc
+    [1] => ["CH System",null,"Active"]
+)
+
+
+
+2024-06-17 23:07:58 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:58 - AJAX GET /accountant/dashboard
+[Request]:	2024-06-17 23:07:58 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:07:58 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:58 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:58 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:58 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:58 - db::query()
+[Debug]:	2024-06-17 23:07:58 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:58 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:07:59 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:07:59 - AJAX GET /accountant/trades?back=dashboard
+[Request]:	2024-06-17 23:07:59 - File: C:\laragon\www\myhub\pages\accountant\trades\trades.php
+[Request]:	2024-06-17 23:07:59 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:07:59 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:07:59 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:07:59 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:07:59 - db::query()
+[Debug]:	2024-06-17 23:07:59 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:59 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:07:59 - db::query()
+[Debug]:	2024-06-17 23:07:59 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:59 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:07:59 - db::query()
+[Debug]:	2024-06-17 23:07:59 - db::buildQuery()
+[Debug]:	2024-06-17 23:07:59 - db::query(), Array
+(
+    [0] => SELECT * FROM view_trades WHERE client_accountant LIKE ? AND date >= ? ORDER BY date DESC
+    [1] => ["CH%","2024-06-17"]
+)
+
+
+
+2024-06-17 23:08:01 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:08:01 - AJAX GET /accountant/dashboard
+[Request]:	2024-06-17 23:08:01 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:08:01 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:08:01 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:08:01 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:08:01 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:08:01 - db::query()
+[Debug]:	2024-06-17 23:08:01 - db::buildQuery()
+[Debug]:	2024-06-17 23:08:01 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+
+
+2024-06-17 23:08:03 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:08:03 - AJAX GET /accountant/clients?back=dashboard
+[Request]:	2024-06-17 23:08:03 - File: C:\laragon\www\myhub\pages\accountant\clients\clients.php
+[Request]:	2024-06-17 23:08:03 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:08:03 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:08:03 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:08:03 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:08:03 - db::query()
+[Debug]:	2024-06-17 23:08:03 - db::buildQuery()
+[Debug]:	2024-06-17 23:08:03 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+
+[Debug]:	2024-06-17 23:08:03 - db::query()
+[Debug]:	2024-06-17 23:08:03 - db::buildQuery()
+[Debug]:	2024-06-17 23:08:03 - db::query(), Array
+(
+    [0] => SELECT * FROM user_settings WHERE user_id = ? ORDER BY setting_key
+    [1] => [2]
+)
+
+[Debug]:	2024-06-17 23:08:03 - db::query()
+[Debug]:	2024-06-17 23:08:03 - db::buildQuery()
+[Debug]:	2024-06-17 23:08:03 - db::query(), Array
+(
+    [0] => SELECT * FROM clients WHERE accountant = ? AND deleted_at IS ? AND status = ? ORDER BY name asc
+    [1] => ["CH System",null,"Active"]
+)
+
+
+
+2024-06-17 23:08:04 - *** AJAX PAGE REQUEST *** 
+[Request]:	2024-06-17 23:08:04 - AJAX GET /accountant/dashboard
+[Request]:	2024-06-17 23:08:04 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-17 23:08:04 - Session ID: rfttp6i22et3j8uc914gvklrcg
+[App Security]:	2024-06-17 23:08:04 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-17 23:08:04 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-17 23:08:04 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-17 23:08:04 - db::query()
+[Debug]:	2024-06-17 23:08:04 - db::buildQuery()
+[Debug]:	2024-06-17 23:08:04 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+

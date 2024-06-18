@@ -1,0 +1,97 @@
+{
+  "action": "submitTrades",
+  "clientsData": [
+    {
+      "stateBefore": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "name": "Joe Soap",
+      "index": 265,
+      "tradesTotal": 10000,
+      "trades": [
+        [
+          "CH!9998",
+          "VALR",
+          "2024-03-08T22:00:00.000Z",
+          "3242e9b8",
+          "FIA",
+          "10000",
+          "532",
+          null,
+          "19",
+          "108.00",
+          "1.08%",
+          "0",
+          null,
+          null,
+          null,
+          "Joe Soap",
+          null
+        ]
+      ],
+      "tradeSheetRowNumbers": [
+        271
+      ],
+      "id": "3242e9b8"
+    },
+    {
+      "tradeSheetRowNumbers": [
+        272
+      ],
+      "id": "b89178b6",
+      "name": "Shton",
+      "stateBefore": [
+        [
+          "chmarkts",
+          "100000",
+          "0",
+          "0",
+          "1000000",
+          "10000000",
+          "0",
+          "10000000",
+          "0",
+          null
+        ]
+      ],
+      "tradesTotal": 10000,
+      "trades": [
+        [
+          "CH!9999",
+          "VALR",
+          "2024-03-08T22:00:00.000Z",
+          "b89178b6",
+          "SDA",
+          "10000",
+          "525",
+          null,
+          "19.7",
+          "342.50",
+          "3.43%",
+          "0",
+          null,
+          null,
+          null,
+          "Shton",
+          null
+        ]
+      ],
+      "index": 266
+    }
+  ],
+  "options": {
+    "user": "_tradebook_",
+    "generateStatement": 1
+  }
+}

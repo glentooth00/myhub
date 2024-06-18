@@ -1,0 +1,62 @@
+<include>_partials/edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$id>0">
+      <h1>Edit User ID: <?=$id?></h1>
+      </if>
+      <if x="$id=='new' or $id<=0">
+      <h1>Add New User</h1>
+      </if>
+    </header>
+    <form id="user-form" method="post">
+      
+      <input type="hidden" name="id" value="<?=$user->id?>">
+
+      <label for="user_id" required>UID:</label>
+      <input type="text" id="user_id" name="user_id" value="<?=escape($user->user_id)?>" required>
+
+      <label for="role_id" required>Role:</label>
+      <select id="role_id" name="role_id" required>
+        <option></option>
+        <foreach x="$roles as $role">
+          <?=renderOption($role->id, $role->description, $user->role_id)?>
+        </foreach>
+      </select>
+
+      <label for="status" required>Status:</label>
+      <select id="status" name="status" required>
+        <foreach x="$statuses as $status">
+          <?=renderOption($status, ucfirst($status), $user->status)?>
+        </foreach>
+      </select>
+
+      <label for="first_name" required>First Name:</label>
+      <input type="text" id="first_name" name="first_name" value="<?=escape($user->first_name)?>" required>
+
+      <label for="last_name" required>Last Name:</label>
+      <input type="text" id="last_name" name="last_name" value="<?=escape($user->last_name)?>">
+
+      <label for="username" required>Username:</label>
+      <input type="text" id="username" name="username" value="<?=escape($user->username)?>" required>
+
+      <label for="email" required>Email:</label>
+      <input type="text" id="email" name="email" value="<?=escape($user->email)?>" required>
+
+      <!-- Add password and confirm password fields if new user -->
+      <if x="$id=='new' or $id<=0">
+        <label for="password" required>Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm_password" required>Confirm Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+      </if>
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="history.back()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/edit.js</include>

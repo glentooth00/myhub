@@ -1,0 +1,56 @@
+<include>_partials/provinces.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Provinces</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showProvinceForm()">
+      <i class="fa fa-plus"></i> Add Province
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="Provinces">
+      <thead>
+        <tr>
+          <th>Provinces</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$provinces as $i => $province">
+        <tr>
+           <td class="text-primary w100">
+             <i class="fa fa-globe"></i>&nbsp;<?=$province->name?>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Edit Province"
+             onclick="F1.app.editProvince('<?=$province->id?>')">
+             <i class="fa fa-pencil"></i></button>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Delete Province" 
+             onclick="F1.app.deleteProvince('<?=$province->id?>','<?=$province->name?>')">
+             <i class="fa fa-trash"></i></button>
+           </td>
+        </tr>
+        </foreach>
+        <if x="!$province">
+        <tr>
+          <td colspan="3">No provinces found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="ProvinceForm" onsubmit="F1.app.submitProvinceForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New Province</h4>
+  <label>Province</label>
+  <input type="text" name="name" placeholder="Province Name" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/provinces.js</include>

@@ -1,0 +1,56 @@
+<include>_partials/countries.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Countries</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showCountryForm()">
+      <i class="fa fa-plus"></i> Add Country
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="Countries">
+      <thead>
+        <tr>
+          <th>Countries</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$countries as $i => $country">
+        <tr>
+           <td class="text-primary w100">
+             <i class="fa fa-globe"></i>&nbsp;<?=$country->name?>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Edit Country"
+             onclick="F1.app.editCountry('<?=$country->id?>')">
+             <i class="fa fa-pencil"></i></button>
+           </td>
+           <td>
+             <button class="btn-sm text-primary" type="button" title="Delete Country" 
+             onclick="F1.app.deleteCountry('<?=$country->id?>','<?=$country->name?>')">
+             <i class="fa fa-trash"></i></button>
+           </td>
+        </tr>
+        </foreach>
+        <if x="!$country">
+        <tr>
+          <td colspan="3">No countries found.</td>
+        </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="CountryForm" onsubmit="F1.app.submitCountryForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New Country</h4>
+  <label>Country</label>
+  <input type="text" name="name" placeholder="Country Name" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/countries.js</include>

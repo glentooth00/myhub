@@ -1,0 +1,110 @@
+<include>_partials/tccs.css</include>
+<div class="content-wrapper">
+  <header class="flex-row space-between">
+    <div class="flex-col">
+      <h1><?=$client->name?> - TCCs</h1>
+      <h4>Client uid: <?=$client->client_id?></h4>
+    </div>
+  </header>
+  <section class="flex-row flex-gap actions-bar">
+    <button class="btn-round btn-primary" type="button"><span>A</span></button>
+    <button class="btn-round btn-primary" type="button"><span>B</span></button>
+    <button class="btn-round btn-primary" type="button"><span>C</span></button>  
+  </section>
+  <section>
+    <ul>
+      <li>
+        <label>FIA TCCs (All Time):</label>
+        <div class="flex-row space-between">
+          <div class="flex-col"><i><?=count($client->tccs)?></i></div>
+          <div class="flex-col">
+            <a href="javascript:void(0);" data-tippy-content="Export to CSV" 
+              onclick="F1.app.exportToCsv('tccs')"><i class="fa fa-download"></i></a>
+          </div>
+        </div>        
+        <!-- Details list -->
+        <div class="related-items related-tccs">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Issued On</th>
+                <th>PIN</th>
+                <th>PIN Value</th>
+                <th>Status</th>
+                <th>Expired</th>
+                <th>Rollover</th>
+                <th>Reserved</th>
+                <th>Available</th>
+                <th>Remaining</th>
+                <th>Allocated</th>
+                <th>Allocations</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($client->tccs as $i => $tcc): ?>
+              <?php $emptyVal = '-'; ?>
+              <tr>
+                <td><?=($i+1).'.'?></td>
+                <td class="nowrap"><?=$tcc->date?:'- TBA -'?></td>
+                <td>
+                  <a href="javascript:void(0);"
+                    onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/tccs?view=details&id=<?=$tcc->id?>', 
+                    view:'details', title:'TCC Details'})"><?=$tcc->tcc_pin?:'- TBA -'?></a>
+                </td>
+                <td class="<?=$tcc->inPlay?'':'text-muted'?>"><?=$tcc->amount_cleared?currency($tcc->amount_cleared):$emptyVal?></td>
+                <td><?=$tcc->status?:$emptyVal?></td>
+                <td><?=$tcc->expired?:$emptyVal?></td>
+                <td><?=$tcc->rollover?currency($tcc->rollover):$emptyVal?></td>
+                <td><?=$tcc->amount_reserved?currency($tcc->amount_reserved):$emptyVal?></td>
+                <td><?=$tcc->amount_available?currency($tcc->amount_available):$emptyVal?></td>
+                <td><?=$tcc->amount_remaining?currency($tcc->amount_remaining):$emptyVal?></td>
+                <td><?=$tcc->amount_used?currency($tcc->amount_used):$emptyVal?></td>
+                <td><?=$tcc->allocated_trades?:$emptyVal?></td>
+                <td><?=$tcc->notes?escape($tcc->notes):$emptyVal?></td>
+              </tr>
+              <?php endforeach ?>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th colspan="3"></th>
+                <th data-tippy-content="Total (All)"><?=currency($tccTotals->pin_values)?></th>
+                <th data-tippy-content="Total (Approved)"><?=currency($tccTotals->approved)?></th>
+                <th data-tippy-content="Total (Pending)"><?=currency($tccTotals->pending)?></th>
+                <th data-tippy-content="Total (Rollovers)"><?=currency($tccTotals->rollover)?></th>
+                <th data-tippy-content="Total (Reserved)"><?=currency($tccTotals->reserved)?></th>
+                <th data-tippy-content="Total (Available)"><?=currency($tccTotals->available)?></th>
+                <th data-tippy-content="Total (Remaining)"><?=currency($tccTotals->remaining)?></th>
+                <th data-tippy-content="Total (Allocated)"><?=currency($tccTotals->allocated)?></th>
+                <th></th>
+              </tr>
+              <tr><th colspan="12">&nbsp;</th></tr>
+            </tfoot>
+          </table>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <section style="padding:1rem 0">
+    <ul>
+      <li><label>Current Year (<?=$year?>):</label></li>
+    </ul>
+    <div class="props-grid">
+      <div><label>Name:</label> <span><?=escape($client->name)?></span></div>
+      <div><label>Status:</label> <span><?=$client->status?></span></div>
+      <div><label>Accountant:</label> <span><?=escape($client->accountant)?></span></div>
+      <div><label>SDA Mandate:</label> <span><?=currency($client->sda_mandate)?></span></div>
+      <div><label>SDA Mandate Remaining:</label> <span><?=currency($client->sda_remaining)?></span></div>
+      <div><label>SDA Used:</label> <span><?=currency($client->sda_used)?></span></div>
+      <div><label>FIA Mandate:</label> <span><?=currency($client->fia_mandate)?></span></div>
+      <div><label>FIA Mandate Remaining:</label> <span><?=currency($client->fia_remaining)?></span></div>
+      <div><label>FIA Approved:</label> <span><?=currency($client->fia_approved)?></span></div>
+      <div><label>FIA Used:</label> <span><?=currency($client->fia_used)?></span></div>
+      <div><label>FIA Unused:</label> <span><?=currency($client->fia_unused)?></span></div>   
+      <div><label>FIA Available:</label> <span><?=currency($client->fia_available)?></span></div>
+    </div>
+  </section>  
+</div>
+<script src="vendors/F1/js/csv.js"></script>
+<include>_partials/tccs.js</include>

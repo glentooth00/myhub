@@ -1,0 +1,46 @@
+<include>_partials/edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$id>0">
+        <h1>Edit Referrer ID: <?=$id?></h1>
+      </if>
+      <if x="$id=='new' or $id<=0">
+        <h1>Add New Referrer</h1>
+      </if>
+    </header>
+    <form id="referrer-form" method="post">
+      <input type="hidden" name="id" value="<?=$referrer->id?>">
+
+      <label for="referrer_id" required>UID:</label>
+      <input type="text" id="referrer_id" name="referrer_id" value="<?=escape($referrer->referrer_id)?>" required>
+
+      <label for="name" required>Name:</label>
+      <input type="text" id="name" name="name" value="<?=escape($referrer->name)?>" required>
+
+      <label for="id_number">ID Number:</label>
+      <input type="text" id="id_number" name="id_number" value="<?=escape($referrer->id_number)?>">
+
+      <label for="phone_number">Phone Number:</label>
+      <input type="text" id="phone_number" name="phone_number" value="<?=escape($referrer->phone_number)?>">
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" value="<?=escape($referrer->email)?>">
+
+      <label for="notes">Notes:</label>
+      <textarea id="notes" name="notes"><?=escape($referrer->notes)?></textarea>
+
+      <label for="user_id">User UID:</label>
+      <input type="text" id="user_id" name="user_id" value="<?=escape($referrer->user_id ?: $referrer->referrer_id)?>">
+
+      <label for="client_id">Client UID:</label>
+      <input type="text" id="client_id" name="client_id" value="<?=escape($referrer->client_id)?>">
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="history.back()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/edit.js</include>

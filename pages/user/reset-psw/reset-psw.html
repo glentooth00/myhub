@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><?=$app->view->get('title')?></title>
+  <meta charset="UTF-8">
+  <base href="<?=$app->baseUri?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f3f3f3;
+      font-family: 'Arial', sans-serif;
+    }
+
+
+    a, a:visited, a:hover, a:active {
+      text-decoration: none;
+      color: slategrey;
+    }
+
+    a:hover {
+      color: #007bff;
+    }
+
+    main {
+      display: flex;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .form-container {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .form-container form {
+      background: #fff;
+      padding: 3rem 2rem;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px #00000033;
+      margin: auto;
+      width: 300px;
+      position: relative;
+    }
+
+    .form-container header {
+      position: relative;
+    }
+
+    .form-container header h3 {
+      display: block;
+      text-align: center;
+      color: #555;
+      margin: 0.25rem 0 1rem;
+      font-weight: normal;
+      font-size: 1rem;
+    }
+
+    .form-container footer small {
+      display: block;
+      text-align: right;
+      position: absolute;
+      color: cadetblue;
+      font-size: 9px;
+      bottom: 5px;
+      right: 5px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin: 1rem 0 0;
+    }
+
+    .form-container input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      position: relative;
+    }
+
+    .form-container button:hover {
+      background: #555;
+    }
+
+    .form-container .links {
+      margin-bottom: 0;
+    }
+
+    .form-container .links a {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .spinner {
+      display: none;
+      margin-right: 10px;
+      border: 4px solid #fff; /* White */
+      border-top: 4px solid #999; /* Grey */
+      border-radius: 50%;
+      width: 15px;
+      height: 15px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .busy .spinner {
+      display: inline-block;
+    }
+
+    .feedback {
+      font-size: 0.85em;
+      color: crimson;
+      margin: 0 0 0.5rem;
+    }
+
+    .help-text {
+      font-size: 0.8rem;
+      color: #999;
+      margin: 1rem 0 0;
+    }
+
+    .back-link {
+      font-size: 0.85rem;
+    }
+
+    .back-link svg {
+      margin-right: 5px;
+      width: 1rem;
+      height: 1rem;
+    }   
+  </style>
+</head>
+<body>
+  <main>
+    <section class="form-container">
+      <header>
+        <h2>My Currency Hub</h2>
+        <h3>Reset My Password</h3>
+      </header>
+
+      <form method="POST">
+        <if x="$feedback??false">
+        <p id="generalFeedback" class="feedback"><?=escape($feedback)?></p>
+        </if>
+
+        <input type="hidden" name="timestamp" value="<?=time()?>">
+
+        <input type="hidden" name="token" value="<?=escape($token)?>">
+
+        <input type="password" name="password" placeholder="New Password">
+        <div class="error-message" id="password-error"></div>
+
+        <input type="password" name="confirm_password" placeholder="Confirm Password">
+        <div class="error-message" id="confirm_password-error"></div>
+
+        <button type="submit"><div class="spinner" id="spinner"></div> Change Password</button>
+
+        <p class="help-text">
+          <i>Please don't forget to make a note of your new password and 
+          remember to keep your password safe.</i>
+        </p>
+
+        <footer>
+        </footer>
+      </form>
+
+      <p class="links">
+        <!-- <a href="user/register"><small>New? Register here.</small></a> -->
+        <a class="back-link" href="user/login">
+        	<!-- html unicode for arrow left -->
+        	&#x2190; Back to login page.
+        </a>
+      </p>
+    </section>
+  </main>
+</body>
+</html>

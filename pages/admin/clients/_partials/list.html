@@ -1,0 +1,58 @@
+<include>_partials/list.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="clients-table" data-accountant="<?=$accountantId?>" data-status="<?=$status?>">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Client</th>
+          <th>Accountant</th>
+          <th>Tax Number</th>
+          <th>SDA Mandate</th>
+          <th>FIA Mandate</th>
+          <th>FIA Approved</th>
+          <th>FIA Available</th>
+          <th>SDA Available</th>
+          <th>Created At</th>
+          <th data-tippy-content="Actions"><i class="fa fa-ellipsis-v"></i></th>
+        </tr>
+      </thead>
+      <tbody class="hidden">
+        <foreach x="$clients as $client">
+        <eval>
+          $fia_avail = min($client->fia_mandate, $client->fia_approved) - $client->fia_used;
+          $sda_avail = $client->sda_mandate - $client->sda_used;
+        </eval>
+        <tr id="<?=$client->id?>">
+          <td><?=$client->status?></td>
+          <td class="name"><i class="fa fa-user-circle-o" title="Client"></i>&nbsp;<?=escape(fullName($client))?> 
+            <small class="mute"><i>(<?=escape(clientComboID($client))?>)</i><?=$client->spouse_id?' (SP)':''?></small></td>
+          <td class="accountant"><i class="fa fa-calculator" title="Accountant"></i>&nbsp;<?=escape($client->accountant)?></td>
+          <td><?=escape($client->tax_number)?></td>
+          <td><?=currency($client->sda_mandate)?></td>
+          <td><?=currency($client->fia_mandate)?></td>
+          <td><?=currency($client->fia_approved)?></td>
+          <td><?=currency($fia_avail)?></td>
+          <td><?=currency($sda_avail)?></td>
+          <td><?=substr($client->created_at, 0, 10)?></td>
+          <td>
+            <a href="<?=generatePDFLink($client->client_id)?>" target="_blank" 
+              title="Download Statement PDF"><i class="fa fa-file-pdf-o"></i></a>
+          </td>
+        </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <button class="fab btn-round btn-primary" type="button"
+      onclick="F1.app.navigateTo({url:'admin/clients?view=edit&id=new', view:'edit', title:'Client Form'})">
+      <i class="fa fa-plus fa-lg"></i>
+    </button>
+  </div> <!-- .table-responsive -->
+  <template id="accountants-tpl">
+    <option>All</option>
+    <foreach x="$accountants as $ac">
+    <option value="<?=$ac->id?>"><?=escape($ac->name)?></option>
+    </foreach>
+  </template>
+</div> <!-- .list-view -->
+<include>_partials/list.js</include>

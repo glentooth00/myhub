@@ -1,0 +1,47 @@
+<aside id="sidebar-right" class="sidebar off-screen-right">
+  <div class="sidebar-content">
+    Filter options etc.
+  </div>
+</aside>
+<nav id="bottom-bar" class="flex-row flex-gap space-around">
+  <a href="accountant/dashboard" id="nav-item-dash" class="nav-item"
+    onclick="F1.app.navigateTo({event, view:'show', title:'Dashboard'})">
+    <i class="fa fa-dashboard fa-lg"></i>
+    <span>Dashboard</span>
+    <hr>
+  </a>
+  <a href="accountant/clients?back=dashboard" id="nav-item-clients" class="nav-item"
+    onclick="F1.app.navigateTo({event, view:'list', title:'Clients'})">
+    <i class="fa fa-users fa-lg"></i>
+    <span>Clients</span>
+    <hr>
+  </a>
+  <a href="accountant/trades?back=dashboard" id="nav-item-trades" class="nav-item"
+    onclick="F1.app.navigateTo({event, view:'list', title:'Trades'})">
+    <i class="fa fa-money fa-lg"></i>
+    <span>Trades</span>
+    <hr>
+  </a>
+  <a href="accountant/tccs?back=dashboard" id="nav-item-tccs" class="nav-item"
+    onclick="F1.app.navigateTo({event, view:'list', title:'FIA TAX Clearances'})">
+    <i class="fa fa-star-o fa-lg"></i>
+    <span>TCC's</span>
+    <hr>
+  </a>
+</nav>
+<script src="vendors/JQuery/jquery-3.6.0.js"></script>
+<script src="vendors/JQDTables/jquery.dataTables.js"></script>
+<script src="vendors/GridStack/gridstack-all.js"></script>
+<script src="vendors/Tippy/popper_core.min.js"></script>
+<script src="vendors/Tippy/tippy.min.js"></script>
+<script src="vendors/F1/js/formfield.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/formfields.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/upload.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/select.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/popup.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/utils.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/form.js?<?=$app->ver?>"></script>
+<script src="vendors/F1/js/ajax.js?<?=$app->ver?>"></script>
+<script src="assets/js/main.js?<?=$app->ver?>"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* Page Specific CSS */
+
+.page {
+  overflow: auto;
+}
+
+.container {
+  background-color: white;
+  max-width: 640px;
+  margin: auto;
+  padding: 2rem;
+
+fieldset {
+  padding-bottom: 1.67rem;
+}
+
+button, input {
+  margin-top: 0.67rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+[disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}

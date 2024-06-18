@@ -1,0 +1,20 @@
+2024-06-18 14:23:49 - *** USER LOG ***
+2024-06-18 14:23:49 - U2, Accountant
+
+
+2024-06-18 14:23:49 - *** PAGE REQUEST *** 
+[Request]:	2024-06-18 14:23:49 - GET /accountant/dashboard
+[Request]:	2024-06-18 14:23:49 - File: C:\laragon\www\myhub\pages\accountant\dashboard\dashboard.php
+[Request]:	2024-06-18 14:23:49 - Session ID: 45bm9mtlv3gi38bb887ofs7tr8
+[App Security]:	2024-06-18 14:23:49 - Allowed Role/Group: "accountant"
+[Security]:	2024-06-18 14:23:49 - Security::denyIfRoleNot(), allowed roles: ["accountant"]
+[Security]:	2024-06-18 14:23:49 - Security::denyIfRoleNot(), auth user's role: "accountant"
+[Debug]:	2024-06-18 14:23:49 - db::query()
+[Debug]:	2024-06-18 14:23:49 - db::buildQuery()
+[Debug]:	2024-06-18 14:23:49 - db::query(), Array
+(
+    [0] => SELECT * FROM users WHERE id = ? LIMIT 1
+    [1] => [2]
+)
+
+

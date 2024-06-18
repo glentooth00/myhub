@@ -1,0 +1,88 @@
+/* Page Specific CSS */
+
+.container {
+  max-width: calc(100% - 2rem);
+	margin: auto;
+}
+
+ul { list-style: none; padding: 0; margin: 0; }
+
+label { font-size: 12px; cursor: pointer; }
+
+table {
+  font-size: 11px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  padding: 2px 4px;
+  text-align: left;
+  font-size: 10px;
+}
+
+td {
+  padding: 3px 4px;
+  white-space: nowrap;
+}
+
+.table-responsive {
+  overflow: auto;
+}
+
+.left-col, .right-col {
+  height: calc(100vh - 9rem);
+  width: calc(100vw - 280px);
+}
+
+.left-col table {
+  margin-bottom: 1rem;
+}
+
+.left-col tr {
+  border-bottom: 1px solid gainsboro;
+}
+
+.left-col tr.processed {
+  background-color: lemonchiffon;
+}
+
+.left-col tr.t5 {
+  background-color: lightpink;
+}
+
+.right-col {
+  width: 280px;
+}
+
+.right-col hr {
+  width: 100%;
+}
+
+.right-col button[hidden] {
+  display: none;
+}
+
+.scrollbox {
+  height: 100%;
+  overflow: auto;
+}
+
+.tests {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 0.34rem;
+  font-size: 13px;
+}
+
+.feedback {
+  font-size: 13px;
+}
+
+button:disabled, button:disabled:hover {
+  background: grey;
+}
+
+#checklist .grouped {
+  outline: 3px solid pink;
+}

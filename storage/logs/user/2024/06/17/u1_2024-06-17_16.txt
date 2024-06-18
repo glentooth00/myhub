@@ -1,0 +1,20 @@
+2024-06-17 16:03:36 - *** USER LOG ***
+2024-06-17 16:03:36 - U1, Sysadmin
+
+
+2024-06-17 16:03:36 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 16:03:36 - GET /user/logout
+[Request]:	2024-06-17 16:03:36 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Request]:	2024-06-17 16:03:36 - Session ID: 09v4kaqk3frh4hgfe19v87aj1j
+
+
+2024-06-17 16:29:50 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 16:29:50 - GET /user/logout
+[Request]:	2024-06-17 16:29:50 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Request]:	2024-06-17 16:29:50 - Session ID: irr8rp6ui1pe130nels84b2l43
+
+
+2024-06-17 16:35:34 - *** PAGE REQUEST *** 
+[Request]:	2024-06-17 16:35:34 - GET /user/logout
+[Request]:	2024-06-17 16:35:34 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
+[Request]:	2024-06-17 16:35:34 - Session ID: nnvihstsf3trh39lssibiakisg
