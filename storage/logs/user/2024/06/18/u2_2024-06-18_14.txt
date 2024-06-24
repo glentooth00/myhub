@@ -1,8 +1,0 @@
-2024-06-18 14:24:08 - *** USER LOG ***
-2024-06-18 14:24:08 - U2, Accountant
-
-
-2024-06-18 14:24:08 - *** PAGE REQUEST *** 
-[Request]:	2024-06-18 14:24:08 - GET /user/logout
-[Request]:	2024-06-18 14:24:08 - File: C:\laragon\www\myhub\pages\user\logout\logout.php
-[Request]:	2024-06-18 14:24:08 - Session ID: 45bm9mtlv3gi38bb887ofs7tr8

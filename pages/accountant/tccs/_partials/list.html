@@ -1,20 +1,22 @@
 <include>_partials/list.css</include>
 <div class="list-view">
   <div class="table-responsive">
-    <table id="tccs-table" data-days="<?=$days?>" data-category="<?=$category?>">
+    <table id="tccs-table" data-days="<?=$days?>" data-category="<?=$category?>" data-accountant="<?=$accountantId?>">
       <thead>
         <tr>
           <th>Status</th>
           <th>PIN No</th>
           <th>PIN Value</th>
           <th>Applied</th>
-          <th>Issued</th>
           <th>Client</th>
+          <th>Accountant</th>
           <th>Case No</th>
           <th></th>
+          <th>Issued</th>
+          <th>Rollover</th>
           <th>Used</th>
           <th>Available</th>
-          <th>Created</th>
+          <th>Created</th>          
         </tr>
       </thead>
       <tbody class="hidden">
@@ -24,11 +26,13 @@
           <td><?=escape($tcc->tcc_pin)?></td>
           <td><?=currency($tcc->amount_cleared)?></td>
           <td><?=$tcc->application_date?></td>
-          <td><?=$tcc->date?></td>
-          <td class="name"><i class="fa fa-user-circle-o" title="Client"></i> <?=escape($tcc->client_name)?> 
+          <td class="name"><i class="fa fa-user-circle-o" title="Client"></i>&nbsp;<?=escape($tcc->client_name)?> 
             <small class="mute"><i>(<?=$tcc->client_id?>)</i></small></td>
+          <td class="accountant"><i class="fa fa-calculator" title="Accountant"></i>&nbsp;<?=escape($tcc->client_accountant)?></td>
           <td><?=escape($tcc->tax_case_no)?></td>
           <td><?=get_cert_link($tcc)?></td>
+          <td><?=$tcc->date?></td>
+          <td><?=currency($tcc->rollover)?></td>
           <td><?=currency($tcc->amount_used)?></td>
           <td><?=currency($tcc->amount_available)?></td>
           <td><?=substr($tcc->created_at, 0, 10)?></td>
@@ -36,10 +40,16 @@
         </foreach>
       </tbody>
     </table>
-    <button class="fab btn-round btn-primary" type="button"
-      onclick="F1.app.navigateTo({url:'accountant/tccs?view=edit&id=-1', view:'edit', title:'TCC Form'})">
+    <!-- <button class="fab btn-round btn-primary" type="button"
+      onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/tccs?view=edit&id=new', view:'edit', title:'TCC Form'})">
       <i class="fa fa-plus fa-lg"></i>
-    </button>    
+    </button>     -->
   </div> <!-- .table-responsive -->
+  <template id="accountants-tpl">
+    <option>All</option>
+    <foreach x="$accountants as $ac">
+    <option value="<?=$ac->id?>"><?=escape($ac->name)?></option>
+    </foreach>
+  </template>
 </div> <!-- .list-view -->
 <include>_partials/list.js</include>

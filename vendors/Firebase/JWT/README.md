@@ -3,12 +3,11 @@
 [![Total Downloads](https://poser.pugx.org/firebase/php-jwt/downloads)](https://packagist.org/packages/firebase/php-jwt)
 [![License](https://poser.pugx.org/firebase/php-jwt/license)](https://packagist.org/packages/firebase/php-jwt)
 
-PHP-JWT
-=======
+# PHP-JWT
+
 A simple library to encode and decode JSON Web Tokens (JWT) in PHP, conforming to [RFC 7519](https://tools.ietf.org/html/rfc7519).
 
-Installation
-------------
+## Installation
 
 Use composer to manage your dependencies and download PHP-JWT:
 
@@ -23,8 +22,8 @@ php is < 7.2 or does not have libsodium installed:
 composer require paragonie/sodium_compat
 ```
 
-Example
--------
+## Example
+
 ```php
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -65,8 +64,9 @@ $decoded_array = (array) $decoded;
 JWT::$leeway = 60; // $leeway in seconds
 $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
 ```
-Example with RS256 (openssl)
-----------------------------
+
+## Example with RS256 (openssl)
+
 ```php
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -119,8 +119,7 @@ $decoded_array = (array) $decoded;
 echo "Decode:\n" . print_r($decoded_array, true) . "\n";
 ```
 
-Example with a passphrase
--------------------------
+## Example with a passphrase
 
 ```php
 use Firebase\JWT\JWT;
@@ -156,8 +155,8 @@ $decoded = JWT::decode($jwt, new Key($publicKey, 'RS256'));
 echo "Decode:\n" . print_r((array) $decoded, true) . "\n";
 ```
 
-Example with EdDSA (libsodium and Ed25519 signature)
-----------------------------
+## Example with EdDSA (libsodium and Ed25519 signature)
+
 ```php
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -185,10 +184,9 @@ echo "Encode:\n" . print_r($jwt, true) . "\n";
 
 $decoded = JWT::decode($jwt, new Key($publicKey, 'EdDSA'));
 echo "Decode:\n" . print_r((array) $decoded, true) . "\n";
-````
+```
 
-Using JWKs
-----------
+## Using JWKs
 
 ```php
 use Firebase\JWT\JWK;
@@ -204,10 +202,10 @@ $jwks = ['keys' => []];
 JWT::decode($payload, JWK::parseKeySet($jwks), $supportedAlgorithm);
 ```
 
-Changelog
----------
+## Changelog
 
 #### 5.0.0 / 2017-06-26
+
 - Support RS384 and RS512.
   See [#117](https://github.com/firebase/php-jwt/pull/117). Thanks [@joostfaassen](https://github.com/joostfaassen)!
 - Add an example for RS256 openssl.
@@ -229,44 +227,48 @@ Changelog
   [@chinedufn](https://github.com/chinedufn), and [@bshaffer](https://github.com/bshaffer)!
 
 #### 4.0.0 / 2016-07-17
+
 - Add support for late static binding. See [#88](https://github.com/firebase/php-jwt/pull/88) for details. Thanks to [@chappy84](https://github.com/chappy84)!
 - Use static `$timestamp` instead of `time()` to improve unit testing. See [#93](https://github.com/firebase/php-jwt/pull/93) for details. Thanks to [@josephmcdermott](https://github.com/josephmcdermott)!
 - Fixes to exceptions classes. See [#81](https://github.com/firebase/php-jwt/pull/81) for details. Thanks to [@Maks3w](https://github.com/Maks3w)!
 - Fixes to PHPDoc. See [#76](https://github.com/firebase/php-jwt/pull/76) for details. Thanks to [@akeeman](https://github.com/akeeman)!
 
 #### 3.0.0 / 2015-07-22
+
 - Minimum PHP version updated from `5.2.0` to `5.3.0`.
 - Add `\Firebase\JWT` namespace. See
-[#59](https://github.com/firebase/php-jwt/pull/59) for details. Thanks to
-[@Dashron](https://github.com/Dashron)!
+  [#59](https://github.com/firebase/php-jwt/pull/59) for details. Thanks to
+  [@Dashron](https://github.com/Dashron)!
 - Require a non-empty key to decode and verify a JWT. See
-[#60](https://github.com/firebase/php-jwt/pull/60) for details. Thanks to
-[@sjones608](https://github.com/sjones608)!
+  [#60](https://github.com/firebase/php-jwt/pull/60) for details. Thanks to
+  [@sjones608](https://github.com/sjones608)!
 - Cleaner documentation blocks in the code. See
-[#62](https://github.com/firebase/php-jwt/pull/62) for details. Thanks to
-[@johanderuijter](https://github.com/johanderuijter)!
+  [#62](https://github.com/firebase/php-jwt/pull/62) for details. Thanks to
+  [@johanderuijter](https://github.com/johanderuijter)!
 
 #### 2.2.0 / 2015-06-22
+
 - Add support for adding custom, optional JWT headers to `JWT::encode()`. See
-[#53](https://github.com/firebase/php-jwt/pull/53/files) for details. Thanks to
-[@mcocaro](https://github.com/mcocaro)!
+  [#53](https://github.com/firebase/php-jwt/pull/53/files) for details. Thanks to
+  [@mcocaro](https://github.com/mcocaro)!
 
 #### 2.1.0 / 2015-05-20
+
 - Add support for adding a leeway to `JWT:decode()` that accounts for clock skew
-between signing and verifying entities. Thanks to [@lcabral](https://github.com/lcabral)!
+  between signing and verifying entities. Thanks to [@lcabral](https://github.com/lcabral)!
 - Add support for passing an object implementing the `ArrayAccess` interface for
-`$keys` argument in `JWT::decode()`. Thanks to [@aztech-dev](https://github.com/aztech-dev)!
+  `$keys` argument in `JWT::decode()`. Thanks to [@aztech-dev](https://github.com/aztech-dev)!
 
 #### 2.0.0 / 2015-04-01
+
 - **Note**: It is strongly recommended that you update to > v2.0.0 to address
   known security vulnerabilities in prior versions when both symmetric and
   asymmetric keys are used together.
 - Update signature for `JWT::decode(...)` to require an array of supported
   algorithms to use when verifying token signatures.
 
+## Tests
 
-Tests
------
 Run the tests using phpunit:
 
 ```bash
@@ -278,12 +280,11 @@ Time: 0 seconds, Memory: 2.50Mb
 OK (5 tests, 5 assertions)
 ```
 
-New Lines in private keys
------
+## New Lines in private keys
 
 If your private key contains `\n` characters, be sure to wrap it in double quotes `""`
 and not single quotes `''` in order to properly interpret the escaped characters.
 
-License
--------
+## License
+
 [3-Clause BSD](http://opensource.org/licenses/BSD-3-Clause).

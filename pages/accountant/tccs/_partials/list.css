@@ -51,23 +51,12 @@ tr .fa {
 }
 
 th, td {
-  padding: 8px;
   text-align: left;
   white-space: nowrap;
 }
 
 td {
   border-bottom: 1px solid #ddd;
-}
-
-table.dataTable tbody tr:hover {
-  background-color: #eee;
-  cursor: pointer;
-}
-
-table.dataTable tfoot th {
-  background-color: #eee;
-  font-size: 0.85em;
 }
 
 
@@ -84,6 +73,7 @@ table.dataTable tfoot th {
   float: right;  
 }
 
+.accountant-filter select,
 .category-filter select,
 .days-filter select {
   background-color: transparent;
@@ -114,3 +104,4 @@ table.dataTable tfoot th {
     float: none;
   }
 }
+

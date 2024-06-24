@@ -3,10 +3,14 @@ F1.deferred.push(function initTccsDetailsPageView(app) {
   console.log('initTccsDetailsPageView()');
 
   const Ajax = F1.lib.Ajax;
+  const Popup = F1.lib.Popup;
   const Utils = F1.lib.Utils;
 
   const deletedAt = Utils.getEl('deletedAt');
   const status = Utils.getEl('status');
+
+  function spin(el) { if (el) el.classList.add('spin'); }
+  function spinOff(el) { if (el) el.classList.remove('spin'); }
 
 
   app.undeleteTcc = function() {
@@ -46,6 +50,43 @@ F1.deferred.push(function initTccsDetailsPageView(app) {
         app.redirect(resp.goto, 'delete.tcc.success:', resp);
       })
       .catch((err) => app.handleAjaxError(err, 'delete.tcc'));
+  };
+
+
+  app.sendApprovedNotice = function() {
+    console.log('sendApprovedNotice()');
+
+    const pinNo = document.getElementById('pinNo').innerText.trim() || status.innerText.trim();
+    if ( ! confirm(`Send Approval Notice for TCC Pin: ${pinNo}. Are you sure?`) ) return;
+
+    const actionButton = event.currentTarget;
+    const title = 'Approval Notice';
+    spin(actionButton);
+
+    const syncPopup = new Popup({
+      title,
+      content: 'Sending email. Please wait...',
+      position: 'center',
+      theme: 'success',
+      size: 'small',
+    });    
+    syncPopup.show();
+
+    console.log('Send Approval Notice start...');
+
+    Ajax.post( location.href, { action: 'sendApprovedNotice' } )
+      .then(function (resp) {
+        syncPopup.close();
+        spinOff(actionButton);
+        if (!resp.success) return app.handleAjaxError(resp, 'tcc.sendApprovedNotice');
+        console.log('tcc.sendApprovedNotice.success', resp);
+        app.toast({ message: resp.message });
+      })
+      .catch(function (resp) {
+        syncPopup.close();
+        spinOff(actionButton);
+        return app.handleAjaxError(resp, 'tcc.sendApprovedNotice');
+      });
   };
 
 
