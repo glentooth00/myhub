@@ -15,7 +15,7 @@ require '.env-local';
 $app = new stdClass();
 
 $app->id = 'MyHub';
-$app->ver = 'v1.RC262.N1';
+$app->ver = 'v1.RC262.N3';
 $app->today = date( 'Y-m-d' );
 $app->name = 'My Currency Hub';
 $app->theme = 'default-theme';

@@ -176,7 +176,7 @@ F1.deferred.push(function initTradesListPageView(app) {
   
   /* bottom nav */
   Utils.removeClassFrom(app.el.bottomBar, 'active');
-  // Utils.getEl('nav-item-trades').classList.add('active');
+  Utils.getEl('nav-item-trades').classList.add('active');
 
 
   tippy('[data-tippy-content]', { allowHTML: true });  

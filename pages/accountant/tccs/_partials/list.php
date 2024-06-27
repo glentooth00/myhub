@@ -5,6 +5,7 @@ use App\Models\User as UserModel;
 use App\Models\UserSettings as UserSettingsModel;
 
 
+
 // ----------
 // -- POST --
 // ----------
@@ -37,11 +38,12 @@ function get_cert_link($tcc)
 
 
 
-/* settings */
+// /* settings */
 $settings = new UserSettingsModel($app);
 
 
-/* request */
+// /* request */
+
 $accountantId = $_GET['accountant'] ?? $settings->getSettingValue('tccs_accountant', 'All');
 $category = $_GET['category'] ?? $settings->getSettingValue('tccs_category', 'All');
 $days = $_GET['days'] ?? $settings->getSettingValue('tccs_days', 'this-week');
@@ -51,21 +53,27 @@ $settings->saveIfChanged('tccs_category', $category);
 $settings->saveIfChanged('tccs_days', $days);
 
 
-/* lists */
+
+// /* lists */
 $accountantName = null;
 $tccModel = new TccModel($app);
 $userModel = new UserModel($app);
+$accountantIds = $app->user->id; // i used the logged in user ID instead of the $accountantId
+// echo '<b>'. $accountantId .'</b>'; when i used this it just returns "All"
+
 
 $accountants = $userModel->getUsersByRole('accountant');
 $accountants[] = (object) ['id' => 'Personal', 'name' => 'Personal'];
+
 foreach ($accountants as $ac) {
   if (empty($ac->name))
     $ac->name = trim($ac->first_name . ' ' . $ac->last_name);
-  if ($ac->id == $accountantId)
-    $accountantName = $ac->name;
+  if ($ac->id == $accountantIds)
+    ($accountantName = $ac->name);
 }
 
 $tccs = $tccModel->getAllByAccountant($accountantName, [
   'days' => $days,
-  'category' => $category
+  'category' => $category,
 ]);
+

@@ -1,5 +1,6 @@
 <include>_partials/list.css</include>
 <div class="list-view">
+  <!-- <p>Hi, <?=$app->user->first_name?></p> -->
   <div class="table-responsive">
     <table id="tccs-table" data-days="<?=$days?>" data-category="<?=$category?>" data-accountant="<?=$accountantId?>">
       <thead>
@@ -20,8 +21,9 @@
         </tr>
       </thead>
       <tbody class="hidden">
-        <foreach x="$tccs as $tcc">
-        <tr id="<?=$tcc->id?>">
+        
+        <foreach x="$tccs as $tcc">      
+        <tr id="<?=$tcc->id?>">      
           <td class="<?=$tcc->deleted_at ? 'status deleted' : 'status'?>"><?=$tcc->status?></td>
           <td><?=escape($tcc->tcc_pin)?></td>
           <td><?=currency($tcc->amount_cleared)?></td>
@@ -40,10 +42,6 @@
         </foreach>
       </tbody>
     </table>
-    <!-- <button class="fab btn-round btn-primary" type="button"
-      onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/tccs?view=edit&id=new', view:'edit', title:'TCC Form'})">
-      <i class="fa fa-plus fa-lg"></i>
-    </button>     -->
   </div> <!-- .table-responsive -->
   <template id="accountants-tpl">
     <option>All</option>
