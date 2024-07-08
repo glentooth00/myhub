@@ -56,14 +56,25 @@ F1.deferred.push(function initTccsListPageView(app) {
     null,                     // PIN No
     { 'sType': 'currency' },  // PIN Value
     { 'sType': 'date' },      // Applied
-    { 'sType': 'date' },      // Issued
+    null,                     // Accountant
     null,                     // Client
     null,                     // Case No
-    { orderable: false },     // PDF
+    { orderable: false },     // PDF    
+    { 'sType': 'date' },      // Issued
+    { 'sType': 'currency' },  // Rollover
     { 'sType': 'currency' },  // Used
     { 'sType': 'currency' },  // Available
     { 'sType': 'date' },      // Created
-  ];
+  ];  
+
+  // new DataTable('#example', {
+  //     language: {
+  //         decimal: ',',
+  //         thousands: '.'
+  //     },
+  //     deferRender: true
+  // });
+
 
   const defaultPageLength = 10;
 
@@ -84,6 +95,22 @@ F1.deferred.push(function initTccsListPageView(app) {
   const customFiltersWrapper = Utils.newEl('div', 'custom-filters-wrapper');
 
   const url = new URL(window.location.href);
+
+  const defaultAccountant = 'All';
+  const accountant = url.searchParams.get('accountant') || table.dataset.accountant;
+  const accountantFilter = Utils.newEl('label', 'accountant-filter');
+  const accountantFilterControl = Utils.newEl('select', 'form-control');
+  const accountantsTpl = Utils.getEl('accountants-tpl');
+  accountantFilterControl.name = 'accountant_filter';
+  accountantFilterControl.innerHTML = accountantsTpl.innerHTML;
+  accountantFilterControl.value = accountant || defaultAccountant;
+  accountantFilterControl.addEventListener('change', function() {
+    const accountant = accountantFilterControl.value;
+    url.searchParams.set('accountant', accountant);
+    const replaceState = true; // Don't add a new state to the history
+    const newState = Object.assign({}, app.currentPage.state(), { url: url.toString() });
+    app.navigateTo(newState, 'fwd', null, replaceState);
+  });
 
   const defaultCategory = 'All';
   const category = url.searchParams.get('category') || table.dataset.category;
@@ -144,9 +171,11 @@ F1.deferred.push(function initTccsListPageView(app) {
     const isSorted = state.order.length > 0;
     const isSearched = state.search.search.length > 0;
     const isLengthChanged = state.length !== defaultPageLength;
+    const accountantChanged = accountant !== defaultAccountant;
     const categoryChanged = category !== defaultCategory;
     const daysChanged = days !== defaultDays;
-    hasNonDefaultState = isSorted || isSearched || isLengthChanged || categoryChanged || daysChanged;
+    hasNonDefaultState = isSorted || isSearched || isLengthChanged || 
+      categoryChanged || accountantChanged || daysChanged;
   }  
 
   const resetButtonClass = 'btn btn-sm btn-outline btn-clear-state' + ( hasNonDefaultState ? '' : ' hidden' );
@@ -155,6 +184,7 @@ F1.deferred.push(function initTccsListPageView(app) {
   resetButton.innerHTML = '<span class="fa fa-eraser"></span>';
   resetButton.addEventListener('click', function() {
     dataTable.state.clear();
+    url.searchParams.set('accountant', defaultAccountant);
     url.searchParams.set('category', defaultCategory);
     url.searchParams.set('days', defaultDays);
     const replaceState = true; // Don't add a new state to the history
@@ -163,7 +193,9 @@ F1.deferred.push(function initTccsListPageView(app) {
   });
 
   daysFilter.appendChild(daysFilterControl);
+  accountantFilter.appendChild(accountantFilterControl);
   categoryFilter.appendChild(categoryFilterControl);
+  customFiltersWrapper.appendChild(accountantFilter);
   customFiltersWrapper.appendChild(categoryFilter);
   customFiltersWrapper.appendChild(daysFilter);
   customFiltersWrapper.appendChild(resetButton);
@@ -176,11 +208,13 @@ F1.deferred.push(function initTccsListPageView(app) {
   table.appendChild(tableFooter);
 
   const AMOUNT_COLUMN = 2;
-  const AMOUNT_USED_COLUMN = 8;
-  const AMOUNT_AVAIL_COLUMN = 9;
+  const AMOUNT_RO_COLUMN = 9;
+  const AMOUNT_USED_COLUMN = 10;
+  const AMOUNT_AVAIL_COLUMN = 11;
 
   const currencyColumns = [
     AMOUNT_COLUMN,
+    AMOUNT_RO_COLUMN,
     AMOUNT_USED_COLUMN,
     AMOUNT_AVAIL_COLUMN,
   ];

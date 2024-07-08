@@ -5,7 +5,9 @@
 // -- POST --
 // ----------
 
-if ( $app->request->isPost ) { exit; }
+if ($app->request->isPost) {
+    exit;
+}
 
 
 

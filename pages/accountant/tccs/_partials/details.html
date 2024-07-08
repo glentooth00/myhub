@@ -14,15 +14,19 @@
     <h4>Client uid: <?=$tcc->client_id?></h4>
   </header>
   <section class="flex-row flex-gap">
-    <button class="btn-round btn-primary" type="button"><span>A</span></button>
-    <button class="btn-round btn-primary" type="button"><span>B</span></button>
-    <button class="btn-round btn-primary" type="button"><span>C</span></button>
+    <if x="$tcc->status == 'Approved'">
+    <button class="btn-round btn-primary" type="button"
+      data-tippy-content="Send new approved PIN notification to the TCC owner." 
+      onclick="F1.app.sendApprovedNotice(event)">
+      <small class="flex-col align-center"><i class="fa fa-envelope-o"></i> Appr</small>
+    </button>
+    </if>
     <if x="$tcc->deleted_at">
     <button class="btn-round btn-primary undelete" type="button"
       data-tippy-content="Undelete" onclick="F1.app.undeleteTcc(event)">
       <i class="fa fa-trash-o fa-lg"></i>
-    </button>    
-    </if>    
+    </button>
+    </if>
   </section>
   <section>
     <ul>
@@ -50,7 +54,7 @@
       <if x="$tcc->deleted_at">
       <li id="deletedAt" class="text-danger"><label>Deleted At:</label> <span><?=$tcc->deleted_at?></span></li>
       <li><label>Deleted By:</label> <span><?=$tcc->deleted_by?></span></li>
-      </if>
+      </if>      
       <li><label>Updated At:</label> <span><?=$tcc->updated_at?></span></li>
       <li><label>Updated By:</label> <span><?=$tcc->updated_by?></span></li>     
       <li><label>Created At:</label> <span><?=$tcc->created_at?></span></li>
@@ -64,8 +68,4 @@
     </ul>      
   </section>
 </div>
-<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
-  onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/tccs?view=edit&id=<?=$id?>', view:'edit', title:'TCC Form'})">
-  <i class="fa fa-edit fa-lg"></i>
-</button>
 <include>_partials/details.js</include>

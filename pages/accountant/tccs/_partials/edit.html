@@ -10,11 +10,20 @@
       </if>
     </header>
     <form id="tcc-form" method="post" novalidate>
-      
+      <if x="$super">
+
+      <div class="flex-row flex-center">
+        <label class="checkbox flex-row flex-gap-sm align-center">
+          <input id="override_validation" name="override_validation" type="checkbox">
+          <small class="nowrap">Override Validation</small>
+        </label>
+      </div>
+      </if>
+
       <input type="hidden" name="id" value="<?=$tcc->id?>">
 
-      <label for="status">PIN Status:</label>
-      <select id="status" name="status" data-value="<?=$tcc->status?>">
+      <label for="status" required>PIN Status:</label>
+      <select id="status" name="status" data-value="<?=$tcc->status?>" required>
         <foreach x="$statuses as $status">
         <option><?=$status?></option>
         </foreach>
@@ -25,7 +34,7 @@
       <input type="date" id="application_date" name="application_date" value="<?=$tcc->application_date?>" max="<?=date('Y-m-d')?>" required>
       <p id="application_dateFeedback" class="feedback"></p>
 
-      <label for="amount_cleared" required>Amount:</label>
+      <label for="amount_cleared" required>PIN Value:</label>
       <input type="text" id="amount_cleared" name="amount_cleared" value="<?=currency($tcc->amount_cleared, 'R ')?>" 
         onchange="this.value=F1.lib.Utils.currency(this.value)" required>
       <p id="amount_clearedFeedback" class="feedback"></p>
@@ -34,10 +43,15 @@
       <select id="client_id" name="client_id" data-custom-type="F1SelectField" data-size="large"
         data-searchable="true" data-clear-prompt="x" data-value="<?=$tcc->client_id?>" required>
         <foreach x="$clients as $client">
-        <option value="<?=$client->client_id?>"><?=$client->name?></option>
+        <option value="<?=$client->client_id?>"><?=escape($client->name)?></option>
         </foreach>
       </select>
       <p id="client_idFeedback" class="feedback"></p>
+
+      <label for="amount_reserved">Amount Reserved:</label>
+      <input type="text" id="amount_reserved" name="amount_reserved" value="<?=currency($tcc->amount_reserved, 'R ')?>"
+        onchange="this.value=F1.lib.Utils.currency(this.value)">
+      <p id="amount_reservedFeedback" class="feedback"></p>
 
       <label for="tax_case_no">Tax Case No:</label>
       <input type="text" id="tax_case_no" name="tax_case_no" value="<?=escape($tcc->tax_case_no)?>">
@@ -60,18 +74,41 @@
       <label for="notes">Notes:</label>
       <textarea id="notes" name="notes"><?=escape($tcc->notes)?></textarea>
 
-      <if x="$isEdit">
-      <label for="amount_used">Amount Used:</label>
-      <?=$form->input( 'text', $tcc, 'amount_used', ['format' => 'currency', 'readonly' => true] )?>
-
-      <label for="rollover">Rollover:</label>
-      <?=$form->input( 'text', $tcc, 'rollover', ['format' => 'currency', 'readonly' => true] )?>
-
       <label for="expired">Expired Year:</label>
-      <?=$form->input( 'text', $tcc, 'expired', ['readonly' => true ] )?>
+      <?=$form->input( 'text', $tcc, 'expired', ['readonly' => !$super ] )?>
+      <if x="$isEdit">
 
       <label for="allocated_trades">Allocated_Trades:</label>
-      <?=$form->input( 'textarea', $tcc, 'allocated_trades', ['readonly' => true] )?>
+      <?=$form->input( 'textarea', $tcc, 'allocated_trades', ['readonly' => !$super] )?>
+
+      <label for="rollover">Rollover:</label>
+      <?=$form->input( 'text', $tcc, 'rollover', ['format' => 'currency', 'readonly' => !$super] )?>
+
+      <label for="amount_cleared_net">Amount Cleared Net:</label>
+      <input type="text" id="amount_cleared_net" name="amount_cleared_net" value="<?=currency($tcc->amount_cleared_net, 'R ')?>" readonly>
+
+      <if x="$super">
+      <fieldset class="mt2">
+      <legend>
+        <label class="checkbox flex-row flex-gap-sm align-center nowrap">
+          <input type="checkbox" name="force_used" onchange="F1.app.toggleForceUsed()">
+          <span class="nowrap">Force Amount Used</span>
+        </label>
+      </legend>
+      </if>
+      <label for="amount_used">Amount Used:</label>
+      <input type="text" id="amount_used" name="amount_used" value="<?=currency($tcc->amount_used, 'R ')?>"
+        onchange="this.value=F1.lib.Utils.currency(this.value)" readonly>
+      <p id="amount_usedFeedback" class="feedback"></p>
+      <if x="$super">
+      </fieldset>
+      </if>
+
+      <label for="amount_remaining">Amount Remaining:</label>
+      <input type="text" id="amount_remaining" name="amount_remaining" value="<?=currency($tcc->amount_remaining, 'R ')?>" readonly>
+
+      <label for="amount_available">Amount Available:</label>
+      <input type="text" id="amount_available" name="amount_available" value="<?=currency($tcc->amount_available, 'R ')?>" readonly>
 
       <label for="updated_by">Updated By:</label>
       <input type="text" id="updated_by" name="updated_by" value="<?=$tcc->updated_by?>" readonly>
@@ -87,7 +124,7 @@
       </if>
 
       <label for="tcc_id">TCC UUID:</label>
-      <?=$form->input( 'text', $tcc, 'tcc_id', ['readonly' => true] )?>
+      <?=$form->input( 'text', $tcc, 'tcc_id', ['readonly' => !$super] )?>
 
       <footer>
         <button type="submit" class="btn-success">Save</button>
