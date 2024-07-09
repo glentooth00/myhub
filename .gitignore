@@ -2,3 +2,5 @@
 storage/
 uploads/
 storage/
+*.zip
+.env-local
