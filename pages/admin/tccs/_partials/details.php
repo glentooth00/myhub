@@ -1,5 +1,7 @@
 <?php /* Admin Module - TCCs SPA - TCC Details Sub Controller */
 
+global $app;
+
 use App\Models\Tcc as TccModel;
 use App\Services\AppMailer;
 

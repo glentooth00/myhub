@@ -2,16 +2,18 @@
 <div class="content-wrapper">
   <header>
     <h1>
+      <label>AIT Tax Clearance</label>
+      <if x="$tcc->deleted_at">
+      <small class="text-danger">(Deleted)</small>
+      </if>
+    </h1>
+    <h2>  
       <a href="<?=$app->request->module . '/clients?view=details&amp;id=' . $tcc->client_id2?>"
         data-tippy-content="Goto <?=escape($tcc->client_name)?>"
         onclick="F1.app.navigateTo({event, view:'details', title:'Client Details'})">
-        <?=escape($tcc->client_name) . PHP_EOL?>
-        <if x="$tcc->deleted_at">
-          <small class="text-danger">(Deleted)</small>
-        </if>
+        <?=escape($tcc->client_name)?> <small>(<?=$tcc->client_id?>)</small>
       </a>
-    </h1>
-    <h4>Client uid: <?=$tcc->client_id?></h4>
+    </h2>
   </header>
   <section class="flex-row flex-gap">
     <if x="$tcc->status == 'Approved'">
@@ -30,8 +32,8 @@
   </section>
   <section>
     <ul>
-      <li><label>PIN Status:</label> <span id="status"><?=$tcc->status?></span></li>
-      <li><label>PIN Number:</label> <span><b id="pinNo"><?=$tcc->tcc_pin?></b></span></li>
+      <li><label>AIT Status:</label> <span id="status"><?=$tcc->status?></span></li>
+      <li><label>AIT Pin No:</label> <span><b id="pinNo"><?=$tcc->tcc_pin??'- TBA -'?></b></span></li>
       <li><label>Tax Case No:</label> <span><?=$tcc->tax_case_no?></span></li>
       <li><label>Applied On:</label> <span><?=$tcc->application_date?></span></li>
       <li><label>Issued On:</label> <span><?=$tcc->date?></span></li>

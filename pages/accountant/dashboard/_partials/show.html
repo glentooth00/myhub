@@ -46,10 +46,10 @@
                 <i class="fa fa-vcard fa-lg"></i>&nbsp;
               <span>Goto Profile</span>
             </button>           
-          </div>
-        </div>
-      </div>
-    </div>
+          </div> <!-- .card -->
+        </div> <!-- .widget -->
+      </div> <!-- .grid-stack-item-content -->
+    </div> <!-- .grid-stack-item -->
     <div class="grid-stack-item">
       <div class="grid-stack-item-content">
         <div class="widget">
@@ -59,9 +59,9 @@
             <i class="fa fa-user-circle fa-lg"></i>&nbsp;
             <span>Goto Clients</span>
           </button>        
-        </div>
-      </div>
-    </div>
+        </div> <!-- .widget -->
+      </div> <!-- .grid-stack-item-content -->
+    </div> <!-- .grid-stack-item -->
     <div class="grid-stack-item">
       <div class="grid-stack-item-content">
         <div class="widget">
@@ -77,11 +77,11 @@
             <i class="fa fa-money fa-lg"></i>&nbsp;
             <span>Goto Trades</span>
           </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        </div> <!-- .widget -->
+      </div> <!-- .grid-stack-item-content -->
+    </div> <!-- .grid-stack-item -->
+  </div> <!-- .grid-stack -->
+</div> <!-- .grid-container -->
 
 <script>
   /* global F1 */
@@ -98,19 +98,6 @@
     const gridIcon = Utils.newEl('button', 'icon icon-grUid tool', { type: 'button', title: 'Edit Dashboard' });
     const gridItems = gridStack.getGridItems();
 
-
-    gridIcon.onclick = () => { gridStack.setStatic(staticGrid = !staticGrid); };
-    gridStack.el.hidden = false; // Show when ready.
-
-    /* bottom nav */
-    Utils.removeClassFrom(app.el.bottomBar, 'active');
-    Utils.getEl('nav-item-dash').classList.add('active');
-
-    /* top nav */
-    Utils.removeFrom(app.el.toolbar, '.tool');
-    app.el.toolbar.prepend(gridIcon);
-
-    tippy('[data-tippy-content]', { allowHTML: true });
 
     function updateGridStackItems() {
       const grid = gridStack;
@@ -130,7 +117,22 @@
       }
     }
 
-    $(window).on('resize', updateGridStackItems);
+    window.onresize = updateGridStackItems;
+
+
+    gridIcon.onclick = () => { gridStack.setStatic(staticGrid = !staticGrid); };
+    gridStack.el.hidden = false; // Show when ready.
+
+
+    /* bottom nav */
+    Utils.removeClassFrom(app.el.bottomBar, 'active');
+    Utils.getEl('nav-item-dash').classList.add('active');
+
+    /* top nav */
+    Utils.removeFrom(app.el.toolbar, '.tool');
+    app.el.toolbar.prepend(gridIcon);
+
+    tippy('[data-tippy-content]', { allowHTML: true });
 
     updateGridStackItems();
 

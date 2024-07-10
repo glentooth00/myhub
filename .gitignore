@@ -1,6 +1,7 @@
-
-storage/
-uploads/
-storage/
+/backups
+/uploads
+/.env*
+/config/api.php
+*sublime*
+system2.json
 *.zip
-.env-local

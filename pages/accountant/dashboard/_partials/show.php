@@ -1,13 +1,14 @@
-<?php /* Accountant SPA - Dashboard Show - Sub Controller */
+<?php /* Accountant Module - Dashboard SPA - Show Sub Controller */
+
+global $app;
+
 
 
 // ----------
 // -- POST --
 // ----------
 
-if ($app->request->isPost) {
-    exit;
-}
+if ( $app->request->isPost ) { exit; }
 
 
 
