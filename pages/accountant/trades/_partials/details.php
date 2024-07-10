@@ -1,6 +1,7 @@
-<?php /* Accountant SPA - Trade Details - Sub Controller */
+<?php /* Accountant Module - Trades SPA - Trade Details Sub Controller */
 
-use App\Exceptions\ValidationException;
+global $app;
+
 
 
 // -------------

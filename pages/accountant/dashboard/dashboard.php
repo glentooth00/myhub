@@ -29,5 +29,5 @@ require $app->subControllerFile;
 // ----------
 
 $app->view = new AppView( $app );
-$app->view->with( 'title', 'Dashboard' );
+$app->view->with( 'title', 'Accountant' );
 include $app->view->getFile();

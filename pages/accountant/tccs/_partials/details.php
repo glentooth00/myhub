@@ -1,4 +1,6 @@
-<?php /* Admin Module - TCCs SPA - TCC Details Sub Controller */
+<?php /* Accountant Module - TCCs SPA - TCC Details Sub Controller */
+
+global $app;
 
 use App\Models\Tcc as TccModel;
 use App\Services\AppMailer;
@@ -167,7 +169,7 @@ if ( $app->request->isPost ) {
   catch ( Exception $ex ) {
     $app->db->safeRollBack();
     $message = $ex->getMessage();
-    if ( __DEBUG__ > 2 ) {
+    if ( __DEBUG__ > 3 ) {
       $file = $ex->getFile();
       $line = $ex->getLine();
       $message .= "<br>---<br>Error on line: $line of $file";

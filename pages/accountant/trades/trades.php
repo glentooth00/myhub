@@ -1,5 +1,7 @@
 <?php /* Accountant Module - Trades SPA - Main Controller */
 
+global $app;
+
 use App\Services\AppView;
 
 

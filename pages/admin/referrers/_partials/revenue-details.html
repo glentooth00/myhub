@@ -1,0 +1,72 @@
+<include>_partials/revenue-details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1><span><i class="fa fa-money fa-lg"></i></span> <?=$revenue->name?></h1>
+  </header>
+  <section class="flex-row flex-gap actions-bar">
+    <button class="btn-round btn-primary" type="button" data-tippy-content="Add Model Beneficiary"
+      onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=model-beneficiary&revenue=<?=$revenue->id?>&id=new',
+        view:'model-beneficiary', title:'Model Beneficiary Form'})">
+      <small class="flex-col align-center"><i class="fa fa-plus"></i>BF</small>
+    </button>
+  </section>
+  <br>
+  <section>
+    <ul>
+      <li><label>ID</label> <span><?=escape($revenue->id)?></span></li>
+      <li><label>Name</label> <span><?=escape($revenue->name)?></span></li>
+      <li><label>Type ID</label> <span><?=escape($type_name)?></span></li>
+      <li><label>Client ID</label> <span><?=escape($clients->name)?></span></li>
+      <li><label>Referrer ID</label> <span><?=escape($referrer_name)?></span></li>
+
+      <li class="revenue-items">
+        <header>
+        <div class="flex-row space-between">
+            <div class="flex-col">
+            <label class="flex-row flex-gap align-center">
+                <span>Beneficiaries Linked:</span>
+                <span class="badge"><?=count($bene_model)?></span>
+            </label>
+            </div>
+        </div>
+        </header>
+        <div class="revenue-model table-responsive">
+        <table>
+            <thead>
+            <tr>
+            <th class="nowrap w-50">Beneficiary</th>
+            <th>Share</th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              <foreach x="$bene_model as $i => $model">
+                <tr>
+                  <td class="nowrap">
+                      <a href="<?=$app->request->module . '/referrers?view=beneficiaries-details&amp;id=' . $model->beneficiary_id?>" onclick="F1.app.navigateTo(
+                      {event, view:'beneficiaries-details', title:'Beneficiariary Details'})"><?=escape($model->beneficiary_name)?></a>
+                  </td>
+                  <td class="nowrap w100"><?=escape($model->revenue_share)?>%</td>
+                  <td>
+                    <button class="btn-sm text-danger" type="button" title="Delete Revenue Model">
+                    X</button>
+                  </td>
+                </tr>
+              </foreach>
+            </tbody>
+        </table>
+        </div>
+        <br>
+    </li> 
+        <!-- related-items -->
+      <li><label>Created At:</label> <span><?=$revenue->created_at?></span></li>
+    </ul>
+  </section>
+
+
+</div>
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+    onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=revenue-edit&id=<?=$id?>', view:'revenue-edit', title:'Revenue Model Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+<include>_partials/revenue-details.js</include>

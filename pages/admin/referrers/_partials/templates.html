@@ -1,0 +1,28 @@
+<include>_partials/templates.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="template-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Model Type ID</th>
+      </tr>
+      </thead>
+      <tbody class="hidden">
+        <foreach x="$template as $i => $temp">
+            <tr id="<?=$temp->id?>">
+                <td><?=escape($temp->id)?></td>
+                <td><?=escape($temp->name)?></td>
+                <td><?=escape($temp->type_name)?></td>
+            </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <button class="fab btn-round btn-primary" type="button"
+        onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=template-edit&id=new', view:'template-edit', title:'Template Model Form'})">
+      <i class="fa fa-plus fa-lg"></i>
+    </button>
+  </div> <!-- .table-responsive -->
+</div> <!-- .list-view -->
+<include>_partials/templates.js</include>

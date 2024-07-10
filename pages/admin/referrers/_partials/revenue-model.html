@@ -1,0 +1,32 @@
+<include>_partials/revenue-model.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="revenue-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type ID</th>
+        <th>Client ID</th>
+        <th>Referrer ID</th>
+      </tr>
+      </thead>
+      <tbody class="hidden">
+        <foreach x="$revenue_model as $i => $revenue">
+            <tr id="<?=$revenue->id?>">
+                <td><?=escape($revenue->id)?></td>
+                <td><?=escape($revenue->name)?></td>
+                <td><?=escape($revenue->type_name)?></td>
+                <td><?=escape($revenue->client_name)?></td>
+                <td><?=escape($revenue->referrer_name)?></td>
+            </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <button class="fab btn-round btn-primary" type="button"
+        onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=revenue-edit&id=new', view:'revenue-edit', title:'Revenue Form'})">
+      <i class="fa fa-plus fa-lg"></i>
+    </button>
+  </div> <!-- .table-responsive -->
+</div> <!-- .list-view -->
+<include>_partials/revenue-model.js</include>

@@ -1,5 +1,7 @@
 <?php /* Admin Module - TCCs SPA - TCCs List Sub Controller */ 
 
+global $app;
+
 use App\Models\Tcc as TccModel;
 use App\Models\User as UserModel;
 use App\Models\UserSettings as UserSettingsModel;
@@ -29,7 +31,6 @@ function get_cert_link( $tcc ) {
   return '<a href="' . get_cert_url( $tcc ) . '" target="_blank" title="View Certificate PDF"' .
    ' onclick="event.stopPropagation()"><i class="fa fa-file-pdf-o"></i></a>';
 }
-
 
 
 /* settings */

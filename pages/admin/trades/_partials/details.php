@@ -1,9 +1,9 @@
 <?php /* Admin Module - Trades SPA - Trade Details Sub Controller */
 
-use App\Models\Trade as TradeModel;
-use App\Models\Client as ClientModel;
+global $app;
 
-use App\Exceptions\ValidationException;
+use App\Models\Trade as TradeModel;
+
 
 
 // -------------

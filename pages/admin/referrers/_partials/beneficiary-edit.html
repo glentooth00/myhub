@@ -1,0 +1,46 @@
+<include>_partials/beneficiary-edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$isEdit">
+        <h1>Edit Beneficiary ID: <?=$id?></h1>
+      </if>
+      <if x="$isNew">
+        <h1>Add New Beneficiary</h1>
+      </if>
+    </header>
+    <form id="beneficiary-form" method="post">
+
+      <input type="hidden" id="id" name="id" value="<?=escape($beneficiary->id)?>" required>
+
+      <label for="name" required>Name:</label>
+      <input type="text" id="name" name="name" value="<?=escape($beneficiary->name)?>" required>
+      
+      <label for="type_id" required>Type ID:</label>
+      <select id="type_id" name="type_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-manage-options="off" 
+        data-value="<?=$beneficiary->type_id?>">
+        <option value="">Select...</option>
+        <foreach x="$types as $type">
+            <option value="<?=$type->id?>" <?= $type->id == $beneficiary->type_id ? 'selected' : '' ?>><?=escape($type->name)?></option>
+        </foreach>
+      </select>
+
+      <label for="referrer_id" required>Referrer ID:</label>
+      <select id="referrer_id" name="referrer_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-manage-options="off" 
+        data-value="<?=$beneficiary->referrer_id?>">
+        <option value="">Select...</option>
+        <foreach x="$referrers as $referrer">
+            <option value="<?=$referrer->id?>" <?= $referrer->id == $beneficiary->referrer_id ? 'selected' : '' ?>><?=escape($referrer->name)?></option>
+        </foreach>
+      </select>
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="history.back()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/beneficiary-edit.js</include>

@@ -17,7 +17,7 @@ allow( 'super' );
 
 $app->viewPartial = $_GET['view'] ?? 'show';
 
-if ( ! in_array( $app->viewPartial, [ 'show', 'rollovers', 'trades' ] ) )
+if ( ! in_array( $app->viewPartial, [ 'show', 'rollovers', 'trades', 'clients' ] ) )
   redirect( '404' );
 
 

@@ -1,0 +1,36 @@
+<include>_partials/template-edit.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$isEdit">
+        <h1>Edit Template Model ID: <?=$id?></h1>
+      </if>
+      <if x="$isNew">
+        <h1>Add New Template Model</h1>
+      </if>
+    </header>
+    <form id="template-form" method="post">
+
+      <input type="hidden" id="id" name="id" value="<?=escape($templates->id)?>" required>
+
+      <label for="name" required>Name:</label>
+      <input type="text" id="name" name="name" value="<?=escape($templates->name)?>" required>
+
+      <label for="model_type_id" required>Model Type ID:</label>
+      <select id="model_type_id" name="model_type_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-manage-options="off" 
+        data-value="<?=$templates->model_type_id?>">
+        <option value="">Select...</option>
+        <foreach x="$types as $type">
+            <option value="<?=$type->id?>" <?= $type->id == $templates->model_type_id ? 'selected' : '' ?>><?=escape($type->name)?></option>
+        </foreach>
+      </select>
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="history.back()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/template-edit.js</include>

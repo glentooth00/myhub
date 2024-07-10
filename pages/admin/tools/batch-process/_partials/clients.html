@@ -1,0 +1,100 @@
+<include>_partials/clients.css</include>
+<div class="container h100">
+  <div class="flex-row flex-gap h100">
+    <div id="clients" class="flex-col flex-gap flex-3 h100 py1">
+      <header><h2>Clients</h2></header>
+      <fieldset class="scrollbox h100">
+        <form id="clientsForm">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th><input type="checkbox" onchange="F1.app.toggleSelectAll(event)"></th>
+                  <th>Row</th>
+                  <th>Client UID</th>
+                  <th>Client Name</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <template id="client-row-template">
+                  <tr data-id="{client.id}">
+                    <td><input type="checkbox" name="selected[]" value="{client.id}"></td>
+                    <td>{index}</td>
+                    <td>{client.client_id}</td>
+                    <td>{client.name}</td>
+                    <td>{client.status}</td>
+                  </tr>
+                </template>                
+                <tr><td colspan="12">No Results</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </fieldset>
+    </div> <!-- clientsToUpdate -->
+    
+    <div id="results" class="flex-col flex-gap flex-1 h100 py1">
+      <header class="flex-row space-between">
+        <div class="flex-col"><h2>Results</h2></div>
+        <div class="flex-col">
+          <button class="btn-sm text-primary" type="button" data-tippy-content="Export to CSV" 
+            onclick="F1.app.exportToCsv('resultsTable')">
+            <i class="fa fa-download"></i>&nbsp;
+          </button>
+        </div>
+      </header>
+      <fieldset class="scrollbox h100">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Result</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="2">No Results</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </fieldset>
+    </div> <!-- results -->
+
+    <aside class="flex-col flex-gap flex-1 h100 py1">
+      <section class="flex-col flex-gap">
+        <header>
+          <h2>Clients Source</h2>
+        </header>
+        <div class="flex-col flex-gap">
+          <textarea id="uids" name="uids" cols="30" rows="7" placeholder="SQL Statement or Client UIDs List"></textarea>
+          <button class="btn btn-primary" onclick="F1.app.fetchClients(event)">Fetch Clients</button>
+        </div>
+      </section>
+      <hr>
+      <section class="flex-col flex-gap">
+        <header>
+          <h2>Selection</h2>
+        </header>
+        <label class="flex-row flex-gap-sm align-center">
+          <input id="unselectExisting" type="checkbox" checked>
+          Unselect Existing
+        </label>
+        <label class="flex-row flex-gap-sm align-center">
+          <input id="hideUnselected" type="checkbox" onchange="F1.app.toggleUnselectedVisiblity(event)">
+          Hide Unselected
+        </label>
+      </section>
+      <hr>
+      <section class="flex-col flex-gap">
+        <header>
+          <h2>Actions</h2>
+        </header>
+        <button class="btn btn-primary" onclick="F1.app.updateClientState()">
+          <i class="fa fa-wrench"></i>&nbsp;&nbsp;Update Client State</button>
+      </section>
+    </aside>
+  </div> <!-- flex-row -->
+</div> <!-- container -->
+<script src="vendors/F1/js/csv.js"></script>
+<include>_partials/clients.js</include>

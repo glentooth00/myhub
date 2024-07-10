@@ -1,7 +1,7 @@
 <?php define( '__APP_START__', true );
 
 /**
- * S3 v2 - API Bootstrap - 31 Aug 2023
+ * API v1 - Bootstrap - 31 Aug 2023
  * 
  * This file is used by API endpoint controllers to bootstrap the App and core services.
  * e.g. api/v1/clients will include this file (api.php) first.
@@ -10,10 +10,10 @@
  * @name: My Currency Hub API
  * @author: Neels Moller <neels@currencyhub.co.za>
  * 
- * @version: 3.0 - FT - 16 May 2024
- *   - Set the auth user based on the auth token
- *   - Add a custom log file name based on the user's email
- *   - Add some comments
+ * @version: 3.1 - FT - 20 Jun 2024
+ *   - Add "User Type" concept. Handle "client" user types slightly differently.
+ *   - Try to identify clients using their email + last 9 digits of cell number.
+ *   - Don't return "bad request" if a client user is not found. Respond with json feedback.
  */
 
 require __DIR__ . '/../../.env-local';
@@ -107,14 +107,31 @@ if ( $app->bearerToken and defined( '__API_SECRET_KEY__' ) ) {
     }
 
     if ( empty( $userData['idn'] ) and empty( $userData['uid'] ) and empty( $userData['id'] ) ) {
-      $app->logger->log( 'ERROR: Bearer token format invalid!', 'error' );
-      respond_with( 'Bad request', 400 );
+
+      if ( ! isset( $userData['email'] ) or ! isset( $userData['cell'] ) )  {
+        $app->logger->log( 'ERROR: Bearer token format invalid!', 'error' );
+        respond_with( 'Bad request', 400 );
+      }
+
+      if ( empty( $userData['email'] ) or empty( $userData['cell'] ) ) {
+        $app->logger->log( 'ERROR: Bearer token format invalid!', 'error' );
+        respond_with( 'Bad request', 400 );
+      }
+
+      // We at least have an email + cell, so let's let it slide and see if we can 
+      // find a unique client using email + the last 9 digits of cell down the line.
     }
   }
 
-  $userEmail = $userData['email'] ?? null;
   debug_log( $userData, 'USER DATA: ', 1, 'info' );
+
+  $userType = $userData['type'] ?? null;
+  $userEmail = $userData['email'] ?? null;
+  $userCell = $userData['cell'] ?? null;
+
+  debug_log( $userType, 'USER TYPE: ', 1, 'info' );
   debug_log( $userEmail, 'USER EMAIL: ', 1, 'info' );
+  debug_log( $userCell, 'USER CELL: ', 1, 'info' );
 
 
   // TODO: Compare to whitelist of RPC clients. Also include the IP if fixed.
@@ -126,27 +143,61 @@ if ( $app->bearerToken and defined( '__API_SECRET_KEY__' ) ) {
       $app->logger->log( 'WARNING: The requesting Agent ID does not match: ' . 
        __GOOGLE_TRADESHEET_VM_ID__, 'warning' );
     }
-  } else {
+  }
+  else {
     $app->logger->log( 'ERROR: GOOGLE SHEET: *None*', 'warning' );
   }
 
-  // Auth User
+
+  // Init Auth User
   $app->user = $userData ? (object) $userData : new stdClass();
   $app->user->user_id = '_apicall_';
 
+
   if ( isset( $userEmail ) ) {
+
     use_database();
-    $authUser = $app->db->table( 'users' )->where( 'email', $userEmail )->getFirst();
-    if ( $authUser ) {
-      $app->user->user_id = $authUser->user_id ?? '_apicall_';
-    } else {
-      $app->logger->log( 'ERROR: User not found for email: ' . $userEmail, 'error' );
-      respond_with( 'User not found', 404 );
+
+    // USER TYPE = CLIENT
+    if ( $userType == 'client' ) {
+
+      // Replce all non numbers with empty string
+      $cellLast9 = substr( preg_replace( '/\D/', '', $userCell ), -9 );
+
+      $authClients = $app->db->table( 'clients' )
+        ->select( 'id, client_id as uid, name, personal_email as email, phone_number, id_number' )
+        ->where( 'personal_email', $userEmail )->where( 'phone_number', 'LIKE', '%' . $cellLast9 )->getAll();
+
+      if ( count( $authClients ) != 1 ) {
+        $warning = 'WARNING: Found ' . count( $authClients ) . ' clients for email + cell: ' . 
+          $userEmail . ' + ' . $cellLast9;
+        $app->logger->log( $warning, 'warning' );
+        $resp = new stdClass();
+        $resp->success = false;
+        $resp->message = $warning;
+        $resp->clients = $authClients;
+        json_response( $resp );
+      }
+
+      debug_log( $authClients, 'Auth clients found: ', 3 );
+      $app->client = $authClients[0];
     }
-    $apiLogsDir = $app->storageDir . __DS__ . 'logs' . __DS__ . 'api';
+
+    // USER TYPE = USER
+    else {
+      $authUser = $app->db->table( 'users' )->where( 'email', $userEmail )->getFirst();
+      if ( $authUser ) {
+        $app->user->user_id = $authUser->user_id ?? '_apicall_';
+      } else {
+        $app->logger->log( 'ERROR: User not found for email: ' . $userEmail, 'error' );
+        respond_with( 'User not found', 404 );
+      }
+    }
+
     $logFile = str_replace( '.', '', $userEmail ) . '_' . $app->today;
     if ( __DEBUG__ >= 2 ) $logFile .= '_' . date( 'H' );
     $logFile .= '.txt';
+    $apiLogsDir = $app->storageDir . __DS__ . 'logs' . __DS__ . 'api';
     $app->logger = new App\Services\AppLogger( $app, $apiLogsDir, $logFile );
   }
 

@@ -1,5 +1,8 @@
 <?php /* Client Module - Statement Controller */
 
+global $app;
+
+
 use App\Models\ClientStatement as ClientStatementModel;
 
 
@@ -9,6 +12,7 @@ use App\Models\ClientStatement as ClientStatementModel;
 // ----------
 
 allow( 'client, admin, accountant' );
+
 
 
 
@@ -23,21 +27,40 @@ $year = $_GET['year'] ?? null;
 if ( ! $clientUid ) respond_with( 'Bad request', 400 );
 
 
-$db = use_database();
 
+
+
+// ----------
+// -- POST --
+// ----------
+
+if ( $app->request->isPost ) respond_with( 'Bad request', 400 );
+
+
+
+
+
+// ---------
+// -- GET --
+// ---------
+
+function getPDFFileName( $statement ) {
+  $client = $statement->getData( 'client' );
+  $clientNameSlug = urlencode( str_replace( ' ', '_', $client->name ) );
+  return 'Currency_Hub_Statement_' . $clientNameSlug . '_' . date( 'YmdHis' ) . '.pdf';
+}
+
+
+use_database();
 $statement = new ClientStatementModel( $app );
-$statement->generate( $clientUid, [ 'year' => $year ] );
-
-$year = $statement->getData( 'year' );
-$lines = $statement->getData( 'lines' );
-$client = $statement->getData( 'client' );
-
+$statement->generate( $clientUid, $year ? [ 'year' => $year ] : [] );
 
 if ( $app->user->role == 'accountant' )
 {
-  $user = $db->getFirst( 'users', $app->user->id );
+  $user = $app->db->getFirst( 'users', $app->user->id );
   debug_log( $user, 'User is accountant: ', 3 );
-  debug_log( $client, 'Check if this is their client: ', 3 );
+  $client = $statement->getData( 'client' );
+  debug_log( $client, 'Check if this is the user\'s client: ', 3 );
   // Test if user->first_name appears in client->accountant
   if ( strpos( $client->accountant, $user->first_name ) === false )
   {
@@ -50,4 +73,5 @@ include $app->pagesDir . __DS__ . '_templates' . __DS__ . 'default-theme' .
   __DS__ . 'client' . __DS__ . 'stmtPDF.php';
 
 
-$pdf->Output( 'Currency_Hub_Statement_' . urlencode(str_replace( ' ', '_', $client->name )) . '_' . date( 'YmdHis' ) . '.pdf', 'I' );
+global $pdf;
+$pdf->Output( getPDFFileName( $statement ), 'I' );

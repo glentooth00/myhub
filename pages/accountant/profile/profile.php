@@ -1,5 +1,7 @@
 <?php /* Accountant Module - Profile SPA - Main Controller */
 
+global $app;
+
 use App\Services\AppView;
 
 
@@ -38,5 +40,5 @@ require $app->subControllerFile;
 // ---------
 
 $app->view = new AppView( $app, [ 'variant' => $app->viewPartial ] );
-$app->view->with( 'title', 'Profile' );
+$app->view->with( 'title', 'My Profile' );
 include $app->view->getFile();

@@ -1,4 +1,6 @@
-<?php /* Admin Module - TCCs SPA - Main Controller */
+<?php /* Accountant Module - TCCs SPA - Main Controller */
+
+global $app;
 
 use App\Services\AppView;
 
@@ -7,7 +9,7 @@ use App\Services\AppView;
 // -- AUTH --
 // ----------
 
-allow('accountant');
+allow( 'accountant' );
 
 
 
@@ -17,8 +19,8 @@ allow('accountant');
 
 $app->viewPartial = $_GET['view'] ?? 'list';
 
-if (!in_array($app->viewPartial, ['list', 'details', 'edit']))
-  redirect('404');
+if ( ! in_array($app->viewPartial, ['list', 'details', 'edit'] ) )
+  redirect( '404' );
 
 
 
@@ -37,7 +39,7 @@ require $app->subControllerFile;
 // -- VIEW --
 // ----------
 
-$app->view = new AppView($app, ['variant' => $app->viewPartial]);
-$app->view->with('title', 'FIA TAX Clearances');
+$app->view = new AppView( $app, ['variant' => $app->viewPartial] );
+$app->view->with( 'title', 'AIT TAX Clearances' );
 
 include $app->view->getFile();

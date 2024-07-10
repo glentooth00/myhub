@@ -57,7 +57,6 @@ F1.deferred.push(function initTradesListPageView(app) {
 
 
   // DataTable Columns Configuration
-  let totalAmountSubmitted = 0;
   const aoColumns = [
     null,                     // ID
     null,                     // OTC

@@ -136,16 +136,25 @@ while ( $app->request->isPost ) {
 </html>
 EOT;
 
+// def send_simple_message
+//   RestClient.post "https://api:YOUR_API_KEY"\
+//   "@api.mailgun.net/v3/YOUR_DOMAIN_NAME/messages",
+//   :from => "Excited User <mailgun@YOUR_DOMAIN_NAME>"
+//   :to => "bar@example.com, YOU@YOUR_DOMAIN_NAME",
+//   :subject => "Hello",
+//   :text => "Testing some Mailgun awesomeness!"
+// end
+
     $emailResponse = $mailer->send(
-      $email,
+      $email,  // 'neels@sandbox540d29c84ca04600ab0369f03170047b.mailgun.org',
       'Reset Password',
       $emailTemplate,
       null,
       [
         'From' => __SMTP_USER__,
         'FromName' => 'My Currency Hub',
-        'Bcc' => 'neels@blackonyx.co.za',
-        'BccName' => 'Neels'
+        // 'Bcc' => 'neels@blackonyx.co.za',
+        // 'BccName' => 'Neels'
       ]
     );
 

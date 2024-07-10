@@ -1,5 +1,7 @@
 <?php /* Admin Module - Referrers SPA - Main Controller */
 
+global $app;
+
 use App\Services\AppView;
 
 
@@ -15,10 +17,11 @@ allow( 'admin' );
 // -- REQUEST --
 // -------------
 
-$app->viewPartial = $_GET['view'] ?? 'list';
+$app->viewPartial = $_GET['view'] ?? 'show';
 
-if ( ! in_array( $app->viewPartial, [ 'list', 'details', 'edit' ] ) )
-  redirect( '404' );
+if ( ! in_array( $app->viewPartial, [ 'show', 'list', 'beneficiary', 'revenue-model',
+  'templates', 'referrer-type', 'model-types', 'list', 'details', 'edit', 'beneficiary-details',
+  'revenue-details', 'beneficiary-edit', 'template-details', 'template-edit', 'revenue-edit', 'model-beneficiary'  ] ) ) redirect( '404' );
 
 
 

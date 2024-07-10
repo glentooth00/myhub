@@ -1,0 +1,68 @@
+<include>_partials/model-types.css</include>
+<div class="container">
+  <hr>
+  <h2>Welcome to Revenue Model Type</h2>
+  <hr>
+  <br>
+  <header>
+    <button class="btn btn-primary" type="button" onclick="F1.app.showModelTypeForm()">
+      <i class="fa fa-plus"></i> Add model-type
+    </button>
+  </header>
+  <div class="table-responsive">
+    <table id="model-type">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th class="nowrap">Name</th>
+          <th class="nowrap">Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <foreach x="$model as $i => $type">
+            <tr>
+              <td class="text-primary nowrap">
+                <?=$type->id?>
+              </td>
+              <td class="text-primary nowrap">
+                <?=$type->name?>
+              </td>
+              <td class="text-primary nowrap w100">
+                  <?=$type->description?>
+              </td>
+              <td>
+                  <button class="btn-sm text-primary" type="button" title="Edit Model-Types"
+                  onclick="F1.app.editModelType('<?=$type->id?>')">
+                  <i class="fa fa-pencil"></i></button>
+              </td>
+              <td>
+                  <button class="btn-sm text-primary" type="button" title="Delete Model-Types" 
+                  onclick="F1.app.deleteModelType('<?=$type->id?>','<?=$type->name?>')">
+                  <i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+        </foreach>
+        <if x="!$model">
+            <tr>
+            <td colspan="3">No Model-Type found.</td>
+            </tr>
+        </if>
+      </tbody>
+    </table>
+  </div>
+</div>
+<form id="ModelTypeForm" onsubmit="F1.app.submitModelTypeForm(event)" hidden>
+  <input type="hidden" name="id" value="new">
+  <h4 class="form-header">New Revenue Model-Type</h4>
+  <label>Name</label>
+  <input type="text" name="name" placeholder="Model-Type Name" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <label>Description</label>
+  <input type="text" name="description" placeholder="Model-Type Description" style="width:min(320px,90vw)" required>
+  <br>
+  <br>
+  <input type="submit" class="btn-primary" value="Save">  
+</form>
+<include>_partials/model-types.js</include>

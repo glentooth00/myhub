@@ -6,7 +6,7 @@ F1.deferred.push(function initTccsEditPageView(app) {
 
   const Ajax = F1.lib.Ajax;
   const Form = F1.lib.Form;
-  const Popup = F1.lib.Popup;
+  // const Popup = F1.lib.Popup;
   const Utils = F1.lib.Utils;
   const F1SelectField = F1.lib.F1SelectField;
   const F1UploadField = F1.lib.F1UploadField;
@@ -95,7 +95,7 @@ F1.deferred.push(function initTccsEditPageView(app) {
     console.log('app.toggleForceUsed()', app.controllers.form);
     const amount_used = app.controllers.form.fields.amount_used.element;
     amount_used.readOnly = ! amount_used.readOnly;
-  }
+  };
 
 
   const customFieldTypes = { F1SelectField, F1UploadField };

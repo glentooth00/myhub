@@ -1,4 +1,6 @@
-<?php /* Admin Module - TCCs SPA - Add/Edit TCC Sub Controller */
+<?php /* Accountant Module - TCCs SPA - Add/Edit TCC Sub Controller */
+
+global $app;
 
 use App\Services\AppForm;
 
