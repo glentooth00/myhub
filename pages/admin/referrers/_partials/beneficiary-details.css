@@ -1,0 +1,152 @@
+/* Page Specific CSS */
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .page button .icon {
+    height: 1.5em;
+    width: 1.5em;
+  }
+  
+  .badge {
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: #eee;
+    font-size: 1.1em;
+  }
+  
+  
+  /* Content */
+  
+  .content-wrapper {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    width: min(1024px, 100%);
+    overflow-y: auto;
+    padding: 1rem;
+    flex: 1;
+  }
+  
+  section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  section ul li {
+    padding: 10px 0;
+  }
+  
+  section ul li label {
+    display: block;
+    font-size: 0.7em;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  
+  /* Actions */
+  
+  .actions-bar {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .actions-bar .btn-round span {
+    font-size: 1.34rem;
+    user-select: none;
+  }
+  
+  .inactive span {
+    color: crimson;
+  }
+  
+  .deleted span {
+    text-decoration: line-through;
+  }
+  
+  .undelete {
+    position: relative;
+    background-color: seagreen;
+    color: whitesmoke;
+  }
+  
+  .undelete i:before {
+    font-size: 22px;
+  }
+  
+  .undelete i:after {
+    content: "X";
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 21px;
+    color: seagreen;
+    left: 14px;
+    top: 15px;
+  }
+  
+  .permanent-delete {
+    color: orangered;
+  }
+  
+  #reset-icon {
+    background-color: darkorange;
+  }
+  
+  #backup-link {
+    display: inline-block;
+    margin-left: auto;
+    padding: 0.67rem;
+  }
+  
+  
+  /* Tables */
+  
+  .table-responsive {
+    overflow-x: scroll;
+  }
+  
+  .related-items {
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    margin-inline: -1rem;
+    margin-block: 0.67rem;
+    padding: 5px 0;
+  }
+  
+  .related-items + .related-items {
+    border-top: none;
+  }
+  
+  .related-items header,
+  .related-items footer {
+    padding: 5px 1rem;
+  }
+  
+  .related-items table {
+    border-collapse: collapse;
+    min-width: 750px;
+    font-size: 13px;
+    width: 100%;
+  }
+  
+  .related-items th {
+    text-align: left;
+    padding: 6px 10px;
+    white-space: nowrap;
+    font-size: 0.9em;
+  }
+  
+  .related-items thead th {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .related-items td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+  }

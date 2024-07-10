@@ -1,0 +1,45 @@
+<include>_partials/show.css</include>
+<div class="container">
+  <header>
+    <hr>
+    <h2>Welcome to Referrers</h2>
+    <hr>
+  </header>
+  <nav id="referrers-nav">
+    <button class="btn-primary" type="button" onclick="F1.app.navigateTo(
+        {url: 'admin/referrers?view=list&back=referrers', view: 'list', title: 'List'})">
+      <i class="fa fa-user fa-lg"></i><br>
+      <span>Referrers List</span>
+    </button>
+    <button class="btn-primary" type="button" onclick="F1.app.navigateTo(
+        {url: 'admin/referrers?view=revenue-model&back=referrers', view: 'revenue-model', title: 'Revenue-model'})">
+      <i class="fa fa-money fa-lg"></i><br>
+      <span>Revenue Models</span>
+    </button>     
+    <button class="btn-primary" type="button" onclick="F1.app.navigateTo(
+        {url: 'admin/referrers?view=beneficiary&back=referrers', view: 'beneficiary', title: 'Beneficiary'})">
+      <i class="fa fa-university fa-lg"></i><br>
+      <span>Revenue Model Beneficiaries</span>
+    </button>
+    <br>
+    <button class="btn-primary" type="button" onclick="F1.app.navigateTo(
+        {url: 'admin/referrers?view=referrer-type&back=referrers', view: 'referrer-type', title: 'Referrer Type'})">
+      <i class="fa fa-globe fa-lg"></i><br>
+      <span>Referrer Types</span>
+    </button>
+    <button class="btn-primary" type="button" onclick="F1.app.navigateTo(
+        {url: 'admin/referrers?view=model-types&back=referrers', view: 'model-types', title: 'Model-types'})">
+      <i class="fa fa-building fa-lg"></i><br>
+      <span>Revenue Model Types</span>
+    </button>
+    <button class="btn-primary" type="button" onclick="F1.app.navigateTo(
+        {url: 'admin/referrers?view=templates&back=referrers', view: 'templates', title: 'Templates'})">
+      <i class="fa fa-clone fa-lg"></i></i><br>
+      <span>Revenue Model Templates</span>
+    </button>    
+    <br>
+  </button>
+
+
+  </nav>
+</div>

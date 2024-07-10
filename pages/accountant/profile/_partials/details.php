@@ -1,4 +1,6 @@
-<?php /* Accountant SPA - Profile Details -  Sub Controller */
+<?php /* Accountant Module - Profile SPA - Profile Details Sub Controller */
+
+global $app;
 
 use App\Models\User as UserModel;
 

@@ -1,4 +1,7 @@
-<?php /* Accountant SPA - Dashboard Show - Sub Controller */
+<?php /* Accountant Module - Dashboard SPA - Show Sub Controller */
+
+global $app;
+
 
 
 // ----------

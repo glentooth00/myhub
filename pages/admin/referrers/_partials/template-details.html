@@ -1,0 +1,23 @@
+<include>_partials/template-details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1><span><i class="fa fa-clone fa-lg"></i></span> <?=$templates->name?></h1>
+  </header>
+  <br>
+  <section>
+    <ul>
+      <li><label>ID</label> <span><?=escape($templates->id)?></span></li>
+      <li><label>Name</label> <span><?=escape($templates->name)?></span></li>
+      <li><label>Model Type ID</label> <span><?=escape($type_name)?></span></li>
+        <!-- related-items -->
+      <li><label>Created At:</label> <span><?=$templates->created_at?></span></li>
+    </ul>
+  </section>
+
+
+</div>
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+    onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=template-edit&id=<?=$id?>', view:'template-edit', title:'Template Model Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+<include>_partials/template-details.js</include>

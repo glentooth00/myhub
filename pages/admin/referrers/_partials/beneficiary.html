@@ -1,0 +1,30 @@
+<include>_partials/beneficiary.css</include>
+<div class="list-view">
+  <div class="table-responsive">
+    <table id="beneficiary-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type ID</th>
+        <th>Referrer ID</th>
+      </tr>
+      </thead>
+      <tbody class="hidden">
+        <foreach x="$beneficiaries as $i => $beneficiary">
+            <tr id="<?=$beneficiary->id?>">
+                <td><?=escape($beneficiary->id)?></td>
+                <td><?=escape($beneficiary->name)?></td>
+                <td><?=escape($beneficiary->type_name)?></td>
+                <td><?=escape($beneficiary->referrer_name)?></td>
+            </tr>
+        </foreach>
+      </tbody>
+    </table>
+    <button class="fab btn-round btn-primary" type="button"
+        onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=beneficiary-edit&id=new', view:'beneficiary-edit', title:'Beneficiary Form'})">
+      <i class="fa fa-plus fa-lg"></i>
+    </button>
+  </div> <!-- .table-responsive -->
+</div> <!-- .list-view -->
+<include>_partials/beneficiary.js</include>

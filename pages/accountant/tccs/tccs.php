@@ -1,5 +1,7 @@
 <?php /* Accountant Module - TCCs SPA - Main Controller */
 
+global $app;
+
 use App\Services\AppView;
 
 
@@ -17,7 +19,7 @@ allow( 'accountant' );
 
 $app->viewPartial = $_GET['view'] ?? 'list';
 
-if ( ! in_array( $app->viewPartial, [ 'list', 'details', 'edit' ] ) )
+if ( ! in_array($app->viewPartial, ['list', 'details', 'edit'] ) )
   redirect( '404' );
 
 
@@ -26,7 +28,7 @@ if ( ! in_array( $app->viewPartial, [ 'list', 'details', 'edit' ] ) )
 // -- CONTROL --
 // -------------
 
-$app->subControllerFile = __DIR__ . __DS__ . $app->partialsRef . 
+$app->subControllerFile = __DIR__ . __DS__ . $app->partialsRef .
   __DS__ . $app->viewPartial . '.php';
 
 require $app->subControllerFile;
@@ -37,6 +39,7 @@ require $app->subControllerFile;
 // -- VIEW --
 // ----------
 
-$app->view = new AppView( $app, [ 'variant' => $app->viewPartial ] );
-$app->view->with( 'title', 'FIA TAX Clearances' );
+$app->view = new AppView( $app, ['variant' => $app->viewPartial] );
+$app->view->with( 'title', 'AIT TAX Clearances' );
+
 include $app->view->getFile();

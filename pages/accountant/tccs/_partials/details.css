@@ -18,6 +18,10 @@ header + section {
   margin-bottom: 1rem;
 }
 
+h2 small {
+  font-size: 0.67em;
+}
+
 section .btn-round span {
   font-size: 1.34rem;
 }
@@ -55,7 +59,7 @@ section .ext-link .icon {
   margin-left: 0.67rem;
 }
 
-.deleted {
+.deleted span {
   text-decoration: line-through;
 }
 

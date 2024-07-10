@@ -58,6 +58,7 @@ if ( $app->request->isPost ) {
       $operation = [];
       if ( $isEdit ) $operation['id'] = $id;
       $operation['description'] = $_POST['description'] ?? 'no description';
+      $operation['page'] = $_POST['page'] ?? '';
       $operation['type_id'] = $_POST['type_id'] ?? null;
     
       $db->pdo->beginTransaction();

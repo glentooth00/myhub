@@ -11,7 +11,6 @@ set_exception_handler( function ( $ex ) {
   global $app;
 
   $msg = ( $ex instanceof ErrorException ? '' : 'Uncaught Exception: ' ) . $ex->getMessage();
-  $bootLog = isset( $app->bootLog ) ? PHP_EOL . print_r( $app->bootLog, true ) : '';
   $isAjax = ( isset( $app->request ) and $app->request->isAjax and $app->request->type != 'page' );
   $isProd = defined('__ENV_PROD__') ? __ENV_PROD__ : false;
 

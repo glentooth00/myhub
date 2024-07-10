@@ -1,5 +1,7 @@
 <?php /* Accountant Module - Clients SPA - Client Details Sub Controller */
 
+global $app;
+
 use App\Models\Client as ClientModel;
 use App\Models\ClientState as ClientStateModel;
 use App\Models\ClientS2Response as ClientS2ResponseModel;
@@ -104,7 +106,7 @@ if ( $app->request->isPost ) {
       if ( $links ) {
         $linkData = [];
         if ( isset( $links['smtUrl'] ) ) $linkData['statement_file'] = $links['smtUrl'];
-        if ( isset( $links['pdfUrl'] ) ) $linkData['statement_pdf'] = $links['pdfUrl'];        
+        if ( isset( $links['pdfUrl'] ) ) $linkData['statement_pdf'] = $links['pdfUrl'];
         if ( $linkData ) {
           $linkData['id'] = $id;
           debug_log( $linkData, 'Update client link data: ', 3 );
@@ -181,7 +183,7 @@ function generatePDFLink( $clientUid, $year = 'current' )
 function clientDocsRef( $fieldName )
 {
   global $app, $client;
-  return $app->uploadsRef . '/' . $client->name . '_' . $client->id . 
+  return $app->uploadsRef . '/' . $client->name . '_' . $client->id .
     '/docs/' . $client->{$fieldName} . '?' . time();
 }
 

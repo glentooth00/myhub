@@ -1,7 +1,10 @@
 <?php /* Accountant SPA - TCCs List - Sub Controller */
 
+global $app;
+
 use App\Models\Tcc as TccModel;
 use App\Models\UserSettings as UserSettingsModel;
+
 
 
 // ----------
@@ -9,7 +12,6 @@ use App\Models\UserSettings as UserSettingsModel;
 // ----------
 
 if ( $app->request->isPost ) { exit; }
-
 
 
 
@@ -42,9 +44,9 @@ $settings->saveIfChanged( 'tccs_category', $category );
 $settings->saveIfChanged( 'tccs_days', $days );
 
 
-/* lists */
+// /* lists */
 $tccModel = new TccModel( $app );
-$tccs = $tccModel->getAllByAccountant( full_name($app->user), [
+$tccs = $tccModel->getAllByAccountant( full_name( $app->user ), [
   'days' => $days,
-  'category' => $category
+  'category' => $category,
 ] );

@@ -1,0 +1,46 @@
+<include>_partials/model-beneficiary.css</include>
+<div class="flex-col h100 w100">
+  <div class="container">
+    <header>
+      <if x="$isEdit">
+        <h1>Edit Model Beneficiary ID: <?=$id?></h1>
+      </if>
+      <if x="$isNew">
+        <h1>Add New Model Beneficiary</h1>
+      </if>
+    </header>
+    <form id="model-beneficiary-form" method="post">
+
+      <input type="hidden" id="id" name="id" value="<?=escape($model->id)?>" required>
+      
+      <label for="revenue_model_id" required>Revenue Model ID:</label>
+      <select id="revenue_model_id" name="revenue_model_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-manage-options="off" 
+        data-value="<?=$model->revenue_model_id?>">
+        <option value="">Select...</option>
+        <foreach x="$revenues as $revenue">
+            <option value="<?=$revenue->id?>"><?=escape($revenue->name)?></option>
+        </foreach>
+      </select>
+
+      <label for="beneficiary_id" required>Beneficiary ID:</label>
+      <select id="beneficiary_id" name="beneficiary_id" data-custom-type="F1SelectField" data-size="large"
+        data-searchable="true" data-clear-prompt="x" data-manage-options="off" 
+        data-value="<?=$model->beneficiary_id?>">
+        <option value="">Select...</option>
+        <foreach x="$beneficiaries as $beneficiary">
+            <option value="<?=$beneficiary->id?>"><?=escape($beneficiary->name)?></option>
+        </foreach>
+      </select>
+
+      <label for="revenue_share">Revenue Share:</label>
+      <input type="revenue_share" id="revenue_share" name="revenue_share" value="<?=escape($model->revenue_share)?>">
+
+      <footer>
+        <button type="submit" class="btn-success">Save</button>
+        <button type="button" class="btn-default" onclick="history.back()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+<include>_partials/model-beneficiary.js</include>

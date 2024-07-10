@@ -57,13 +57,13 @@ debug_log( $_GET, 'API GET Request. Params = ', 3 );
 $clientUid = $_GET['cuid'] ?? $app->user->uid ?? null;
 $clientIdNo = $_GET['cidn'] ?? $app->user->idn ?? null;
 $year = $_GET['year'] ?? date( 'Y' );
-$pdf = $_GET['pdf'] ?? true;
+$asPDF = $_GET['pdf'] ?? true;
 
 
 debug_log( $clientUid, 'Client UID = ', 2 );
 debug_log( $clientIdNo, 'Client ID No = ', 2 );
 debug_log( $year, 'Year = ', 2 );
-debug_log( $pdf, 'PDF = ', 2 );
+debug_log( $asPDF, 'As PDF = ', 2 );
 
 
 if ( ! $clientUid and !$clientIdNo ) respond_with( 'Bad request', 400 );
@@ -88,16 +88,21 @@ try {
   $statement = new App\Models\ClientStatement( $app );
   $statement->generate( $client, [ 'year' => $year ] );
 
-  $year = $statement->getData( 'year' );
-  $lines = $statement->getData( 'lines' );
-  $client = $statement->getData( 'client' ); // Note: We use ClientStatement to resolve the client.
 
-  if ( ! $pdf ) {
-
+  if ( ! $asPDF ) {
+    
     $response = [
       'year' => $year,
+      'date' => $statement->getData( 'date' ),
+      'date_range' => $statement->getData( 'dateRange' ),
+      'trading_capital' => $client->trading_capital ?? 0,
+      'ait_avail' => $statement->getData( 'fiaAvail' ),
+      'ait_remain' => $statement->getData( 'fiaMandateRemaining' ),
+      'sda_avail' => $statement->getData( 'sdaMandateRemaining' ),
+      'total_net_profit' => $statement->getData( 'totalNetProfit' ),
+      'referLink' => 'https://www.currencyhub.co.za/customer-dashboard/ch-referral/',
       'client' => $client,
-      'lines' => $lines,
+      'lines' => $statement->getData( 'lines' ),
     ];
 
     json_response( $response );
@@ -105,6 +110,7 @@ try {
     exit;
 
   }
+
 
   $clientNameSlug = urlencode( str_replace( ' ', '_', $client->name ) );
   $filename = "CH_Statement_{$clientNameSlug}_{$year}.pdf";
@@ -130,7 +136,8 @@ try {
     __DS__ . 'client' . __DS__ . 'stmtPDF.php';
 
 
-  $pdf->Output( $file, 'F' ); // $pdf is defined in the included file.
+  global $pdf; // $pdf is defined in the included file.
+  $pdf->Output( $file, 'F' );
 
   download_response( $file );
 

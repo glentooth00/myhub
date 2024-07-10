@@ -5,7 +5,7 @@
 </aside>
 <nav id="bottom-bar" class="flex-row flex-gap space-around">
   <a href="accountant/dashboard" id="nav-item-dash" class="nav-item"
-    onclick="F1.app.navigateTo({event, view:'show', title:'Dashboard'})">
+    onclick="F1.app.navigateTo({event, view:'show', title:'Accountant'})">
     <i class="fa fa-dashboard fa-lg"></i>
     <span>Dashboard</span>
     <hr>
@@ -16,16 +16,16 @@
     <span>Clients</span>
     <hr>
   </a>
+  <a href="accountant/tccs?back=dashboard" id="nav-item-tccs" class="nav-item"
+    onclick="F1.app.navigateTo({event, view:'list', title:'AIT TAX Clearances'})">
+    <i class="fa fa-star-o fa-lg"></i>
+    <span>TCC's</span>
+    <hr>
+  </a>
   <a href="accountant/trades?back=dashboard" id="nav-item-trades" class="nav-item"
     onclick="F1.app.navigateTo({event, view:'list', title:'Trades'})">
     <i class="fa fa-money fa-lg"></i>
     <span>Trades</span>
-    <hr>
-  </a>
-  <a href="accountant/tccs?back=dashboard" id="nav-item-tccs" class="nav-item"
-    onclick="F1.app.navigateTo({event, view:'list', title:'FIA TAX Clearances'})">
-    <i class="fa fa-star-o fa-lg"></i>
-    <span>TCC's</span>
     <hr>
   </a>
 </nav>

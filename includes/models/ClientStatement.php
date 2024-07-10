@@ -45,7 +45,8 @@ class ClientStatement {
 
     $app = $this->app;
 
-    $theYear = $options['year'] ?? date( 'Y' );
+    $thisYear = date( 'Y' );
+    $theYear = $options['year'] ?? $thisYear;
 
     $clientModel = new ClientModel( $app );
 
@@ -56,8 +57,8 @@ class ClientStatement {
     $trades = $options['trades'] ?? $clientModel->getClientTrades( 
       $client, ['type' => 'All', 'year' => $theYear] );
 
-    debug_log( PHP_EOL, '', 4 );
-    debug_log( $trades, 'ClientStatement::generate(), trades = ', 4 );
+    debug_log( PHP_EOL, '', 6 );
+    debug_log( $trades, 'ClientStatement::generate(), trades = ', 6 );
 
     debug_log( PHP_EOL, '', 2 );
     $annualInfo = $clientModel->getAnnualInfo( $client, $theYear );
@@ -74,22 +75,60 @@ class ClientStatement {
     $feeModel = new FeeModel( $app );
     // NOTE: We assume the CH Trading Fee is the same for the whole year.
     $chTradingFee = $feeModel->getChFee( "$theYear-01-01" );
-
     debug_log( $chTradingFee, 'ClientStatement::generate(), chTradingFee = ', 2 );
+
+    // TODO: Link swiftFee to the bank of the client?
+    $swiftFee = $feeModel->getSwiftFee( 'Capitec', "$theYear-01-01" );
+    debug_log( $swiftFee, 'ClientStatement::generate(), Capitec Swift Fee = ', 2 );
+
 
     $lines = [];
     foreach ( $trades as $trade ) {
-      $lines[] = $this->toStatementLine( $trade, $chTradingFee );
+      $lines[] = $this->toStatementLine( $trade, $chTradingFee, $swiftFee );
     }
 
+    // $swiftFee = 500;
+    // foreach( $lines as $line )
+    // {
+    //   $tradeTime = strtotime( $line->date );
+    //   $tradeDate = date( 'Y/m/d', $tradeTime );
+    //   $tradeAmount = decimal( $line->zar_sent, 0 );
+    //   $netProfit = decimal( $line->net_profit, 0 );
+    //   if ( $tradeTime < strtotime( '2024-05-09' ) ) { // Before the fee was introduced on 9 May 2024
+    //     $grossCapital = $tradeAmount;
+    //     $netCapital = $tradeAmount - $swiftFee;
+    //   } else {
+    //     $grossCapital = $tradeAmount + $swiftFee;
+    //     $netCapital = $tradeAmount;
+    //   }
+    //   $tradeType = $line->sda_fia;
+    //   $tusdBought = money( $line->usd_bought, 2, '$' );
+    //   $fxRateZAR = money( $line->forex_rate, 3 );
+    //   $balance = money( $grossCapital + $netProfit );
+    //   $netReturn = number_format( $line->net_return, 2 ) . '%';
+
     foreach ( $lines as $line ) {
-      if ( $line->sda_fia == 'SDA' ) { $totalSDA += $line->zar_sent; $totalNetProfit += $line->net_profit; }
-      else if ( $line->sda_fia == 'FIA' ) { $totalFIA += $line->zar_sent; $totalNetProfit += $line->net_profit; }
+      if ( $line->sda_fia == 'SDA' )
+      { 
+        $totalSDA += $line->zar_sent;
+        $totalNetProfit += $line->net_profit;
+        $sdaCount++;
+      }
+      else if ( $line->sda_fia == 'FIA' ) {
+        $totalFIA += $line->zar_sent;
+        $totalNetProfit += $line->net_profit;
+        $fiaCount++;
+      }
     }
 
     // Must be BEFORE we calc SDA/FIA contributions.
-    $fiaMandateRemaining = ( $annualInfo->fia_mandate ?? 0 ) - $totalFIA;
-    $sdaMandateRemaining = ( $annualInfo->sda_mandate ?? 0 ) - $totalSDA;
+    $fiaArroved = $client->fia_approved ?? 0;
+    $sdaMandate = $annualInfo->sda_mandate ?? 0;
+    $fiaMandate = $annualInfo->fia_mandate ?? 0;
+    $sdaMandateRemaining = max( $sdaMandate - $totalSDA, 0 );
+    $fiaMandateRemaining = max( $fiaMandate - $totalFIA, 0 );
+    $fiaApprovedAvail = max( $fiaArroved - $totalFIA, 0 );
+    $fiaAvail = min( $fiaApprovedAvail, $fiaMandateRemaining );
 
     // We need to handle SDA/FIA after all the specific SDA or FIA trades have been processed
     // to see if there is any remaining mandate to allocate to SDA/FIA trades.
@@ -105,13 +144,15 @@ class ClientStatement {
       $totalFIA += $fiaPart;
       $totalSDA += $sdaPart;
       $totalNetProfit += $line->net_profit;
+      $bothCount++;
     }
 
     $totalNetReturn = $initialCapital ? $totalNetProfit / $initialCapital * 100 : 0;
 
     // The data
     $this->addData( 'year', $theYear );
-    $this->addData( 'lines', $lines );
+    $this->addData( 'date', ( $theYear == $thisYear ) ? date('d F Y') : "31 December $theYear" );
+    $this->addData( 'dateRange', "01 January $theYear - 31 December $theYear" );
     $this->addData( 'client', $client );
     $this->addData( 'SDA', $sdaCount );
     $this->addData( 'FIA', $fiaCount );
@@ -119,16 +160,25 @@ class ClientStatement {
     $this->addData( 'totalSDA', $totalSDA );
     $this->addData( 'totalFIA', $totalFIA );
     $this->addData( 'annualInfo', $annualInfo );
-    // $this->addData( 'trades', $trades );
     $this->addData( 'totalTrades', count( $trades ) );
     $this->addData( 'chTradingFee', $chTradingFee );
     $this->addData( 'initialCapital', $initialCapital );
     $this->addData( 'totalNetProfit', round( $totalNetProfit, 2 ) );
     $this->addData( 'totalNetReturn', round( $totalNetReturn, 2 ) );
-    $this->addData( 'fiaMandateRemaining', $fiaMandateRemaining );
     $this->addData( 'sdaMandateRemaining', $sdaMandateRemaining );
+    $this->addData( 'fiaMandateRemaining', $fiaMandateRemaining );
+    $this->addData( 'sdaMandate', $sdaMandate );
+    $this->addData( 'fiaMandate', $fiaMandate );
+    $this->addData( 'fiaArroved', $fiaArroved );
+    $this->addData( 'fiaAvail', $fiaAvail );
 
-    // debug_log( $this->data, 'ClientStatement::generate(), data = ', 4 );
+    debug_log( PHP_EOL, '', 3 );
+    debug_log( $this->data, 'ClientStatement::generate(), data = ', 4 );
+
+    $this->addData( 'lines', $lines );
+
+    debug_log( PHP_EOL, '', 4 );
+    debug_log( $lines, 'ClientStatement::generate(), lines = ', 5 );
 
     return $this->data;
   }
@@ -185,13 +235,26 @@ class ClientStatement {
   }
 
 
-  public function toStatementLine( $trade, $chTradingFee )
+  public function toStatementLine( $trade, $chTradingFee, $swiftFee = 500 )
   {
+    $tradeTime = strtotime( $trade->date );
+    $tradeAmount = decimal( $trade->zar_sent, 0 );
+    if ( $tradeTime < strtotime( '2024-05-09' ) ) { // Before the fee was introduced on 9 May 2024
+      $grossCapital = $tradeAmount;
+      $netCapital = $tradeAmount - $swiftFee;
+    } else {
+      $grossCapital = $tradeAmount + $swiftFee;
+      $netCapital = $tradeAmount;
+    }
     $line = clone $trade;
-    $line->net_profit = $this->tradeNetProfit( $trade, $chTradingFee );
-    $line->net_return = $this->tradeNetReturn( $trade, $line->net_profit );
-    $line->net_capital = $trade->zar_sent + $line->net_profit;
     $line->is_inhouse_otc = $this->tradeIsInhouseOTC( $trade );
+    $line->gross_capital = $grossCapital;
+    $line->swift_fee = $swiftFee;
+    $line->net_capital = $netCapital;
+    $line->net_profit = $this->tradeNetProfit( $trade, $chTradingFee );
+    $line->payment = $grossCapital + $line->net_profit;
+    $line->net_return = $this->tradeNetReturn( $trade, $line->net_profit );
+    // $line->net_capital = $trade->zar_sent + $line->net_profit; // legacy code
     $line->profit_share_fee = $this->tradeProfitShareFee( $trade );
     return $line;
   }
@@ -244,12 +307,14 @@ class ClientStatement {
   {
     return [
       $line->date,
-      $line->zar_sent,
+      $line->gross_capital,
+      $line->swift_fee,
+      $line->net_capital,
       $line->sda_fia,
       $line->usd_bought,
       $line->forex_rate,
-      $line->net_capital,
       $line->net_profit,
+      $line->payment,
       $line->net_return
     ];
   }
@@ -259,12 +324,14 @@ class ClientStatement {
   {
     return [
       'Trade Date',
-      'Capital Traded',
+      'Gross Capital',
+      'SWIFT Fee',
+      'Net Capital',
       'SDA / FIA',
       'TUSD Bought',
       'OTC Rate',
-      'Net Capital',
-      'Net Profit (R)',
+      'Net Profit',
+      'Payment',
       'Net Return (%)'
     ];  
   }

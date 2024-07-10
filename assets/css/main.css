@@ -326,7 +326,7 @@ button, .button, .btn {
 
 #sidebar-left img {
   margin-right: 0.5rem;
-  filter: invert(20%);
+  /*filter: invert(20%);*/
   height: 1.67rem;
 }
 

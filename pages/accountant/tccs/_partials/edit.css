@@ -1,3 +1,7 @@
+:root {
+  --input-border-color: #cdcdcd;
+}
+
 body > footer {
   overflow: hidden;
   height: 0;
@@ -27,7 +31,7 @@ body > footer {
 }
 
 form {
-  padding-bottom: 1.5rem;  
+  padding-bottom: 1.5rem;
 }
 
 form [disabled] {
@@ -37,19 +41,17 @@ form [disabled] {
 
 input,
 select,
-textarea {
+textarea,
+.upload button {
   width: 100%;
   padding: 0.75em;
-  border-radius: 5px;
-  border: 1px solid #cdcdcd;
+  border-radius: 0.25em;
+  border: 1px solid var(--input-border-color);
   font-family: 'Roboto', sans-serif;
   background-color: white;
+  position: relative;
   font-size: 16px;
   line-height: 1.1;
-}
-
-input[type="file"] {
-  padding: 0.5em 0.75em;
 }
 
 form label {
@@ -82,14 +84,23 @@ form footer button {
   margin: 10px;  
 }
 
-.field button {
-  margin-top: 0.5rem;
-  margin-right: 0.34rem;
-}
-
 [readonly] {
   background-color: whitesmoke;
   cursor: not-allowed;
+}
+
+.feedback {
+  color: red;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.checkbox {
+  margin: 0 0.34rem 0 0;
+  cursor: pointer;
 }
 
 

@@ -50,20 +50,29 @@ F1.deferred.push(function initTccsListPageView(app) {
 
 
   // DataTable Columns Configuration
-  let totalAmountSubmitted = 0;
   const aoColumns = [
     null,                     // Status
     null,                     // PIN No
     { 'sType': 'currency' },  // PIN Value
     { 'sType': 'date' },      // Applied
-    { 'sType': 'date' },      // Issued
     null,                     // Client
     null,                     // Case No
-    { orderable: false },     // PDF
+    { orderable: false },     // PDF    
+    { 'sType': 'date' },      // Issued
+    { 'sType': 'currency' },  // Rollover
     { 'sType': 'currency' },  // Used
     { 'sType': 'currency' },  // Available
     { 'sType': 'date' },      // Created
-  ];
+  ];  
+
+  // new DataTable('#example', {
+  //     language: {
+  //         decimal: ',',
+  //         thousands: '.'
+  //     },
+  //     deferRender: true
+  // });
+
 
   const defaultPageLength = 10;
 
@@ -176,11 +185,13 @@ F1.deferred.push(function initTccsListPageView(app) {
   table.appendChild(tableFooter);
 
   const AMOUNT_COLUMN = 2;
-  const AMOUNT_USED_COLUMN = 8;
-  const AMOUNT_AVAIL_COLUMN = 9;
+  const AMOUNT_RO_COLUMN = 8;
+  const AMOUNT_USED_COLUMN = 9;
+  const AMOUNT_AVAIL_COLUMN = 10;
 
   const currencyColumns = [
     AMOUNT_COLUMN,
+    AMOUNT_RO_COLUMN,
     AMOUNT_USED_COLUMN,
     AMOUNT_AVAIL_COLUMN,
   ];

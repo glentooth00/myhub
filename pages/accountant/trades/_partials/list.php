@@ -1,4 +1,6 @@
-<?php /* Accountant SPA - Trades List - Sub Controller */ 
+<?php /* Accountant Module - Trades SPA - Trades List Sub Controller */
+
+global $app;
 
 use App\Models\Trade as TradeModel;
 use App\Models\UserSettings as UserSettingsModel;

@@ -6,7 +6,7 @@
  * @id: MyHub
  * @name: My Currency Hub
  * @author: Neels Moller <neels@currencyhub.co.za>
- * @version: 1.0 - RC262 - 12 Jun 2024
+ * @version: 1.0 - RC275 - 10 Jul 2024
  *
  */
 
@@ -16,7 +16,7 @@ require '.env-local';
 $app = new stdClass();
 
 $app->id = 'MyHub';
-$app->ver = 'v1.RC262';
+$app->ver = 'v1.RC275';
 $app->today = date( 'Y-m-d' );
 $app->name = 'My Currency Hub';
 $app->theme = 'default-theme';

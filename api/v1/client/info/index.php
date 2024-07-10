@@ -54,13 +54,18 @@ debug_log( $_GET, 'API GET Request. Params = ', 3 );
 
 $clientUid = $_GET['cuid'] ?? $app->user->uid ?? null;
 $clientIdNo = $_GET['cidn'] ?? $app->user->idn ?? null;
+$authClient = $app->client ?? null;
 
 
 debug_log( $clientUid, 'Client UID = ', 2 );
 debug_log( $clientIdNo, 'Client ID No = ', 2 );
+debug_log( $authClient, 'Auth Client = ', 2 );
 
 
-if ( ! $clientUid and !$clientIdNo ) respond_with( 'Bad request', 400 );
+if ( ! $clientUid and !$clientIdNo and !$authClient )
+{
+  respond_with( 'Bad request', 400 );
+}
 
 
 try {  
@@ -68,18 +73,32 @@ try {
   use_database();
 
   $infoSet = 'id, client_id as uid, id_number, name, first_name, last_name, ' .
-    'personal_email as email, status, sda_mandate, fia_mandate, trading_capital, created_at, deleted_at';
+    'personal_email as email, phone_number, status, sda_mandate, fia_mandate, ' . 
+    'trading_capital, created_at, deleted_at';
 
-  $clientInfo = $app->db->table( 'clients' )
-    ->select( $infoSet )
-    ->where( 'client_id', '=', $clientUid )
-    ->orWhere( 'id_number', '=', $clientIdNo )
-    ->getFirst();
+  if ( $authClient ) {
+    $clients = $app->db->table( 'clients' )->select( $infoSet )
+      ->where( 'client_id', '=', $authClient->uid ?? null )
+      ->getAll();
+  } else {
+    $clients = $app->db->table( 'clients' )->select( $infoSet )
+      ->where( 'client_id', '=', $clientUid )
+      ->orWhere( 'id_number', '=', $clientIdNo )
+      ->getAll();
+  }
 
-  if ( ! $clientInfo ) {
+  if ( count( $clients ) == 0 ) {
     $app->logger->log( 'ERROR: Client not found!', 'error' );
     respond_with( 'Client not found', 404 );
   }
+
+  if ( count( $clients ) > 1 ) {
+    $warning = 'WARNING: Found ' . count( $clients ) . ' clients. Expected 1.';
+    $app->logger->log( $warning, 'warning' );
+    respond_with( 'Bad request', 400 );
+  }
+
+  $clientInfo = $clients[0] ?? null;
 
   debug_log( $clientInfo, 'Client Info = ', 4 );
 

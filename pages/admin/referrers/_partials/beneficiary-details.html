@@ -1,0 +1,59 @@
+<include>_partials/beneficiary-details.css</include>
+<div class="content-wrapper">
+  <header>
+    <h1><span><i class="fa fa-university fa-lg"></i></span> <?=$beneficiaries->name?></h1>
+  </header>
+  <br>
+  <section>
+    <ul>
+      <li><label>ID</label> <span><?=escape($beneficiaries->id)?></span></li>
+      <li><label>Name</label> <span><?=escape($beneficiaries->name)?></span></li>
+      <li><label>Type ID</label> <span><?=escape($type_name)?></span></li>
+      <li><label>Referrer ID</label> <span><?=escape($referrer_name)?></span></li>
+
+        <li class="beneficiary-items">
+            <header>
+            <div class="flex-row space-between">
+                <div class="flex-col">
+                <label class="flex-row flex-gap align-center">
+                    <span>Beneficiaries Linked Models:</span>
+                    <span class="badge"><?=count($beneficiary_model)?></span>
+                </label>
+                </div>
+            </div>
+            </header>
+            <div class="beneficiary-model table-responsive">
+            <table>
+                <thead>
+                <tr>
+                <th>ID</th>
+                <th>Share</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <foreach x="$beneficiary_model as $i => $model">
+                    <tr>
+                    <td>
+                        <a href="<?=$app->request->module . '/clients?view=details&amp;id=' . $model->id?>" onclick="F1.app.navigateTo(
+                        {event, view:'details', title:'Client Details'})"><?=escape($model->id)?></a>
+                    </td>
+                    <td><?=escape($model->revenue_share)?>%</td>
+                    </tr>
+                  </foreach>
+                </tbody>
+            </table>
+            </div>
+            <br>
+        </li> 
+        <!-- related-items -->
+      <li><label>Created At:</label> <span><?=$beneficiaries->created_at?></span></li>
+    </ul>
+  </section>
+
+
+</div>
+<button class="fab btn-round btn-primary" type="button" data-tippy-content="Edit"
+    onclick="F1.app.navigateTo({url:'<?=$app->request->module?>/referrers?view=beneficiary-edit&id=<?=$id?>', view:'beneficiary-edit', title:'Beneficiary Form'})">
+  <i class="fa fa-edit fa-lg"></i>
+</button>
+<include>_partials/beneficiary-details.js</include>

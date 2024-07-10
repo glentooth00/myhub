@@ -7,12 +7,12 @@
           <th>Trade ID</th>
           <th>OTC</th>
           <th>Trade Date</th>
-          <th>Client ID</th>
+          <th>Client</th>
           <th>Type</th>
           <th>ZAR Sent</th>
-          <th>TUSD Bought</th>
-          <th>Rate (R)</th>
-          <th>Covered (R)</th>
+          <th>TUSD</th>
+          <th>R/$</th>
+          <th>Covered</th>
           <th>Allocations</th>   
         </tr>
       </thead>
@@ -22,7 +22,8 @@
           <td><?=escape($trade->trade_id)?></td>
           <td><?=escape($trade->otc)?></td>
           <td><?=$trade->date?></td>
-          <td class="name"><i class="fa fa-user-circle-o" title="Client"></i> <?=escape($trade->client_id)?></td>
+          <td class="name"><i class="fa fa-user-circle-o" title="Client"></i>&nbsp;<?=escape($trade->client_name)?> 
+            <small class="mute"><i>(<?=$trade->client_id?>)</i></small></td>
           <td><?=escape($trade->sda_fia)?></td>
           <td><?=currency($trade->zar_sent)?></td>
           <td><?=currency($trade->usd_bought, '$')?></td>
